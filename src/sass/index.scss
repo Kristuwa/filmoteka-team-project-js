@@ -1,2 +1,18 @@
-@import './common';
-@import './example';
+@import './utils/common';
+@import './utils/reset';
+@import './utils/vars';
+@import './utils/mixins';
+@import './utils/breakpoints';
+@import './utils/body';
+@import './utils/container';
+@import './utils/util-classes';
+
+@import './components/film-card';
+@import './components/modal-team';
+@import './components/modal-trailer';
+@import './components/modal-film';
+@import './components/header-main';
+@import './components/hero-main';
+@import './components/footer';
+@import './components/header-library';
+@import './components/hero-library';
