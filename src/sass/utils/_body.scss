@@ -1,0 +1,39 @@
+body {
+  background-color: var(--primery-bg-color);
+  color: var(--primery-text-color);
+
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+}
+
+.button {
+  cursor: pointer;
+  display: inline-block;
+  width: 158px;
+  height: 47px;
+  background-color: var(--accent-color);
+  color: var(--secondary-text-color);
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+
+  border: 1px solid var(--secondary-text-color);
+  border-radius: 5px;
+  outline: none;
+  transition: color var(--time) var(--function-animate),
+    background-color var(--time) var(--function-animate);
+
+  &:hover,
+  &:focus {
+    color: var(--accent-color);
+    background-color: var(--secondary-text-color);
+  }
+
+  @include tablet {
+    width: 167px;
+    height: 50px;
+    font-size: 18px;
+    line-height: 1.56;
+  }
+}
