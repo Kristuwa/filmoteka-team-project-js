@@ -1,7 +1,7 @@
 import genresJson from './genres.json';
 console.log(genresJson);
 export function createCardMarkup (data) {
-    const {title, poster_path, release_date, genre_ids} = data;
+    const {title, poster_path, release_date, genre_ids, id} = data;
     const date = release_date.slice(0, 4);
 
 let genresString;
@@ -17,15 +17,13 @@ return genresJson.filter(idGenre => idGenre.id === id);
  };
 
     return `
-    <li class="card">
-    <a class="card-link">
-    <img class="card__poster" src="${poster_path}" alt="film poster" height="634px"  width="395"/>
+    <li class="card" data-id="${id}">
+    <img class="card__poster" src="${poster_path}" alt="film poster" height="634"  width="395"/>
     <b class="card__film-name">${title}</b>
     <p class="card__description">
     ${genresString}
     <span class="film-year">${date}</span>
     </p>
-    </a>
     </li>`
 };
   
