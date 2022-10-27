@@ -1,7 +1,7 @@
 // Team-lead API key:
 const MOVIEDB_KEY = 'e5b8bd1b82d4f5b68280cf1e2b92e5f6';
 
-class QueryHandler {
+export class QueryHandler {
   constructor() {
     this.page = 1;
     this.perPage = 100;
