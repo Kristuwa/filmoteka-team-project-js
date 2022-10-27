@@ -10,7 +10,7 @@ export class QueryHandler {
     this.page = 1;
     this.perPage = 100;
     this.searchQuery = '';
-    this.movieId = data.results.movie_id;
+    this.movieId = null;
     this.axios = require('axios');
   }
   // Get trending movies per last Week:
@@ -45,7 +45,7 @@ export class QueryHandler {
       const response = await axios.get(
         `https://api.themoviedb.org/3/movie/${this.movieId}?api_key=${MOVIEDB_KEY}&language=en-US`
       );
-      const data = response.data.results;
+      const data = response.data;
       this.incrementPage();
       return data;
     } catch (error) {
