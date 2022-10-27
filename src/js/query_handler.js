@@ -1,3 +1,7 @@
+'use strict';
+
+import axios from 'axios';
+
 // Team-lead API key:
 const MOVIEDB_KEY = 'e5b8bd1b82d4f5b68280cf1e2b92e5f6';
 
@@ -6,7 +10,7 @@ export class QueryHandler {
     this.page = 1;
     this.perPage = 100;
     this.searchQuery = '';
-    this.movie_id = movie_id;
+    this.movieId = null;
     this.axios = require('axios');
   }
   // Get trending movies per last Week:
@@ -15,7 +19,7 @@ export class QueryHandler {
       const response = await axios.get(
         `https://api.themoviedb.org/3/trending/movie/week?api_key=${MOVIEDB_KEY}`
       );
-      const data = response.data;
+      const data = response.data.results;
       this.incrementPage();
       return data;
     } catch (error) {
@@ -28,7 +32,7 @@ export class QueryHandler {
       const response = await axios.get(
         `https://api.themoviedb.org/3/search/movie?api_key=${MOVIEDB_KEY}&language=en-US&query=${this.searchQuery}&page=${this.page}&include_adult=false`
       );
-      const data = response.data;
+      const data = response.data.results;
       this.incrementPage();
       return data;
     } catch (error) {
@@ -39,7 +43,7 @@ export class QueryHandler {
   async fetchQueryResultsForMovieInfo() {
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${this.movie_id}?api_key=${MOVIEDB_KEY}&language=en-US`
+        `https://api.themoviedb.org/3/movie/${this.movieId}?api_key=${MOVIEDB_KEY}&language=en-US`
       );
       const data = response.data;
       this.incrementPage();
@@ -52,9 +56,9 @@ export class QueryHandler {
   async fetchQueryResultsForVideo() {
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${this.movie_id}/videos?api_key=${MOVIEDB_KEY}&language=en-US`
+        `https://api.themoviedb.org/3/movie/${this.movieId}/videos?api_key=${MOVIEDB_KEY}&language=en-US`
       );
-      const data = response.data;
+      const data = response.data.results;
       this.incrementPage();
       return data;
     } catch (error) {
