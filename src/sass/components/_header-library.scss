@@ -30,7 +30,7 @@
       url('../images/header-bg-library-mob2@x.jpg');
   }
 
-  @media screen and (min-width: 768px) {
+  @include tablet {
     height: 219px;
     padding-top: 40px;
     padding-bottom: 60px;
@@ -54,7 +54,7 @@
     }
   }
 
-  @media screen and (min-width: 1280px) {
+  @include desktop {
     background-image: linear-gradient(
         0deg,
         rgba(0, 0, 0, 0.4),
@@ -79,7 +79,8 @@
 .container {
   padding-right: 20px;
   padding-left: 20px;
-  @media screen and (min-width: 768px) {
+
+  @include tablet {
     padding-right: 32px;
     padding-left: 32px;
   }
@@ -94,21 +95,26 @@
   color: var(--primary-text-color);
 }
 
-.link:hover .logo__icon,
-.link:focus .logo__icon {
-  stroke: var(--accent-color);
-}
-
 .logo__icon {
+  rotate: 0deg;
   fill: transparent;
   stroke: currentColor;
-  transition: stroke var(--time) var(--function-animate);
+  //   color: currentColor;
+  transition: stroke var(--time) var(--function-animate),
+    rotate var(--time) var(--function-animate);
+
+  .logo__link:hover &,
+  .logo__link:focus & {
+    rotate: 180deg;
+    fill: transparent;
+    stroke: var(--accent-color);
+  }
 }
 
 .logo__title {
   display: none;
 
-  @media screen and (min-width: 768px) {
+  @include tablet {
     font-family: inherit;
     display: inline-block;
     font-weight: 500;
@@ -155,7 +161,7 @@
   justify-content: center;
   margin-top: 60px;
 
-  @media screen and (min-width: 768px) {
+  @include tablet {
     margin-top: 40px;
   }
 }
@@ -163,10 +169,10 @@
 .btn__item:not(:last-child) {
   margin-right: 20px;
 
-  @media screen and (min-width: 768px) {
+  @include tablet {
     min-width: 32px;
   }
-  @media screen and (min-width: 1280px) {
+  @include desktop {
     min-width: 16px;
   }
 }
@@ -186,10 +192,10 @@
   border: 1px solid var(--primary-text-color);
   border-radius: 5px;
 
-  @media screen and (min-width: 768px) {
+  @include tablet {
     min-width: 152px;
   }
-  @media screen and (min-width: 1280px) {
+  @include desktop {
     min-width: 148px;
   }
 }
