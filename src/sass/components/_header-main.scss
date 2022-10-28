@@ -75,6 +75,7 @@
     }
   }
 }
+
 .nav-list__main {
   display: flex;
   margin-left: auto;
@@ -95,6 +96,15 @@
   text-transform: uppercase;
   color: var(--primary-text-color);
   padding: 4px;
+
+  transition: color var(--time) var(--function-animate),
+    border-color var(--time) var(--function-animate);
+}
+
+.header-main__btn:hover,
+.header-main__btn:focus {
+  color: var(--accent-color);
+  border-color: var(--accent-color);
 }
 .search-form {
   border-bottom: 0.5px solid var(--primary-text-color);
@@ -115,7 +125,7 @@
   min-width: 265px;
   color: var(--primary-text-color);
   font-size: 14px;
-  line-height: 16px;
+  line-height: 1.14;
   @media screen and (min-width: 768px) {
     min-width: 321px;
   }
@@ -130,11 +140,14 @@
   color: var(--primary-text-color);
 }
 .search-btn__icon {
-  color: currentColor;
-  transition: fill var(--time) var(--function-animate);
+  stroke: currentColor;
+  fill: transparent;
+  transition: stroke var(--time) var(--function-animate);
+
   .search-btn:hover &,
   .search-btn:focus & {
-    fill: var(--accent-color);
+    fill: transparent;
+    stroke: var(--accent-color);
   }
 }
 .search-form__input::placeholder {
