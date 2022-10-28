@@ -90,6 +90,21 @@
   align-items: center;
 }
 
+.logo__link {
+  color: var(--primary-text-color);
+}
+
+.link:hover .logo__icon,
+.link:focus .logo__icon {
+  stroke: var(--accent-color);
+}
+
+.logo__icon {
+  fill: transparent;
+  stroke: currentColor;
+  transition: stroke var(--time) var(--function-animate);
+}
+
 .logo__title {
   display: none;
 
@@ -127,7 +142,7 @@
 
 .nav-list__link.current::after {
   content: '';
-  background-color: var(--accent-color);
+  background-color: var(--current-color);
   height: 3px;
   width: 100%;
   position: absolute;
