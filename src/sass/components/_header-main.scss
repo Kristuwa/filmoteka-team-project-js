@@ -127,6 +127,15 @@
   background: transparent;
   border: none;
   padding: 0;
+  color: var(--primary-text-color);
+}
+.search-btn__icon {
+  color: currentColor;
+  transition: fill var(--time) var(--function-animate);
+  .search-btn:hover &,
+  .search-btn:focus & {
+    fill: var(--accent-color);
+  }
 }
 .search-form__input::placeholder {
   font-size: 14px;
