@@ -78,6 +78,7 @@
 
 .nav-list__main {
   display: flex;
+  align-items: center;
   margin-left: auto;
   margin-right: 29px;
   @include tablet {
@@ -170,4 +171,10 @@
   font-size: 14px;
   line-height: 16px;
   color: var(--primary-text-color);
+}
+.header-main__svg {
+  fill: white;
+}
+.nav-list__item:hover .header-main__svg {
+  fill: var(--accent-color);
 }
