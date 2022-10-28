@@ -1,0 +1,113 @@
+body.is-hidden {
+  overflow-y: hidden;
+  height: 100vh;
+}
+
+/* Стили для подложки */
+
+.modalbackdrop-film {
+  /* Скрываем подложку  */
+  opacity: 0;
+  visibility: hidden;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 20;
+  transition: 0.3s all;
+}
+
+/* Стили для модальных окон */
+
+.modal-film {
+  /* Скрываем окна  */
+  opacity: 0;
+  visibility: hidden;
+
+  /*  Установаем ширину окна  */
+  width: 100%;
+  max-width: 680px;
+  height: 400px;
+
+  /*  Центрируем и задаем z-index */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 30; /* Должен быть выше чем у подложки*/
+
+  /*  Побочные стили   */
+  box-shadow: 0 3px 10px -0.5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  padding: 30px;
+  border-radius: 3px;
+  background-color: #fff;
+  transition: 0.3s all;
+}
+
+/* Стили для активных классов подложки и окна */
+
+.modal-film.active,
+.modalbackdrop-film.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Стили для кнопки закрытия */
+
+.film-card-close {
+  display: inline-block;
+  padding: 0;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  //   background: transparent;
+  //   border: none;
+  color: var(--secondary-text-color);
+  transition: color 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  cursor: pointer;
+
+  &:hover,
+  :focus {
+    color: var(--accent-color);
+  }
+}
+
+.film-card-close-svg {
+  fill: currentColor;
+}
+
+.film-card__title {
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.67;
+
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--primary-text-color);
+}
+
+.film-card__text {
+  background-color: #ffffff63;
+  border-radius: 25px;
+  font-size: 12px;
+  line-height: 1.62;
+  color: var(--text-grey-color);
+  margin-bottom: 15px;
+
+  @include tablet {
+    font-size: 16px;
+    line-height: 1.76;
+    letter-spacing: 0.04em;
+    margin-bottom: 25px;
+  }
+
+  @include desktop {
+    line-height: 1.94;
+  }
+}
