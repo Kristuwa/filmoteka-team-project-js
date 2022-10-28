@@ -32,7 +32,7 @@ export class QueryHandler {
       const response = await axios.get(
         `https://api.themoviedb.org/3/search/movie?api_key=${MOVIEDB_KEY}&language=en-US&query=${this.searchQuery}&page=${this.page}&include_adult=false`
       );
-      const data = response.data.results;
+      const data = response.data;
       this.incrementPage();
       return data;
     } catch (error) {
