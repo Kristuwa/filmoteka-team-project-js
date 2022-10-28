@@ -1,7 +1,10 @@
 body {
   background-color: var(--primery-bg-color);
   color: var(--primery-text-color);
-
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vw;
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
 }
