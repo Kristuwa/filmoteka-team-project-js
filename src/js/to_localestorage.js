@@ -15,8 +15,7 @@ refs = {
 // Змінні ___________________________
 let watchVideoList = [];
 export const WACHED_KEY = "watchedVideoKey"
-const QUEUE_KEY = "queueVideoKey"
-const savedData = storage.load(WACHED_KEY)
+export const QUEUE_KEY = "queueVideoKey"
 const currentVideoId = 605;
 
 
@@ -61,7 +60,6 @@ fetch(urlFilmById).then(response => response.json()).then(data => {
      return
     }
    }
-
    watchVideoList = savedData
    console.log(watchVideoList);
   };

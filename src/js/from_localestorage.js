@@ -3,10 +3,12 @@ import storage from "./localestorage";
 import {WACHED_KEY} from "./to_localestorage"
 // Дістаємо об'єкти зі сторінки _________________________________________________________
 const refs = {
+ watchedLiberaryBtn:document.querySelector('.btn__item--btn'),
+ queueLiberaryBtn:document.querySelector('.btn__item--btn'),
  closeModalBtn: document.querySelector('.close-modal-btn'),
  galleryList: document.querySelector('.gallery'),
 }
-
+console.log(refs.watchedLiberaryBtn);
 // Змінні ___________________________
 const savedData = storage.load(WACHED_KEY)
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p'
