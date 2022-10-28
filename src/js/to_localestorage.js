@@ -33,10 +33,18 @@ console.log('fetch this link:',urlFilmById);
 fetch(urlFilmById).then(response => response.json()).then(data => {
  // console.log(data);
 
+// Коли нам прийшов запит від бекенду та відмалювались відео.
+// Потрібно зробити делегування подій:
+// Повісити слухача подій на контейнер і відловлювати кліп на фільмі
+// клік на фільм -> присвоюємо його id в currentVideoId
+// Відкривається модалка
+
+
 
 
 // Запис в localestorage _________________________________________________________
 // ✅Кнопка add to watch
+ // ❌Переписати щоб не дублювався код
  // Коли кнопку toWatchBtn натиснули потрібно додати відео у locale storage
  //  додає фільм у localestorage і видаляє якщо він там вже є
  
@@ -77,6 +85,7 @@ fetch(urlFilmById).then(response => response.json()).then(data => {
  
 
  // ✅Кнопка add to ueue
+  // ❌Переписати щоб не дублювався код
  refs.toQueueBtn.addEventListener('click', event => {
   console.log('press button add to queue');
 
