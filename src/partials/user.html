@@ -13,7 +13,7 @@
         <use id="close-modal-cross" href="./images/icons.svg#close-btn"></use>
       </svg>
     </button>
-    <p class="log-in-title">Sign in to your account.</p>
+    <!-- <p class="log-in-title">Sign in to your account.</p> -->
     <ul id="log-in-page" class="tabs hidden-tab">
       <li id="log-in-tab" class="tabs-list hidden-tab">Log in</li>
       <li id="reg-tab" class="tabs-list hidden-tab top-right">Registration</li>
@@ -27,15 +27,26 @@
     </ul>
 
     <form id="log-in-form" class="form hidden-tab">
-      <input id="logInEmail" type="email" name="email" placeholder="E-mail" />
-
-      <input
-        id="logInPswd"
-        type="password"
-        name="password"
-        placeholder="password"
-      />
-
+      <div class="log-in-email-container">
+        <input
+          id="logInEmail"
+          type="email"
+          name="email"
+          required=""
+          class="log-in-email"
+        />
+        <label class="log-in-email-label">Username</label>
+      </div>
+      <div class="log-in-password-container">
+        <input
+          id="logInPswd"
+          type="password"
+          name="password"
+          required=""
+          class="log-in-password"
+        />
+        <label class="log-in-password-label">Password</label>
+      </div>
       <svg
         class="login-eye-position show-pswd hidden-tab"
         width="28"
@@ -48,21 +59,32 @@
         <use href="./images/icons.svg#icon-close-eye"></use>
       </svg>
 
-      <button id="log-in-btn" class="confirm-btn" type="submit">Log in</button>
+      <button id="log-in-btn" class="confirm-btn" type="submit">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>Log in
+      </button>
     </form>
 
     <form id="reg-form" class="form hidden-tab">
-      <input id="name" type="text" name="name" placeholder="Username" />
-
-      <input id="email" type="email" name="email" placeholder="E-mail" />
-
-      <input
-        id="reg-pswd"
-        type="password"
-        name="password"
-        placeholder="password"
-      />
-
+      <div class="log-in-email-container">
+        <input id="name" type="text" name="name" class="log-in-email" />
+        <label class="log-in-email-label">Username</label>
+      </div>
+      <div class="log-in-email-container">
+        <input id="email" type="email" name="email" class="log-in-password" />
+        <label class="log-in-email-2-label">E-mail</label>
+      </div>
+      <div class="log-in-password-container">
+        <input
+          id="reg-pswd"
+          type="password"
+          name="password"
+          class="log-in-password"
+        />
+        <label class="log-in-password-label">Password</label>
+      </div>
       <svg class="reg-eye-position show-pswd hidden-tab" width="28" height="28">
         <use href="./images/icons.svg#icon-eye"></use>
       </svg>
@@ -71,7 +93,12 @@
         <use href="./images/icons.svg#icon-close-eye"></use>
       </svg>
 
-      <button class="confirm-btn" id="register" type="submit">Register</button>
+      <button class="confirm-btn" id="register" type="submit">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>Register
+      </button>
     </form>
 
     <form id="upd-form" class="form hidden-tab">
