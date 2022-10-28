@@ -10,7 +10,7 @@ const refs = {
 }
 
 // Змінні ___________________________
-const savedData = storage.load(WACHED_KEY)
+
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p'
 
 
@@ -30,9 +30,10 @@ function resetContent() {
   // Спершу потрібно видалити розмітку
   refs.galleryList.innerHTML = '';
 console.log('remove all from page');
-
+const savedData = storage.load(WACHED_KEY)
 // Якщо об'єкти є то відрендерити
-if (savedData) {
+  if (savedData) {
+  console.log(savedData);
   // Рендер
   renderGallery(savedData);
   console.log('render');
