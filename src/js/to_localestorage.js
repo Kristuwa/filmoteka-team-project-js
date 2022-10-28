@@ -3,11 +3,13 @@ import storage from "./localestorage";
 
 // Дістаємо об'єкти зі сторінки _________________________________________________________
 refs = {
+ // Кнопки модального вікна
  toWatchBtn: document.querySelector('.to-watch-btn'),
  toQueueBtn: document.querySelector('.to-queue-btn'),
- themeBtn: document.querySelector('.theme-btn'),
- 
+ // themeBtn: document.querySelector('.theme-btn'),
 
+ //Кнопки кабінету користувача 
+ libraryListButtons: document.querySelector('.btn__list')
 }
 
 // Змінні ___________________________
@@ -37,9 +39,10 @@ fetch(urlFilmById).then(response => response.json()).then(data => {
 
  // Коли кнопку toWatchBtn натиснули потрібно додати відео у locale storage
  // ✅Кнопка вже додає фільм у localestorage і видаляє якщо він там вже є
- // ❌Потрібно зробити зміну класів щоб знмінювався напис на кнопці
+ 
  refs.toWatchBtn.addEventListener('click', event => {
   console.log('press button add to watch');
+
   // перевіряємо чи є щось в localstorage
   const savedData = storage.load(WACHED_KEY)
   if (savedData) {
@@ -69,3 +72,26 @@ fetch(urlFilmById).then(response => response.json()).then(data => {
  });
 
 }).catch(error => console.log(error));
+
+
+
+// ✅ Заміна класів is-active
+refs.libraryListButtons.addEventListener('click',onButtonClick)
+function onButtonClick(event) {
+ if (event.target.nodeName !== 'BUTTON') {
+  return;
+ }
+ // console.log(event.target);
+
+const currentActiveBtn = refs.libraryListButtons.querySelector('.is-active')
+ // console.log(currentActiveBtn);
+
+ if (currentActiveBtn) {
+   currentActiveBtn.classList.remove('is-active')
+ // console.log('remove class is-active');
+ }
+
+ // додає клас на кнопку на яку клікнули
+ event.target.classList.add('is-active')
+ // console.log('add class is-active');
+}
