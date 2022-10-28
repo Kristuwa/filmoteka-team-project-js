@@ -17,6 +17,7 @@ p {
 
 .link {
   text-decoration: none;
+  transition: color var(--time) var(--function-animate);
 }
 
 img {
