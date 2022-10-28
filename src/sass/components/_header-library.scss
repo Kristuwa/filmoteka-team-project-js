@@ -92,9 +92,10 @@
 
 .logo__title {
   display: none;
+
   @media screen and (min-width: 768px) {
+    font-family: inherit;
     display: inline-block;
-    font-family: 'Roboto';
     font-weight: 500;
     font-size: 30px;
     line-height: 1.17;
@@ -117,7 +118,6 @@
 }
 
 .nav-list__link {
-  font-family: 'Roboto';
   font-weight: 500;
   font-size: 12px;
   line-height: 1.17;
@@ -139,28 +139,47 @@
   display: flex;
   justify-content: center;
   margin-top: 60px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 40px;
+  }
 }
 
 .btn__item:not(:last-child) {
   margin-right: 20px;
+
+  @media screen and (min-width: 768px) {
+    min-width: 32px;
+  }
+  @media screen and (min-width: 1280px) {
+    min-width: 16px;
+  }
 }
 
-.btn__item--btn {
-  padding-bottom: 13px;
+.btn__watched,
+.btn__queue {
   padding-top: 13px;
-  width: 130px;
+  padding-bottom: 13px;
+  min-width: 130px;
   font-family: 'Roboto';
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
   text-transform: uppercase;
   color: var(--primary-text-color);
-  background: transparent;
+  background-color: transparent;
   border: 1px solid var(--primary-text-color);
   border-radius: 5px;
+
+  @media screen and (min-width: 768px) {
+    min-width: 152px;
+  }
+  @media screen and (min-width: 1280px) {
+    min-width: 148px;
+  }
 }
 
-.js-active-btn {
+.is-active {
   background: var(--accent-color);
   border-radius: 5px;
   border: none;
