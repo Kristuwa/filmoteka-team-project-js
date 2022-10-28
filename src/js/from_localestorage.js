@@ -17,26 +17,30 @@ const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p'
 
 // Рендер розмітки _________________________________________________________
 // При переході в кабінет зробиби рендер  wachedVideo
-// Спершу потрібно видалити розмітку
+resetContent();
 
-refs.galleryList.innerHTML = '';
-console.log('remove all from page');
-// Потім відрендерити
-
-renderGallery(savedData);
-console.log('render');
 
 // ❌ Ще не працює кнопка ESC модалки
 // При натиснення на кнопку закриття модалки зробити рендер wachedVideo
 refs.closeModalBtn.addEventListener('click', event => {
- 
- console.log(savedData);
- // Спершу потрібно видалити розмітку
-  refs.galleryList.innerHTML = '';
- console.log('remove all from page');
-// Потім відрендерити
- renderGallery(savedData);
+  resetContent();
 })
+
+function resetContent() {
+  // Спершу потрібно видалити розмітку
+  refs.galleryList.innerHTML = '';
+console.log('remove all from page');
+
+// Якщо об'єкти є то відрендерити
+if (savedData) {
+  // Рендер
+  renderGallery(savedData);
+  console.log('render');
+}
+}
+
+
+
 
 
 function createMurkup({ original_title,poster_path,overview,backdrop_path
