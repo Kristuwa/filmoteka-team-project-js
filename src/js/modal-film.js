@@ -1,6 +1,8 @@
 import { QueryHandler } from './query_handler';
-import genresJson from './genres.json';
-
+import { saveGenres } from './genres_storage';
+console.log(saveGenres());
+const genres = saveGenres();
+// console.log(saveGenres().than(data => console.log(data)));
 const modalFilmClick = document.querySelector('.card-list');
 const modalBackdrop = document.querySelector('.modalbackdrop-film');
 const modalFilm = document.querySelector('.modal-film');
@@ -61,7 +63,7 @@ function createMarkupModal({
   const genresArray = [];
   console.log(genres);
   const selectedGenres = genres.map(id => {
-    return genresJson.filter(idGenre => idGenre.id === id);
+    return genres.filter(idGenre => idGenre.id === id);
   });
   selectedGenres.map(genre => genresArray.push(genre.name));
   if (genresArray.length > 0 && genresArray.length <= 3) {
