@@ -5,10 +5,15 @@ import {WACHED_KEY} from "./to_localestorage"
 const refs = {
  watchedLiberaryBtn:document.querySelector('.btn__watched'),
  queueLiberaryBtn:document.querySelector('.btn__queue'),
- closeModalBtn: document.querySelector('.close-modal-btn'),
- galleryList: document.querySelector('.gallery'),
+ closeModalBtn: document.querySelector('.film-card-close'),
+//  ❌Потрібен клас js-container або js-gallary
+  galleryList: document.querySelector('.hero'),
+ 
+  
 }
 
+// console.log(refs.watchedLiberaryBtn);
+// console.log(refs.queueLiberaryBtn);
 // Змінні ___________________________
 
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p'
@@ -20,7 +25,7 @@ const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p'
 resetContent();
 
 
-// ❌ Ще не працює кнопка ESC модалки
+// ✅ кнопка ESC модалки
 // При натиснення на кнопку закриття модалки зробити рендер wachedVideo
 refs.closeModalBtn.addEventListener('click', event => {
   resetContent();
@@ -29,14 +34,14 @@ refs.closeModalBtn.addEventListener('click', event => {
 function resetContent() {
   // Спершу потрібно видалити розмітку
   refs.galleryList.innerHTML = '';
-console.log('remove all from page');
+// console.log('remove all from page');
 const savedData = storage.load(WACHED_KEY)
 // Якщо об'єкти є то відрендерити
   if (savedData) {
-  console.log(savedData);
+  // console.log(savedData);
   // Рендер
   renderGallery(savedData);
-  console.log('render');
+  // console.log('render');
 }
 }
 
