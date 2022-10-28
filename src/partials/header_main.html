@@ -3,19 +3,35 @@
     <nav class="nav">
       <a class="logo__link link" href="./index.html"
         ><svg class="logo__icon" width="24" height="24">
-          <use href="./images/icons.svg#icon-filmoteka"></use></svg
-        >Filmoteka
+          <use href="./images/icons.svg#icon-filmoteka"></use>
+        </svg>
+        <span class="logo__title"> Filmoteka</span>
       </a>
-      <ul class="nav-list list">
+      <ul class="nav-list__main list">
         <li class="nav-list__item">
-          <a class="nav-list__link link" href="./index.html">Home</a>
+          <a class="nav-list__link link current" href="./index.html">Home</a>
         </li>
         <li class="nav-list__item">
           <a class="nav-list__link link" href="./page_library.html"
-            >my library</a
+            >My library</a
           >
         </li>
       </ul>
+      <button type="button" class="header-main__btn">Sign up</button>
     </nav>
+    <form class="search-form" id="search-form">
+      <input
+        class="search-form__input"
+        type="text"
+        name="searchQuery"
+        autocomplete="off"
+        placeholder="Movie search"
+      />
+      <button aria-label="Search" type="submit" class="search-btn button">
+        <svg class="search-btn__icon" width="12" height="12">
+          <use href="./images/icons.svg#icon-search"></use>
+        </svg>
+      </button>
+    </form>
   </div>
 </header>
