@@ -21,6 +21,10 @@ body {
   background-color: var(--primary-text-color);
 }
 
+.link {
+  transition: color var(--time) var(--function-animate);
+}
+
 .link:hover,
 .link:focus {
   color: var(--accent-color);
