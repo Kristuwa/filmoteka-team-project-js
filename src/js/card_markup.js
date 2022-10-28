@@ -1,13 +1,17 @@
-import genresJson from './genres.json';
+
+import { genresStorage } from './render_trending';
+
 
 export function createCardMarkup (data) {
     const {title, poster_path, release_date, genre_ids, id} = data;
     const date = release_date.slice(0, 4);
 const IMAGE_URL = "https://image.tmdb.org/t/p/w500/";
+
+
 let genresString;
 const genresArray = [];
 const selectedGenres =  genre_ids.map(id => {
-return genresJson.filter(idGenre => idGenre.id === id);
+return genresStorage.filter(idGenre => idGenre.id === id);
  });
  selectedGenres.map(genre => genresArray.push(genre[0].name));
  if(genresArray.length > 0 && genresArray.length <= 3){
