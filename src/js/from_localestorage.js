@@ -1,5 +1,5 @@
 // Імпорти _________________________________________________________
-import storage from "./localestorage";
+import storage from "./localestorage-metods";
 import {WACHED_KEY} from "./to_localestorage"
 // Дістаємо об'єкти зі сторінки _________________________________________________________
 const refs = {
