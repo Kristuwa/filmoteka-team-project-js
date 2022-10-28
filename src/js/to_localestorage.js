@@ -14,9 +14,10 @@ refs = {
 
 // Змінні ___________________________
 let watchVideoList = [];
+let queueVideoList = [];
 export const WACHED_KEY = "watchedVideoKey"
 export const QUEUE_KEY = "queueVideoKey"
-const currentVideoId = 605;
+const currentVideoId = 550;
 
 
 
@@ -35,15 +36,52 @@ fetch(urlFilmById).then(response => response.json()).then(data => {
 
 
 // Запис в localestorage _________________________________________________________
-
+// ✅Кнопка add to watch
  // Коли кнопку toWatchBtn натиснули потрібно додати відео у locale storage
- // ✅Кнопка вже додає фільм у localestorage і видаляє якщо він там вже є
+ //  додає фільм у localestorage і видаляє якщо він там вже є
  
  refs.toWatchBtn.addEventListener('click', event => {
   console.log('press button add to watch');
 
   // перевіряємо чи є щось в localstorage
   const savedData = storage.load(WACHED_KEY)
+  console.log(savedData);
+
+  if (savedData) {
+   // якщо є, то перевіряємо чи є там фільм з поточним id
+
+   // Коли відео додане у localstorage повторний клік по кнопці повинен видалити фільм із localestorage
+   for (let i = 0; i < savedData.length; i += 1) {
+    // якщо поточне відео id співпадає із тим що є в масиві, то з масиву потрібно видалити 
+    if (savedData[i].id === currentVideoId) {
+     // видалення об'єкта
+     console.log('this video in localstorage', i);
+     savedData.splice(i, 1);
+     // console.log(savedData);
+     // оновлення localstorage
+     storage.save(WACHED_KEY, savedData)
+     return
+    }
+   }
+
+   watchVideoList = savedData;
+   // console.log(watchVideoList);
+  };
+
+  
+  watchVideoList.push(data);
+  // console.log(watchVideoList);
+  storage.save(WACHED_KEY, watchVideoList)
+ });
+
+ 
+
+ // ✅Кнопка add to ueue
+ refs.toQueueBtn.addEventListener('click', event => {
+  console.log('press button add to queue');
+
+  // перевіряємо чи є щось в localstorage
+  const savedData = storage.load(QUEUE_KEY)
   if (savedData) {
    // якщо є, то перевіряємо чи є там фільм з поточним id
 
@@ -56,20 +94,26 @@ fetch(urlFilmById).then(response => response.json()).then(data => {
      savedData.splice(i, 1);
      console.log(savedData);
      // оновлення localstorage
-     storage.save(WACHED_KEY, savedData)
+     storage.save(QUEUE_KEY, savedData)
      return
     }
    }
-   watchVideoList = savedData
-   console.log(watchVideoList);
+   queueVideoList = savedData;
+   // console.log(queueVideoList);
   };
+
   
-  watchVideoList.push(data);
+  queueVideoList.push(data);
   // console.log(watchVideoList);
-  storage.save(WACHED_KEY, watchVideoList)
+  storage.save(QUEUE_KEY, queueVideoList)
  });
 
+
 }).catch(error => console.log(error));
+
+
+
+
 
 
 

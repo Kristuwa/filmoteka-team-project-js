@@ -3,15 +3,18 @@ import storage from "./localestorage";
 import {WACHED_KEY} from "./to_localestorage"
 // Дістаємо об'єкти зі сторінки _________________________________________________________
 const refs = {
- watchedLiberaryBtn:document.querySelector('.btn__item--btn'),
- queueLiberaryBtn:document.querySelector('.btn__item--btn'),
+ watchedLiberaryBtn:document.querySelector('.btn__watched'),
+ queueLiberaryBtn:document.querySelector('.btn__queue'),
  closeModalBtn: document.querySelector('.close-modal-btn'),
  galleryList: document.querySelector('.gallery'),
 }
-console.log(refs.watchedLiberaryBtn);
+
 // Змінні ___________________________
 const savedData = storage.load(WACHED_KEY)
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p'
+
+
+
 // Рендер розмітки _________________________________________________________
 // При переході в кабінет зробиби рендер  wachedVideo
 // Спершу потрібно видалити розмітку
@@ -23,7 +26,7 @@ console.log('remove all from page');
 renderGallery(savedData);
 console.log('render');
 
-// ❌ Ще не працює
+// ❌ Ще не працює кнопка ESC модалки
 // При натиснення на кнопку закриття модалки зробити рендер wachedVideo
 refs.closeModalBtn.addEventListener('click', event => {
  
