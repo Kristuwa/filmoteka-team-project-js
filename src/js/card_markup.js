@@ -18,12 +18,14 @@ return genresJson.filter(idGenre => idGenre.id === id);
 
     return `
     <li class="card" data-id="${id}">
-    <img class="card__poster" src="${IMAGE_URL}${poster_path}" alt="film poster" height="634px"  width="395px"/>
+    <a class="link card-film-link" href="#" aria-label="${title}>
+    <img class="card__poster" src="${IMAGE_URL}${poster_path}" alt="film poster" height="634"  width="395"/>
     <b class="card__film-name">${title}</b>
     <p class="card__description">
     ${genresString}
     <span class="film-year">${date}</span>
     </p>
+    </a>
     </li>`
 };
   

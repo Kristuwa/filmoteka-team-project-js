@@ -5,7 +5,7 @@ const queryHandler = new QueryHandler();
 
 const filmListRef = document.querySelector(".card-list");
 export function renderMarkupTrending(){
-    queryHandler.fetchQueryResultsForTrending()
+   return queryHandler.fetchQueryResultsForTrending()
     .then((data) => {
        const markup = data.map(createCardMarkup).join("");
        filmListRef.insertAdjacentHTML("beforeend", markup);
