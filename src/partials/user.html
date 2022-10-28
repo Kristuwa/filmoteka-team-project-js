@@ -1,0 +1,185 @@
+<div class="backdrop-auth visibility">
+  <div class="auth-container hidden-tab">
+    <button
+      id="close-modal-btn"
+      type="button"
+      class="modal__close-btn auth-modal-cross"
+    >
+      <svg
+        class="modal__close-icon auth-modal__close-icon"
+        width="25"
+        height="25"
+      >
+        <use id="close-modal-cross" href="./images/icons.svg#close-btn"></use>
+      </svg>
+    </button>
+    <ul id="log-in-page" class="tabs hidden-tab">
+      <li id="log-in-tab" class="tabs-list hidden-tab">Log in</li>
+      <li id="reg-tab" class="tabs-list hidden-tab top-right">Registration</li>
+    </ul>
+
+    <ul id="user-settings-page" class="tabs hidden-tab">
+      <li id="settings-tab" class="tabs-list hidden-tab">User settings</li>
+      <li id="delete-accnt-tab" class="tabs-list hidden-tab top-right">
+        Delete account
+      </li>
+    </ul>
+
+    <form id="log-in-form" class="form hidden-tab">
+      <div class="log-in-email-container">
+        <input
+          id="logInEmail"
+          type="email"
+          name="email"
+          required=""
+          class="log-in-email"
+        />
+        <label class="log-in-email-label">E-mail</label>
+      </div>
+      <div class="log-in-password-container">
+        <input
+          id="logInPswd"
+          type="password"
+          name="password"
+          required=""
+          class="log-in-password"
+        />
+        <label class="log-in-password-label">Password</label>
+      </div>
+      <svg
+        class="login-eye-position show-pswd hidden-tab"
+        width="28"
+        height="28"
+      >
+        <use href="./images/icons.svg#icon-eye"></use>
+      </svg>
+
+      <svg class="login-eye-position hide-pswd" width="28" height="28">
+        <use href="./images/icons.svg#icon-close-eye"></use>
+      </svg>
+
+      <button id="log-in-btn" class="confirm-btn" type="submit">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>Log in
+      </button>
+    </form>
+
+    <form id="reg-form" class="form hidden-tab">
+      <div class="log-in-email-container">
+        <input id="name" type="text" name="name" class="log-in-email" />
+        <label class="log-in-email-label">Username</label>
+      </div>
+      <div class="log-in-email-container">
+        <input id="email" type="email" name="email" class="log-in-email-2" />
+        <label class="log-in-email-2-label">E-mail</label>
+      </div>
+      <div class="log-in-password-container">
+        <input
+          id="reg-pswd"
+          type="password"
+          name="password"
+          class="log-in-password"
+        />
+        <label class="log-in-password-label">Password</label>
+      </div>
+      <svg class="reg-eye-position show-pswd hidden-tab" width="28" height="28">
+        <use href="./images/icons.svg#icon-eye"></use>
+      </svg>
+
+      <svg class="reg-eye-position hide-pswd" width="28" height="28">
+        <use href="./images/icons.svg#icon-close-eye"></use>
+      </svg>
+
+      <button class="confirm-btn" id="register" type="submit">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>Register
+      </button>
+    </form>
+
+    <form id="upd-form" class="form hidden-tab">
+      <div class="log-in-email-container">
+        <input id="change-name" type="text" name="name" class="log-in-email" />
+        <label class="log-in-email-label">Username</label>
+      </div>
+      <div class="log-in-email-container">
+        <input
+          id="change-email"
+          type="email"
+          name="email"
+          class="log-in-email-2"
+        />
+        <label class="log-in-email-2-label">E-mail</label>
+      </div>
+      <div class="log-in-password-container">
+        <input
+          id="change-pswd"
+          type="password"
+          name="password"
+          class="log-in-password"
+        />
+        <label class="log-in-password-label">Password</label>
+      </div>
+      <svg class="upd-eye-position show-pswd hidden-tab" width="28" height="28">
+        <use href="./images/icons.svg#icon-eye"></use>
+      </svg>
+
+      <svg class="upd-eye-position hide-pswd" width="28" height="28">
+        <use href="./images/icons.svg#icon-close-eye"></use>
+      </svg>
+
+      <button id="upd-btn" class="confirm-btn update-btn" type="submit">
+        Update
+      </button>
+
+      <button id="log-out-btn" class="confirm-btn" type="button">
+        Log out
+      </button>
+    </form>
+
+    <div id="confDelAcc" class="del-msg hidden-tab">
+      <p class="del-msg-text">Are you sure you want to delete your account?</p>
+    </div>
+
+    <div id="delAccBtn" class="form hidden-tab">
+      <button
+        id="delAccBtnYes"
+        type="submit"
+        class="confirm-btn delAccBtnYes-btn"
+      >
+        YES
+      </button>
+      <button id="delAccBtnNo" type="submit" class="confirm-btn">NO</button>
+    </div>
+  </div>
+</div>
+<!-- 
+<div class="animated bounceInDown">
+  <div class="container">
+    <span class="error animated tada" id="msg"></span>
+    <form name="form1" class="box" onsubmit="return checkStuff()">
+      <h4>Admin<span>Dashboard</span></h4>
+      <h5>Sign in to your account.</h5>
+      <input type="text" name="email" placeholder="Email" autocomplete="off" />
+      <i class="typcn typcn-eye" id="eye"></i>
+      <input
+        type="password"
+        name="password"
+        placeholder="Passsword"
+        id="pwd"
+        autocomplete="off"
+      />
+      <label>
+        <input type="checkbox" />
+        <span></span>
+        <small class="rmb">Remember me</small>
+      </label>
+      <a href="#" class="forgetpass">Forget Password?</a>
+      <input type="submit" value="Sign in" class="btn1" />
+    </form>
+    <a href="#" class="dnthave">Don’t have an account? Sign up</a>
+  </div>
+</div> -->
