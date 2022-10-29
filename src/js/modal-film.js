@@ -31,8 +31,7 @@ export function onModalOpenFilm(e) {
     return;
   }
   //Вытягиваем id из карточки из атрибута data-id
-  id = Number(e.target.closest('li').dataset.id);
-  console.log(id);
+  const id = Number(e.target.closest('li').dataset.id);
   //Проверяем localStorage на наличие массива с данными
   const videoListWatched = storage.load(WACHED_KEY)
     ? storage.load(WACHED_KEY)
@@ -61,11 +60,9 @@ export function onModalOpenFilm(e) {
   document.addEventListener('keydown', onEscBtnPress);
   modalBackdrop.addEventListener('click', onBackdropClick);
   modalBackdropActive.addEventListener('click', onAddToList);
-  //   modalBackdropActive = document.querySelector('.modalbackdrop-film.active');
-  //   modalBackdropActive.addEventListener('click', onModalFilmClose);
   //Ищем фильм именно с таким id как в карточке как в hero
   const filmsData = storage.load(FILMS);
-  filmData = filmsData.filter(film => film.id === id);
+  const filmData = filmsData.filter(film => film.id === id);
   console.log(filmData);
   //возращаем его разметку на модалку
   return modalFilm.insertAdjacentHTML(
@@ -79,7 +76,7 @@ function closeModal() {
   //Убираем классы, для скрытия модалки
   modalBackdrop.classList.remove('active');
   modalFilm.classList.remove('active');
-  document.body.classList.remove('is-hidden');
+  document.body.classList.remove('body-is-hidden');
   //Снимаем обработчики событий
   modalFilmBtnClose.removeEventListener('click', closeModal);
   document.removeEventListener('keydown', onEscBtnPress);
@@ -98,7 +95,6 @@ export function onBackdropClick(e) {
     closeModal();
   }
 }
-
 //Функция создания разметки
 function createMarkupModal({
   title,
@@ -172,5 +168,4 @@ export function buttonText(videoList, currentVideoId, textAdd, textRemove) {
       }
     }
   }
-  return textAdd;
 }
