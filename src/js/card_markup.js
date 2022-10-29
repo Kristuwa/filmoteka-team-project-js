@@ -1,5 +1,6 @@
 
 import { genresStorage } from './render_trending';
+import { createStringOfGenresForCard } from './genres_storage';
 
 
 export function createCardMarkup (data) {
@@ -12,17 +13,7 @@ export function createCardMarkup (data) {
  
 const IMAGE_URL = "https://image.tmdb.org/t/p/w500/";
 
-let genresString;
-const genresArray = [];
-const selectedGenres =  genre_ids.map(id => {
-return genresStorage.filter(idGenre => idGenre.id === id);
- });
- selectedGenres.map(genre => genresArray.push(genre[0].name));
- if(genresArray.length > 0 && genresArray.length <= 3){
-     genresString = genresArray.join(", ");
- } else{
-     genresString = `${genresArray[0]}, ${genresArray[1]}, other`;
- };
+const cardGenres = createStringOfGenresForCard(genre_ids);
 
     return `
     <li class="card" data-id="${id}">
@@ -30,7 +21,7 @@ return genresStorage.filter(idGenre => idGenre.id === id);
     <img class="card__poster" src="${IMAGE_URL}${poster_path}" alt="film poster" height="634"  width="395"/>
     <b class="card__film-name">${title}</b>
     <p class="card__description">
-    ${genresString}
+    ${cardGenres}
     <span class="film-year">${date}</span>
     </p>
     </a>
