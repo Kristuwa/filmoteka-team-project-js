@@ -111,20 +111,17 @@ function createMarkupModal({
 
   let genresString = '';
   const genresArray = [];
-  const selectedGenres = genre_ids.map(id => {
+  const selectedGenres = genre_ids.flatMap(id => {
     return genres.filter(idGenre => idGenre.id === id);
   });
   selectedGenres.map(genre => genresArray.push(genre.name));
   if (genresArray.length > 0 && genresArray.length <= 3) {
-    genresString = genresArray.join('');
+    genresString = genresArray.join(', ');
   } else if (genresArray.length === 0) {
     return '';
   } else {
     genresString = `${genresArray[0]}, ${genresArray[1]}, other`;
   }
-
-  console.log(genresString);
-
   return `<div class="film-info" data-id='${id}'>
   <img srcset="${IMAGE_URL}${poster_path}" src="${IMAGE_URL}${poster_path}" alt="film-poster" class="film-info__poster" />
   <div class="flex-wrapper">
