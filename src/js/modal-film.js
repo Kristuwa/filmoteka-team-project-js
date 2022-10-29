@@ -49,7 +49,7 @@ export function onModalOpenFilm(e) {
     'afterbegin',
     createMarkupModal(filmData[0])
   );
-}
+};
 
 function closeModal() {
 	modalBackdrop.classList.remove('active');
@@ -161,4 +161,4 @@ function buttonTextQueue(videoList, currentVideoId) {
     }
   }
   return 'Add to queue';
-}
+};
