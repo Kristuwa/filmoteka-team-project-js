@@ -55,6 +55,9 @@ function closeModal() {
 	modalBackdrop.classList.remove('active');
     modalFilm.classList.remove('active');
     document.body.classList.remove('is-hidden');
+	document.removeEventListener('click', onModalFilmClose);
+	document.removeEventListener('keydown', onEscBtnPress);
+    document.removeEventListener('click', onBackdropClick);
 };
 
 export function onModalFilmClose(e) {
