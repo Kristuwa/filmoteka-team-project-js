@@ -102,9 +102,6 @@ console.log(`Add item to ${buttonName}`);
 //  onButtonAddToList(QUEUE_KEY,queueVideoList, filmData[0], event, buttonName);
 //  });
 
-
-
-
 //🔁 Заміна text content у кнопки add to watch
 function changeTextContent(event,buttonName) {
   if (event.target.nodeName !== 'BUTTON') {
