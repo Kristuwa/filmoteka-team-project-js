@@ -1,41 +1,46 @@
 import { QueryHandler } from './query_handler';
 import { saveGenres } from './genres_storage';
-console.log(saveGenres());
+import storage from './locale-storage-methods';
+import { FILMS } from './render_trending';
+// import {WACHED_KEY, QUEUE_KEY} from './locale-storage-methods'
 const genres = saveGenres();
-// console.log(saveGenres().than(data => console.log(data)));
 const modalFilmClick = document.querySelector('.card-list');
 const modalBackdrop = document.querySelector('.modalbackdrop-film');
 const modalFilm = document.querySelector('.modal-film');
-let modalBackdropActive;
-console.log(modalBackdropActive);
-// const modalFilmBtnClose = document.querySelector('.film-card-close');
 const newFetch = new QueryHandler();
-
-console.log(modalFilmClick);
+let btnTextWatched = '';
+let btnTextQueue = '';
+// let modalBackdropActive;
+const WACHED_KEY = 'watchedVideoKey';
+const QUEUE_KEY = 'queueVideoKey';
 
 modalFilmClick.addEventListener('click', onModalOpenFilm);
 
 export function onModalOpenFilm(e) {
   e.preventDefault();
 
-  modalBackdrop.classList.add('active');
-  modalBackdropActive = document.querySelector('.modalbackdrop-film.active');
+  const id = Number(e.target.closest('li').dataset.id);
+  const videoListWatched = storage.load(WACHED_KEY);
+  console.log(videoListWatched);
+  const videoListQueue = storage.load(QUEUE_KEY);
+  btnTextQueue = buttonTextQueue(videoListQueue, id);
+  btnTextWatched = buttonTextWatched(videoListWatched, id);
 
-  modalBackdropActive.addEventListener('click', onModalFilmClose);
+  modalBackdrop.classList.add('active');
+
   modalFilm.classList.add('active');
   document.body.classList.add('is-hidden');
 
-  const id = Number(e.target.closest('li').dataset.id);
-  newFetch.movieId = id;
-  console.log(id);
-  return newFetch.fetchQueryResultsForMovieInfo().then(data => {
-    console.log(data);
+  modalBackdropActive = document.querySelector('.modalbackdrop-film.active');
+  modalBackdropActive.addEventListener('click', onModalFilmClose);
 
-    const markup = createMarkupModal(data);
+  const filmsData = storage.load(FILMS);
+  const filmData = filmsData.filter(film => film.id === id);
+  console.log(filmData);
 
-    //  closeBtn.addEventListener('click', onModalFilmClose);
-    return (modalFilm.innerHTML = markup);
-  });
+  const markup = createMarkupModal(filmData[0]);
+
+  return (modalFilm.innerHTML = markup);
 }
 
 export function onModalFilmClose(e) {
@@ -50,19 +55,19 @@ export function onModalFilmClose(e) {
 
 function createMarkupModal({
   title,
-  backdrop_path,
+  poster_path,
   vote_average,
   vote_count,
   overview,
   popularity,
   original_title,
-  genres,
+  genre_ids,
 }) {
   const IMAGE_URL = 'https://image.tmdb.org/t/p/w500/';
   let genresString;
   const genresArray = [];
-  console.log(genres);
-  const selectedGenres = genres.map(id => {
+
+  const selectedGenres = genre_ids.map(id => {
     return genres.filter(idGenre => idGenre.id === id);
   });
   selectedGenres.map(genre => genresArray.push(genre.name));
@@ -78,7 +83,7 @@ function createMarkupModal({
 		 <use href="./images/icons.svg#icon-close"></use>
 	  </svg>
 	</button>
-	<img src="${IMAGE_URL}${backdrop_path}" alt="film-poster" />
+	<img src="${IMAGE_URL}${poster_path}" alt="film-poster" />
 	<table>
 	  <tbody>
 		 <tr>
@@ -111,16 +116,46 @@ function createMarkupModal({
 		 <tr>
 			<td>
 			  <button type="button" class="film-card-addToWatched">
-				 Add to watched
+				${btnTextWatched}
 			  </button>
 			</td>
 			<td>
 			  <button type="button" class="film-card-addToQueue">
-				 Add to queue
+			  ${btnTextQueue}
 			  </button>
 			</td>
 		 </tr>
 	  </tbody>
 	</table>
 	</div>`;
+}
+
+function buttonTextWatched(videoList, currentVideoId) {
+  if (null || videoList.length === 0) {
+    return 'Add to watched';
+  }
+  for (let i = 0; i < videoList.length; i += 1) {
+    if (videoList[i].id === currentVideoId) {
+      console.log(videoList[i].id);
+
+      return 'Remove from watched';
+    }
+
+    return 'Add to watched';
+  }
+}
+
+function buttonTextQueue(videoList, currentVideoId) {
+  if (null || videoList.length === 0) {
+    return 'Add to queue';
+  }
+  for (let i = 0; i < videoList.length; i += 1) {
+    if (videoList[i].id === currentVideoId) {
+      console.log(videoList[i].id);
+
+      return 'Remove from queue';
+    }
+
+    return 'Add to queue';
+  }
 }
