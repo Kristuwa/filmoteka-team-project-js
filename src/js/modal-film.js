@@ -8,8 +8,7 @@ const modalFilmClick = document.querySelector('.card-list');
 const modalBackdrop = document.querySelector('.modalbackdrop-film');
 const modalFilm = document.querySelector('.modal-film');
 const newFetch = new QueryHandler();
-let btnTextWatched = '';
-let btnTextQueue = '';
+
 // let modalBackdropActive;
 const WACHED_KEY = 'watchedVideoKey';
 const QUEUE_KEY = 'queueVideoKey';
@@ -23,8 +22,10 @@ export function onModalOpenFilm(e) {
   const videoListWatched = storage.load(WACHED_KEY);
   console.log(videoListWatched);
   const videoListQueue = storage.load(QUEUE_KEY);
-  btnTextQueue = buttonTextQueue(videoListQueue, id);
-  btnTextWatched = buttonTextWatched(videoListWatched, id);
+  document.querySelector('.film-card-addToWatched').textContent =
+    buttonTextQueue(videoListQueue, id);
+  document.querySelector('.film-card-addToQueue').textContent =
+    buttonTextWatched(videoListWatched, id);
 
   modalBackdrop.classList.add('active');
 
@@ -38,9 +39,10 @@ export function onModalOpenFilm(e) {
   const filmData = filmsData.filter(film => film.id === id);
   console.log(filmData);
 
-  const markup = createMarkupModal(filmData[0]);
-
-  return (modalFilm.innerHTML = markup);
+  return modalFilm.insertAdjacentHTML(
+    'afterbegin',
+    createMarkupModal(filmData[0])
+  );
 }
 
 export function onModalFilmClose(e) {
@@ -78,12 +80,7 @@ function createMarkupModal({
   }
 
   return `<div class="film-card">
-	<button type="button" class="film-card-close" autofocus>
-	  x<svg class="film-card-close-svg" width="14" height="14">
-		 <use href="./images/icons.svg#icon-close"></use>
-	  </svg>
-	</button>
-	<img src="${IMAGE_URL}${poster_path}" alt="film-poster" />
+		<img src="${IMAGE_URL}${poster_path}" alt="film-poster" />
 	<table>
 	  <tbody>
 		 <tr>
@@ -113,18 +110,7 @@ function createMarkupModal({
 			  ${overview}
 			</td>
 		 </tr>
-		 <tr>
-			<td>
-			  <button type="button" class="film-card-addToWatched">
-				${btnTextWatched}
-			  </button>
-			</td>
-			<td>
-			  <button type="button" class="film-card-addToQueue">
-			  ${btnTextQueue}
-			  </button>
-			</td>
-		 </tr>
+		
 	  </tbody>
 	</table>
 	</div>`;
