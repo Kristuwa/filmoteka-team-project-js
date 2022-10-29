@@ -11,11 +11,13 @@ import { onAddToList } from './add_to_list';
 //Ищем по селектору все єлементы, с которыми работаем
 const genres = saveGenres();
 const modalFilmList = document.querySelector('.card-list');
+console.log(modalFilmList);
 const modalBackdrop = document.querySelector('.modalbackdrop-film');
 const modalFilm = document.querySelector('.modal-film');
 const btnTextWatched = document.querySelector('.film-card-addToWatched');
 const btnTextQueue = document.querySelector('.film-card-addToQueue');
 const modalFilmBtnClose = document.querySelector('.film-card-close');
+const modalCard = document.querySelector('.film-card');
 
 const WACHED_KEY = 'watchedVideoKey';
 const QUEUE_KEY = 'queueVideoKey';
@@ -26,10 +28,7 @@ modalFilmList.addEventListener('click', onModalOpenFilm);
 //Пишем функцию, для открытия модального окна
 export function onModalOpenFilm(e) {
   e.preventDefault();
-  //Проверяем, если кликнули не по ссылке, то выходим
-  if (e.target.nodeName != 'A') {
-    return;
-  }
+  //   clearModal();
   //Вытягиваем id из карточки из атрибута data-id
   const id = Number(e.target.closest('li').dataset.id);
   //Проверяем localStorage на наличие массива с данными
@@ -59,13 +58,13 @@ export function onModalOpenFilm(e) {
   modalFilmBtnClose.addEventListener('click', closeModal);
   document.addEventListener('keydown', onEscBtnPress);
   modalBackdrop.addEventListener('click', onBackdropClick);
-  modalBackdropActive.addEventListener('click', onAddToList);
+  //   modalBackdropActive.addEventListener('click', onAddToList);
   //Ищем фильм именно с таким id как в карточке как в hero
   const filmsData = storage.load(FILMS);
   const filmData = filmsData.filter(film => film.id === id);
   console.log(filmData);
   //возращаем его разметку на модалку
-  return modalFilm.insertAdjacentHTML(
+  return modalCard.insertAdjacentHTML(
     'afterbegin',
     createMarkupModal(filmData[0])
   );
@@ -81,7 +80,8 @@ function closeModal() {
   modalFilmBtnClose.removeEventListener('click', closeModal);
   document.removeEventListener('keydown', onEscBtnPress);
   modalBackdrop.removeEventListener('click', onBackdropClick);
-  modalBackdropActive.removeEventListener('click', onAddToList);
+  //   modalBackdropActive.removeEventListener('click', onAddToList);
+  clearModal();
 }
 
 export function onEscBtnPress(e) {
@@ -109,7 +109,7 @@ function createMarkupModal({
 }) {
   const IMAGE_URL = 'https://image.tmdb.org/t/p/w500/';
 
-  let genresString;
+  let genresString = '';
   const genresArray = [];
   const selectedGenres = genre_ids.map(id => {
     return genres.filter(idGenre => idGenre.id === id);
@@ -117,48 +117,49 @@ function createMarkupModal({
   selectedGenres.map(genre => genresArray.push(genre.name));
   if (genresArray.length > 0 && genresArray.length <= 3) {
     genresString = genresArray.join(', ');
+  } else if (genresArray.length === 0) {
+    return '';
   } else {
     genresString = `${genresArray[0]}, ${genresArray[1]}, other`;
   }
 
-  return `<div class="film-card" data-id='${id}'>
-		 <img src="${IMAGE_URL}${poster_path}" alt="film-poster" />
-	 <table>
+  console.log(genresString);
+
+  return `<div class="film-info" data-id='${id}'>
+  <img srcset="${IMAGE_URL}${poster_path}" src="${IMAGE_URL}${poster_path}" alt="film-poster" class="film-info__poster" />
+  <div class="flex-wrapper">
+  <h2 class="film-info__title">${title}</h2>
+  <table class="film-info__table">
 		<tbody>
 		  <tr>
-			 <th class='film-card__title'>${title}</th>
+		  <td class="film-info__param">Vote / Votes</td>
+		  <td class="film-info__data">
+			 <span class="film-info__vote">${vote_average}</span> / ${vote_count}
+		  </td>
+			</tr>
+		  <tr>
+		  <td class="film-info__param">Popularity</td>
+		  <td class="film-info__data">${popularity}</td>
+			  </tr>
+		  <tr>
+		  <td class="film-info__param">Original Title</td>
+      <td class="film-info__data-up">${original_title}</td>
 		  </tr>
 		  <tr>
-			 <td>Vote / Votes</td>
-			 <td>${vote_average} / ${vote_count}</td>
-		  </tr>
-		  <tr>
-			 <td>Popularity</td>
-			 <td>${popularity}</td>
-		  </tr>
-		  <tr>
-			 <td>Original Title</td>
-			 <td>${original_title}</td>
-		  </tr>
-		  <tr>
-			 <td>Genre</td>
-			 <td>${genresString}</td>
-		  </tr>
-		  <tr>
-			 <td>About</td>
-		  </tr>
-		  <tr>
-			 <td class='film-card__text'>
-				${overview}
-			 </td>
-		  </tr>
-		 
+		  <td class="film-info__param">Genre</td>
+         <td class="film-info__data">${genresString}</td>
+			  </tr>
+		
 		</tbody>
 	 </table>
-	 </div>`;
+	 <p class="film-info__about">About</p>
+	 <p class="film-info__desc">
+	 ${overview}
+	 </p>
+	 </div></div> `;
 }
 //Функция рендера надписи на кнопке при открытии модалки
-export function buttonText(videoList, currentVideoId, textAdd, textRemove) {
+function buttonText(videoList, currentVideoId, textAdd, textRemove) {
   if (videoList?.length > 0) {
     for (let i = 0; i < videoList.length; i += 1) {
       if (videoList[i].id === currentVideoId) {
@@ -168,4 +169,10 @@ export function buttonText(videoList, currentVideoId, textAdd, textRemove) {
       }
     }
   }
+  return textAdd;
+}
+
+function clearModal() {
+  //   modalFilmBtnClose.insertAdjacentHTML('afterend', '');
+  modalCard.innerHTML = '';
 }
