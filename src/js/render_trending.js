@@ -17,7 +17,9 @@ const save = (key, value) => {
 export const FILMS = "films";
 
 const queryHandler = new QueryHandler();
+
 const filmListRef = document.querySelector(".card-list");
+
 export function renderMarkupTrending(){
    return queryHandler.fetchQueryResultsForTrending()
     .then((data) => {
