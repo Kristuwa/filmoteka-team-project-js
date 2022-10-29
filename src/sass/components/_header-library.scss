@@ -127,6 +127,7 @@
 
 .nav-list {
   display: flex;
+  align-items: center;
   margin-left: auto;
 }
 
@@ -139,6 +140,8 @@
 }
 
 .nav-list__link {
+  padding-top: 20px;
+  padding-bottom: 20px;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.17;
