@@ -40,7 +40,7 @@ export class QueryHandler {
     }
   }
 
-  //
+  // Search for genres:
   async fetchQueryResultsForGenres() {
     try {
       const response = await axios.get(
