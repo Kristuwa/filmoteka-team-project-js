@@ -34,7 +34,7 @@ export function onModalOpenFilm(e) {
   modalBackdrop.classList.add('active');
 
   modalFilm.classList.add('active');
-  document.body.classList.add('is-hidden');
+  document.body.classList.add('body-is-hidden');
 
   modalBackdropActive = document.querySelector('.modalbackdrop-film.active');
   modalBackdropActive.addEventListener('click', onModalFilmClose);
