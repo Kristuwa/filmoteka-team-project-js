@@ -2,7 +2,7 @@ import { saveGenres } from './genres_storage';
 import storage from './locale-storage-methods';
 import { FILMS } from './render_trending';
 //  _______________________________________
-import { onAddToList } from './add_to_list';
+// import { onAddToList } from './add_to_list';
 // export let filmData = {};
 // export let id = 0;
 //  _______________________________________
@@ -58,7 +58,9 @@ export function onModalOpenFilm(e) {
   modalFilmBtnClose.addEventListener('click', closeModal);
   document.addEventListener('keydown', onEscBtnPress);
   modalBackdrop.addEventListener('click', onBackdropClick);
-  //   modalBackdropActive.addEventListener('click', onAddToList);
+		// const modalBackdropActive = document.querySelector('.modalbackdrop-film.active');
+  // modalBackdropActive.addEventListener('click', onAddToList);
+  //   modalBackdropActive.addEventListener('click', onModalFilmClose);
   //Ищем фильм именно с таким id как в карточке как в hero
   const filmsData = storage.load(FILMS);
   const filmData = filmsData.filter(film => film.id === id);
@@ -80,8 +82,7 @@ function closeModal() {
   modalFilmBtnClose.removeEventListener('click', closeModal);
   document.removeEventListener('keydown', onEscBtnPress);
   modalBackdrop.removeEventListener('click', onBackdropClick);
-  //   modalBackdropActive.removeEventListener('click', onAddToList);
-  clearModal();
+  // modalBackdropActive.removeEventListener('click', onAddToList);
 }
 
 export function onEscBtnPress(e) {
