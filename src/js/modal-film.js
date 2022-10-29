@@ -38,6 +38,8 @@ export function onModalOpenFilm(e) {
 
   modalBackdropActive = document.querySelector('.modalbackdrop-film.active');
   modalBackdropActive.addEventListener('click', onModalFilmClose);
+  modalBackdrop.addEventListener('click', onBackdropClick);
+  document.addEventListener('keydown', onEscBtnPress);
 
   const filmsData = storage.load(FILMS);
   const filmData = filmsData.filter(film => film.id === id);
@@ -49,15 +51,29 @@ export function onModalOpenFilm(e) {
   );
 }
 
-export function onModalFilmClose(e) {
-  //   const closeBtn = e.target.closest('.film-card-close');
-  //   console.log(closeBtn);
-  if (e.target.closest('.film-card-close')) {
-    modalBackdrop.classList.remove('active');
+function closeModal() {
+	modalBackdrop.classList.remove('active');
     modalFilm.classList.remove('active');
     document.body.classList.remove('is-hidden');
+};
+
+export function onModalFilmClose(e) {
+  if (e.target.closest('.film-card-close')) {
+    closeModal();
   }
-}
+};
+
+export function onEscBtnPress(e) {
+	if (e.code === 'Escape') {
+	  closeModal();
+	}
+  };
+  
+  export function onBackdropClick(e) {
+	if (e.target === modalBackdrop) {
+		closeModal();
+	}
+  };
 
 function createMarkupModal({
   title,
