@@ -3,18 +3,15 @@ body.is-hidden {
   height: 100vh;
 }
 
-/* Стили для подложки */
-
 .modalbackdrop-film {
-  /* Скрываем подложку  */
   opacity: 0;
   visibility: hidden;
-
+  overflow-y: scroll;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 20;
   transition: 0.3s all;
@@ -23,23 +20,18 @@ body.is-hidden {
 /* Стили для модальных окон */
 
 .modal-film {
-  /* Скрываем окна  */
   opacity: 0;
   visibility: hidden;
-
-  /*  Установаем ширину окна  */
   width: 100%;
   max-width: 680px;
-  height: 400px;
+  //   height: 100vh;
 
   /*  Центрируем и задаем z-index */
-  position: fixed;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 30; /* Должен быть выше чем у подложки*/
-
-  /*  Побочные стили   */
   box-shadow: 0 3px 10px -0.5px rgba(0, 0, 0, 0.2);
   text-align: center;
   padding: 30px;
@@ -59,18 +51,32 @@ body.is-hidden {
 /* Стили для кнопки закрытия */
 
 .film-card-close {
-  display: inline-block;
-  padding: 0;
-  width: 15px;
-  height: 15px;
   position: absolute;
-  top: 20px;
   right: 20px;
-  //   background: transparent;
-  //   border: none;
-  color: var(--secondary-text-color);
-  transition: color 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0);
+  color: #000;
   cursor: pointer;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  //   display: inline-block;
+  //   padding: 0;
+  //   width: 15px;
+  //   height: 15px;
+  //   position: absolute;
+  //   top: 20px;
+  //   right: 20px;
+  //   //   background: transparent;
+  //   //   border: none;
+  //   color: var(--secondary-text-color);
+  //   transition: color 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  //   cursor: pointer;
 
   &:hover,
   :focus {
