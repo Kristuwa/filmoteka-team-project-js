@@ -8,12 +8,16 @@ export let filmData = {};
 export let id = 0;
 //  _______________________________________
 
-
 // import {WACHED_KEY, QUEUE_KEY} from './locale-storage-methods'
 const genres = saveGenres();
 const modalFilmClick = document.querySelector('.card-list');
 const modalBackdrop = document.querySelector('.modalbackdrop-film');
 const modalFilm = document.querySelector('.modal-film');
+
+let modalBackdropActive;
+console.log(modalBackdropActive);
+// const modalFilmBtnClose = document.querySelector('.film-card-close');
+
 const newFetch = new QueryHandler();
 
 // let modalBackdropActive;
@@ -25,8 +29,8 @@ modalFilmClick.addEventListener('click', onModalOpenFilm);
 export function onModalOpenFilm(e) {
   e.preventDefault();
 
-	id = Number(e.target.closest('li').dataset.id);
-	console.log(id);
+  id = Number(e.target.closest('li').dataset.id);
+  console.log(id);
   const videoListWatched = storage.load(WACHED_KEY)
     ? storage.load(WACHED_KEY)
     : [];
@@ -41,6 +45,10 @@ export function onModalOpenFilm(e) {
 
   modalBackdrop.classList.add('active');
 
+  modalBackdropActive.addEventListener('click', onModalFilmClose);
+  document.addEventListener('keydown', onEscBtnPress);
+  modalBackdrop.addEventListener('click', onBackdropClick);
+
   modalFilm.classList.add('active');
   document.body.classList.add('body-is-hidden');
 
@@ -51,23 +59,36 @@ export function onModalOpenFilm(e) {
   filmData = filmsData.filter(film => film.id === id);
   console.log(filmData);
 
-	// _______________________________
+  // _______________________________
 
-			modalBackdropActive.addEventListener('click', onAddToList);
-// _______________________________
+  modalBackdropActive.addEventListener('click', onAddToList);
+  // _______________________________
   return modalFilm.insertAdjacentHTML(
     'afterbegin',
     createMarkupModal(filmData[0])
   );
 }
+function closeModal() {
+  modalBackdrop.classList.remove('active');
+  modalFilm.classList.remove('active');
+  document.body.classList.remove('is-hidden');
+}
 
 export function onModalFilmClose(e) {
-  //   const closeBtn = e.target.closest('.film-card-close');
-  //   console.log(closeBtn);
   if (e.target.closest('.film-card-close')) {
-    modalBackdrop.classList.remove('active');
-    modalFilm.classList.remove('active');
-    document.body.classList.remove('is-hidden');
+    closeModal();
+  }
+}
+
+export function onEscBtnPress(e) {
+  if (e.code === 'Escape') {
+    closeModal();
+  }
+}
+
+export function onBackdropClick(e) {
+  if (e.target === modalBackdrop) {
+    closeModal();
   }
 }
 
@@ -159,5 +180,3 @@ export function buttonTextQueue(videoList, currentVideoId) {
   }
   return 'Add to queue';
 }
-
-
