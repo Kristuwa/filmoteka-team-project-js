@@ -48,7 +48,7 @@ function closeModal() {
 
 export function onModalFilmClose(e) {
   if (e.target.closest('.film-card-close')) {
-    closeModal()
+    closeModal();
   }
 };
 
