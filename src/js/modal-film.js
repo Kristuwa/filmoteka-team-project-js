@@ -3,8 +3,8 @@ import storage from './locale-storage-methods';
 import { FILMS } from './render_trending';
 //  _______________________________________
 // import { onAddToList } from './add_to_list';
-export let filmData = {};
-export let id = 0;
+// export let filmData = {};
+// export let id = 0;
 //  _______________________________________
 
 // import {WACHED_KEY, QUEUE_KEY} from './locale-storage-methods'
