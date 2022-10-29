@@ -1,28 +1,27 @@
-import { QueryHandler } from './query_handler';
 import { saveGenres } from './genres_storage';
 import storage from './locale-storage-methods';
 import { FILMS } from './render_trending';
 //  _______________________________________
 import { onAddToList } from './add_to_list';
-export let filmData = {};
-export let id = 0;
+// export let filmData = {};
+// export let id = 0;
 //  _______________________________________
 
 // import {WACHED_KEY, QUEUE_KEY} from './locale-storage-methods'
 //Ищем по селектору все єлементы, с которыми работаем
 const genres = saveGenres();
-const modalFilmClick = document.querySelector('.card-list');
+const modalFilmList = document.querySelector('.card-list');
 const modalBackdrop = document.querySelector('.modalbackdrop-film');
 const modalFilm = document.querySelector('.modal-film');
 const btnTextWatched = document.querySelector('.film-card-addToWatched');
 const btnTextQueue = document.querySelector('.film-card-addToQueue');
-const newFetch = new QueryHandler();
 const modalFilmBtnClose = document.querySelector('.film-card-close');
+
 const WACHED_KEY = 'watchedVideoKey';
 const QUEUE_KEY = 'queueVideoKey';
 
 //Вешаем события на галерею для открытия модального окна
-modalFilmClick.addEventListener('click', onModalOpenFilm);
+modalFilmList.addEventListener('click', onModalOpenFilm);
 
 //Пишем функцию, для открытия модального окна
 export function onModalOpenFilm(e) {
