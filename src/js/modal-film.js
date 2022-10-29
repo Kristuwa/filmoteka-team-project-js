@@ -116,7 +116,7 @@ function createMarkupModal({
   });
   selectedGenres.map(genre => genresArray.push(genre.name));
   if (genresArray.length > 0 && genresArray.length <= 3) {
-    genresString = genresArray.join(', ');
+    genresString = genresArray.join('');
   } else if (genresArray.length === 0) {
     return '';
   } else {

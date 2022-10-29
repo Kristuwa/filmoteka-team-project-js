@@ -39,6 +39,19 @@ export class QueryHandler {
       console.error(error);
     }
   }
+
+  //
+  async fetchQueryResultsForGenres() {
+    try {
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/genre/movie/list?api_key=${MOVIEDB_KEY}&language=en-US`
+      );
+      const genresData = response.data.genres;
+      return genresData;
+    } catch (error) {
+      console.error(error);
+    }
+  }
   // Get the primary information about a movie:
   async fetchQueryResultsForMovieInfo() {
     try {
