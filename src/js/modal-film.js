@@ -2,6 +2,13 @@ import { QueryHandler } from './query_handler';
 import { saveGenres } from './genres_storage';
 import storage from './locale-storage-methods';
 import { FILMS } from './render_trending';
+//  _______________________________________
+import { onAddToList } from './add_to_list';
+export let filmData = {};
+export let id = 0;
+//  _______________________________________
+
+
 // import {WACHED_KEY, QUEUE_KEY} from './locale-storage-methods'
 const genres = saveGenres();
 const modalFilmClick = document.querySelector('.card-list');
@@ -18,7 +25,8 @@ modalFilmClick.addEventListener('click', onModalOpenFilm);
 export function onModalOpenFilm(e) {
   e.preventDefault();
 
-  const id = Number(e.target.closest('li').dataset.id);
+	id = Number(e.target.closest('li').dataset.id);
+	console.log(id);
   const videoListWatched = storage.load(WACHED_KEY)
     ? storage.load(WACHED_KEY)
     : [];
@@ -40,9 +48,13 @@ export function onModalOpenFilm(e) {
   modalBackdropActive.addEventListener('click', onModalFilmClose);
 
   const filmsData = storage.load(FILMS);
-  const filmData = filmsData.filter(film => film.id === id);
+  filmData = filmsData.filter(film => film.id === id);
   console.log(filmData);
 
+	// _______________________________
+
+			modalBackdropActive.addEventListener('click', onAddToList);
+// _______________________________
   return modalFilm.insertAdjacentHTML(
     'afterbegin',
     createMarkupModal(filmData[0])
@@ -121,7 +133,7 @@ function createMarkupModal({
 	</div>`;
 }
 
-function buttonTextWatched(videoList, currentVideoId) {
+export function buttonTextWatched(videoList, currentVideoId) {
   if (videoList?.length > 0) {
     for (let i = 0; i < videoList.length; i += 1) {
       if (videoList[i].id === currentVideoId) {
@@ -134,7 +146,7 @@ function buttonTextWatched(videoList, currentVideoId) {
   return 'Add to watched';
 }
 
-function buttonTextQueue(videoList, currentVideoId) {
+export function buttonTextQueue(videoList, currentVideoId) {
   if (videoList?.length > 0) {
     for (let i = 0; i < videoList.length; i += 1) {
       if (videoList[i].id === currentVideoId) {
@@ -148,4 +160,4 @@ function buttonTextQueue(videoList, currentVideoId) {
   return 'Add to queue';
 }
 
-// currentVideoId = Number(e.target.closest('div').dataset.id);
+
