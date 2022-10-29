@@ -19,12 +19,16 @@ export function onModalOpenFilm(e) {
   e.preventDefault();
 
   const id = Number(e.target.closest('li').dataset.id);
-  const videoListWatched = storage.load(WACHED_KEY);
-  console.log(videoListWatched);
-  const videoListQueue = storage.load(QUEUE_KEY);
+  const videoListWatched = storage.load(WACHED_KEY)
+    ? storage.load(WACHED_KEY)
+    : [];
+
+  const videoListQueue = storage.load(QUEUE_KEY) ? storage.load(QUEUE_KEY) : [];
+  document.querySelector('.film-card-addToQueue').textContent = buttonTextQueue(
+    videoListQueue,
+    id
+  );
   document.querySelector('.film-card-addToWatched').textContent =
-    buttonTextQueue(videoListQueue, id);
-  document.querySelector('.film-card-addToQueue').textContent =
     buttonTextWatched(videoListWatched, id);
 
   modalBackdrop.classList.add('active');
@@ -117,31 +121,28 @@ function createMarkupModal({
 }
 
 function buttonTextWatched(videoList, currentVideoId) {
-  if (null || videoList.length === 0) {
-    return 'Add to watched';
-  }
-  for (let i = 0; i < videoList.length; i += 1) {
-    if (videoList[i].id === currentVideoId) {
-      console.log(videoList[i].id);
+  if (videoList?.length > 0) {
+    for (let i = 0; i < videoList.length; i += 1) {
+      if (videoList[i].id === currentVideoId) {
+        console.log(videoList[i].id);
 
-      return 'Remove from watched';
+        return 'Remove from watched';
+      }
     }
-
-    return 'Add to watched';
   }
+  return 'Add to watched';
 }
 
 function buttonTextQueue(videoList, currentVideoId) {
-  if (null || videoList.length === 0) {
-    return 'Add to queue';
-  }
-  for (let i = 0; i < videoList.length; i += 1) {
-    if (videoList[i].id === currentVideoId) {
-      console.log(videoList[i].id);
+  if (videoList?.length > 0) {
+    for (let i = 0; i < videoList.length; i += 1) {
+      if (videoList[i].id === currentVideoId) {
+        console.log(videoList[i].id);
 
-      return 'Remove from queue';
+        return 'Remove from queue';
+      }
+      return 'Add to queue';
     }
-
-    return 'Add to queue';
   }
+  return 'Add to queue';
 }
