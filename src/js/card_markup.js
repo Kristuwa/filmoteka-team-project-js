@@ -3,10 +3,14 @@ import { genresStorage } from './render_trending';
 
 
 export function createCardMarkup (data) {
-    const {title, poster_path, release_date, genre_ids, id} = data;
-    const date = release_date.slice(0, 4);
+    const {title, 
+    poster_path="https://play-lh.googleusercontent.com/IO3niAyss5tFXAQP176P0Jk5rg_A_hfKPNqzC4gb15WjLPjo5I-f7oIZ9Dqxw2wPBAg", 
+    release_date="", 
+    genre_ids="", 
+    id} = data;
+     const date = release_date.slice(0, 4);
+ 
 const IMAGE_URL = "https://image.tmdb.org/t/p/w500/";
-
 
 let genresString;
 const genresArray = [];

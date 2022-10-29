@@ -4,116 +4,100 @@ body.body-is-hidden {
 }
 
 .modalbackdrop-film {
+  z-index: 50;
   opacity: 0;
   visibility: hidden;
   overflow-y: scroll;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 20;
   transition: 0.3s all;
+  &.modalbackdrop-film.active {
+    opacity: 1;
+    visibility: visible;
+  }
 }
-
-/* Стили для модальных окон */
 
 .modal-film {
+  z-index: 100;
   opacity: 0;
   visibility: hidden;
-  width: 100%;
-  max-width: 680px;
-  height: 600px;
-
-  /*  Центрируем и задаем z-index */
-  position: relative;
+  background-color: var(--background-color);
+  border-radius: 15px;
+  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.3);
+  width: 280px;
+  max-width: 95vw;
+  height: auto;
+  max-height: 95vh;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 30; /* Должен быть выше чем у подложки*/
-  box-shadow: 0 3px 10px -0.5px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  padding: 30px;
-  border-radius: 3px;
-  background-color: #fff;
-  transition: 0.3s all;
+  padding: 16px 16px 40px 20px;
+  @media screen and (min-width: $tablet) {
+    width: 704px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 806px;
+  }
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
 }
-
-/* Стили для активных классов подложки и окна */
-
-.modal-film.active,
-.modalbackdrop-film.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Стили для кнопки закрытия */
 
 .film-card-close {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 20px;
-  height: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0);
-  color: #000;
-  cursor: pointer;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  //   display: inline-block;
-  //   padding: 0;
-  //   width: 15px;
-  //   height: 15px;
-  //   position: absolute;
-  //   top: 20px;
-  //   right: 20px;
-  //   //   background: transparent;
-  //   //   border: none;
-  //   color: var(--secondary-text-color);
-  //   transition: color 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
-  //   cursor: pointer;
-
-  &:hover,
-  :focus {
-    color: var(--accent-color);
-  }
 }
 
 .film-card-close-svg {
-  fill: currentColor;
 }
 
-.film-card__title {
-  font-weight: 400;
-  font-size: 22px;
-  line-height: 1.67;
+.film-info {
+}
 
+.film-info__poster {
+  width: 240px;
+  margin: 0 auto;
+  @media screen and (min-width: $tablet) {
+    width: 264px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 375px;
+  }
+}
+
+.film-info__table {
+  margin: 0 auto;
+}
+
+.film-info__title {
   text-align: center;
-  margin-bottom: 20px;
-  color: var(--primary-text-color);
 }
 
-.film-card__text {
-  background-color: #ffffff63;
-  border-radius: 25px;
-  font-size: 12px;
-  line-height: 1.62;
-  color: var(--text-grey-color);
-  margin-bottom: 15px;
+.film-info__param {
+}
 
-  @include tablet {
-    font-size: 16px;
-    line-height: 1.76;
-    letter-spacing: 0.04em;
-    margin-bottom: 25px;
-  }
+.film-info__data {
+}
 
-  @include desktop {
-    line-height: 1.94;
-  }
+.film-info__vote {
+}
+
+.film-info__about {
+  text-align: center;
+}
+
+.film-info__desc {
+  overflow-y: auto;
+}
+
+.button-container {
+  margin: 0 auto;
+}
+
+.film-card-addToWatched {
+}
+
+.film-card-addToQueue {
 }
