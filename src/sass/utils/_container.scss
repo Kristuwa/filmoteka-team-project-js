@@ -1,17 +1,13 @@
 .container {
   min-width: 320px;
   width: 100%;
-
   margin: 0 auto;
-
   @include mobile {
     width: 320px;
   }
-
   @include tablet {
     width: 768px;
   }
-
   @include desktop {
     width: 1280px;
   }
