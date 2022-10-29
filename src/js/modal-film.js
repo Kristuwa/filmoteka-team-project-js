@@ -3,8 +3,9 @@ import { saveGenres } from './genres_storage';
 import storage from './locale-storage-methods';
 import { FILMS } from './render_trending';
 //  _______________________________________
-import { onAddToWatch } from './add_to_list';
+import { onAddToList } from './add_to_list';
 export let filmData = {};
+export let id = 0;
 //  _______________________________________
 
 
@@ -24,7 +25,7 @@ modalFilmClick.addEventListener('click', onModalOpenFilm);
 export function onModalOpenFilm(e) {
   e.preventDefault();
 
-	const id = Number(e.target.closest('li').dataset.id);
+	id = Number(e.target.closest('li').dataset.id);
 	console.log(id);
   const videoListWatched = storage.load(WACHED_KEY)
     ? storage.load(WACHED_KEY)
@@ -51,8 +52,8 @@ export function onModalOpenFilm(e) {
   console.log(filmData);
 
 	// _______________________________
-			modalBackdropActive.addEventListener('click', onAddToWatch);
-			
+
+			modalBackdropActive.addEventListener('click', onAddToList);
 // _______________________________
   return modalFilm.insertAdjacentHTML(
     'afterbegin',
@@ -132,7 +133,7 @@ function createMarkupModal({
 	</div>`;
 }
 
-function buttonTextWatched(videoList, currentVideoId) {
+export function buttonTextWatched(videoList, currentVideoId) {
   if (videoList?.length > 0) {
     for (let i = 0; i < videoList.length; i += 1) {
       if (videoList[i].id === currentVideoId) {
@@ -145,7 +146,7 @@ function buttonTextWatched(videoList, currentVideoId) {
   return 'Add to watched';
 }
 
-function buttonTextQueue(videoList, currentVideoId) {
+export function buttonTextQueue(videoList, currentVideoId) {
   if (videoList?.length > 0) {
     for (let i = 0; i < videoList.length; i += 1) {
       if (videoList[i].id === currentVideoId) {
@@ -159,4 +160,4 @@ function buttonTextQueue(videoList, currentVideoId) {
   return 'Add to queue';
 }
 
-// currentVideoId = Number(e.target.closest('div').dataset.id);
+
