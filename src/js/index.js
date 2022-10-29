@@ -10,6 +10,8 @@ formRef.addEventListener('submit', handleSubmit);
 
 import { onModalOpenFilm } from './modal-film';
 import { onModalFilmClose } from './modal-film';
+import { onBackdropClick } from './modal-film'
+import {onEscBtnPress} from './modal-film'
 
 import './acive_button';
 import { renderMarkupTrending } from './render_trending.js';
