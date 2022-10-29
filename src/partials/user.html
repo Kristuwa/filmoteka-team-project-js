@@ -14,11 +14,15 @@
       </svg>
     </button>
     <ul id="log-in-page" class="tabs hidden-tab">
-      <li id="log-in-tab" class="tabs-list hidden-tab">Log in</li>
-      <li id="reg-tab" class="tabs-list hidden-tab top-right">Registration</li>
+      <li id="log-in-tab" class="tabs-list tabs-list-login hidden-tab">
+        Log in
+      </li>
+      <li id="reg-tab" class="tabs-list tabs-list-login hidden-tab top-right">
+        Registration
+      </li>
     </ul>
 
-    <ul id="user-settings-page" class="tabs hidden-tab">
+    <ul id="user-settings-page" class="tabs hidden-tab list">
       <li id="settings-tab" class="tabs-list hidden-tab">User settings</li>
       <li id="delete-accnt-tab" class="tabs-list hidden-tab top-right">
         Delete account
@@ -103,7 +107,9 @@
     <form id="upd-form" class="form hidden-tab">
       <div class="log-in-email-container">
         <input id="change-name" type="text" name="name" class="log-in-email" />
-        <label class="log-in-email-label">Username</label>
+        <label class="log-in-email-label log-in-email-label-reg"
+          >Username</label
+        >
       </div>
       <div class="log-in-email-container">
         <input
@@ -121,7 +127,9 @@
           name="password"
           class="log-in-password"
         />
-        <label class="log-in-password-label">Password</label>
+        <label class="log-in-password-label log-in-password-label-reg"
+          >Password</label
+        >
       </div>
       <svg class="upd-eye-position show-pswd hidden-tab" width="28" height="28">
         <use href="./images/icons.svg#icon-eye"></use>
