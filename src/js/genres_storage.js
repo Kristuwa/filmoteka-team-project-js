@@ -13,9 +13,10 @@ export function saveGenres() {
   return methodsStorage.load(GENRES);
 };
 
-export function createStringOfGenresForCard(genresId, genresStorage){
+export function createStringOfGenresForCard(genresId){
   let genresString;
 const genresArray = [];
+const genresStorage = saveGenres();
 const selectedGenres =  genresId.map(id => {
 return genresStorage.filter(idGenre => idGenre.id === id);
 });
