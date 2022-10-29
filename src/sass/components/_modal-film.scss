@@ -11,8 +11,8 @@ body.body-is-hidden {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   transition: 0.3s all;
   &.modalbackdrop-film.active {
@@ -22,6 +22,10 @@ body.body-is-hidden {
 }
 
 .modal-film {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 100;
   opacity: 0;
   visibility: hidden;
@@ -32,8 +36,7 @@ body.body-is-hidden {
   max-width: 95vw;
   height: auto;
   max-height: 95vh;
-  top: 50%;
-  left: 50%;
+  overflow-y: auto;
   padding: 16px 16px 40px 20px;
   @media screen and (min-width: $tablet) {
     width: 704px;
@@ -48,56 +51,145 @@ body.body-is-hidden {
 }
 
 .film-card-close {
+  float: right;
+  @include centeredFlex;
+  width: 30px;
+  height: 30px;
+  background-color: inherit;
+  border: none;
+  border-radius: 5px;
+  &:hover .film-card-close-svg,
+  &:focus .film-card-close-svg {
+    fill: var(--accent-color);
+  }
 }
 
 .film-card-close-svg {
+  fill: var(--secondary-text-color);
+  transition: fill var(--time) var(--function-animate);
 }
 
 .film-info {
+  @media screen and (min-width: $tablet) {
+    display: flex;
+  }
 }
 
 .film-info__poster {
-  width: 240px;
+  flex-shrink: 0;
+  min-width: 240px;
+  min-height: 357px;
+  height: auto;
+  background-color: var(--add-text-color);
+  border-radius: 5px;
   margin: 0 auto;
+  margin-top: 18px;
+  margin-bottom: 20px;
   @media screen and (min-width: $tablet) {
     width: 264px;
+    min-height: 374px;
+    margin-right: 68px;
   }
   @media screen and (min-width: $desktop) {
     width: 375px;
+    min-height: 478px;
+    margin-right: 16px;
   }
 }
 
+.flex-wrapper {
+}
+
 .film-info__table {
-  margin: 0 auto;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.33;
+  margin: 20px auto;
 }
 
 .film-info__title {
+  text-transform: uppercase;
   text-align: center;
+  font-size: 20px;
+  line-height: 1.17;
+  @media screen and (min-width: $tablet) {
+  }
+  @media screen and (min-width: $desktop) {
+    font-size: 30px;
+    line-height: 1.15;
+  }
 }
 
 .film-info__param {
+  color: var(--add-text-color);
 }
 
 .film-info__data {
 }
 
 .film-info__vote {
+  width: 36px;
+  height: 16px;
+  color: var(--primary-text-color);
+  background: var(--accent-color);
+  border-radius: 5px;
+}
+
+.film-info__data-up {
+  text-transform: uppercase;
 }
 
 .film-info__about {
+  text-transform: uppercase;
   text-align: center;
 }
 
 .film-info__desc {
+  max-height: 240px;
   overflow-y: auto;
+  line-height: 1.67;
+  @media screen and (min-width: $tablet) {
+    max-height: 264px;
+  }
+  @media screen and (min-width: $desktop) {
+    max-height: 391px;
+  }
 }
 
 .button-container {
-  margin: 0 auto;
+  @include centeredFlex;
+  justify-content: space-between;
+  @media screen and (min-width: $tablet) {
+    justify-content: space-around;
+  }
+  @media screen and (min-width: $desktop) {
+    justify-content: space-evenly;
+  }
 }
 
-.film-card-addToWatched {
-}
-
+.film-card-addToWatched,
 .film-card-addToQueue {
+  text-transform: uppercase;
+  @include centeredFlex;
+  height: 44px;
+  width: 110px;
+  color: inherit;
+  border: 1px solid var(--secondary-text-color);
+  border-radius: 5px;
+  background-color: inherit;
+  transition: color var(--time) var(--function-animate),
+    border var(--time) var(--function-animate),
+    background-color var(--time) var(--function-animate);
+  @media screen and (min-width: $tablet) {
+    width: 125px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 136px;
+  }
+  &:hover,
+  &:focus {
+    color: var(--primary-text-color);
+    border: none;
+    background-color: var(--accent-color);
+  }
 }
