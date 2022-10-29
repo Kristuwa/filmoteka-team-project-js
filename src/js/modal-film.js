@@ -17,7 +17,7 @@ modalFilmClick.addEventListener('click', onModalOpenFilm);
 
 export function onModalOpenFilm(e) {
   e.preventDefault();
-
+  if (e.target.nodeName !== 'A' && e.target.nodeName !=='IMG') return;
   const id = Number(e.target.closest('li').dataset.id);
   const videoListWatched = storage.load(WACHED_KEY)
     ? storage.load(WACHED_KEY)
