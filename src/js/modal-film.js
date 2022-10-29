@@ -44,25 +44,25 @@ function closeModal() {
 	modalBackdrop.classList.remove('active');
     modalFilm.classList.remove('active');
     document.body.classList.remove('is-hidden');
-}
+};
 
 export function onModalFilmClose(e) {
   if (e.target.closest('.film-card-close')) {
     closeModal()
   }
-}
+};
 
 export function onEscBtnPress(e) {
 	if (e.code === 'Escape') {
 	  closeModal();
 	}
-  }
+  };
   
   export function onBackdropClick(e) {
 	if (e.target === modalBackdrop) {
 		closeModal();
 	}
-  }
+  };
 
 function createMarkupModal({
   title,
