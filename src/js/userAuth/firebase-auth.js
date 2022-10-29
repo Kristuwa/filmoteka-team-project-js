@@ -91,9 +91,9 @@ function onCloseModalAuth(e) {
   refs.confDelAcc.classList.add('hidden-tab');
   refs.delAccBtn.classList.add('hidden-tab');
 
-  refs.chName.removeAttribute('disabled');
-  refs.chEmail.removeAttribute('disabled');
-  refs.chPswd.removeAttribute('disabled');
+  // refs.chName.removeAttribute('disabled');
+  // refs.chEmail.removeAttribute('disabled');
+  // refs.chPswd.removeAttribute('disabled');
 
   refs.body.removeAttribute('style');
   refs.modalAuth.classList.toggle('visibility');
@@ -185,31 +185,31 @@ function onInput(e) {
   e.preventDefault();
 
   if (e.target.name === 'name' && e.target.value) {
-    refs.chEmail.setAttribute('disabled', '');
-    refs.chPswd.setAttribute('disabled', '');
+    // refs.chEmail.setAttribute('disabled', '');
+    // refs.chPswd.setAttribute('disabled', '');
     return;
   }
 
-  refs.chEmail.removeAttribute('disabled');
-  refs.chPswd.removeAttribute('disabled');
+  // refs.chEmail.removeAttribute('disabled');
+  // refs.chPswd.removeAttribute('disabled');
 
   if (e.target.name === 'email' && e.target.value) {
-    refs.chName.setAttribute('disabled', '');
-    refs.chPswd.setAttribute('disabled', '');
+    // refs.chName.setAttribute('disabled', '');
+    // refs.chPswd.setAttribute('disabled', '');
     return;
   }
 
-  refs.chName.removeAttribute('disabled');
-  refs.chPswd.removeAttribute('disabled');
+  // refs.chName.removeAttribute('disabled');
+  // refs.chPswd.removeAttribute('disabled');
 
   if (e.target.name === 'password' && e.target.value) {
-    refs.chName.setAttribute('disabled', '');
-    refs.chEmail.setAttribute('disabled', '');
+    // refs.chName.setAttribute('disabled', '');
+    // refs.chEmail.setAttribute('disabled', '');
     return;
   }
 
-  refs.chName.removeAttribute('disabled');
-  refs.chEmail.removeAttribute('disabled');
+  // refs.chName.removeAttribute('disabled');
+  // refs.chEmail.removeAttribute('disabled');
 
   e.currentTarget.reset();
 }

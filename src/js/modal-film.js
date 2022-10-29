@@ -41,7 +41,7 @@ export function onModalOpenFilm(e) {
   modalBackdrop.classList.add('active');
 
   modalFilm.classList.add('active');
-  document.body.classList.add('is-hidden');
+  document.body.classList.add('body-is-hidden');
 
   modalBackdropActive = document.querySelector('.modalbackdrop-film.active');
   modalBackdropActive.addEventListener('click', onModalFilmClose);
@@ -72,6 +72,7 @@ export function onModalFilmClose(e) {
 
 function createMarkupModal({
   title,
+  id,
   poster_path,
   vote_average,
   vote_count,
@@ -94,7 +95,7 @@ function createMarkupModal({
     genresString = `${genresArray[0]}, ${genresArray[1]}, other`;
   }
 
-  return `<div class="film-card">
+  return `<div class="film-card" data-id='${id}'>
 		<img src="${IMAGE_URL}${poster_path}" alt="film-poster" />
 	<table>
 	  <tbody>
@@ -157,3 +158,5 @@ function buttonTextQueue(videoList, currentVideoId) {
   }
   return 'Add to queue';
 }
+
+// currentVideoId = Number(e.target.closest('div').dataset.id);
