@@ -15,6 +15,7 @@ import { onBackdropClick } from './modal-film'
 import {onEscBtnPress} from './modal-film'
 
 import './acive_button';
+import './add_to_list';
 import { renderMarkupTrending } from './render_trending.js';
 
 // Экземпляр класса Spinner имеет 2 метода:
