@@ -61,6 +61,7 @@ export function onModalFilmClose(e) {
 
 function createMarkupModal({
   title,
+  id,
   poster_path,
   vote_average,
   vote_count,
@@ -83,7 +84,7 @@ function createMarkupModal({
     genresString = `${genresArray[0]}, ${genresArray[1]}, other`;
   }
 
-  return `<div class="film-card">
+  return `<div class="film-card" data-id='${id}'>
 		<img src="${IMAGE_URL}${poster_path}" alt="film-poster" />
 	<table>
 	  <tbody>
@@ -146,3 +147,5 @@ function buttonTextQueue(videoList, currentVideoId) {
   }
   return 'Add to queue';
 }
+
+// currentVideoId = Number(e.target.closest('div').dataset.id);
