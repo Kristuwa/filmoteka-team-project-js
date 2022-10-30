@@ -1,0 +1,78 @@
+.card-list {
+    @media screen and (min-width: 768px) {
+        display: flex;
+        justify-content: start;
+        margin-top: -32px;
+        flex-wrap: wrap;
+    }
+    @include tablet {
+        margin-left: -32px;
+    }
+    @include desktop {
+        margin-left: -16px;
+    }
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.3;
+    @media screen and (min-width: 768px){
+        margin-top: 32px;
+        
+    }
+    @include tablet {
+        margin-left: 32px;
+        flex-basis: calc((100% - 64px) / 2);
+        margin-right: 0;
+    }
+    @include desktop {
+        margin-left: 16px;
+        flex-basis: calc((100% - 48px) / 3);
+        font-size: 20px;
+        margin-right: 0;
+        line-height: 1.2;
+    }
+    @include mobile{
+        margin-bottom: 20px;
+    }
+    &__poster {
+        border-radius: 5px;
+        @include desktop {
+            padding-bottom: 12px;
+        }
+        @include tablet {
+            padding-bottom: 8px;
+        }
+        @include mobile {
+            padding-bottom: 10px;
+        }
+    }
+    &__film-name {
+        text-transform: uppercase;
+        color: var(--secondary-text-color); 
+    }
+    &__description {
+        color: var(--accent-color);
+    }
+}
+
+.card-film-link{
+    scale: 1;
+    transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    scale 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-film-link:hover, 
+.card-film-link:focus {
+    background-color: var(--background-color);
+    scale: 0.97;
+}
+
+
+
+
+

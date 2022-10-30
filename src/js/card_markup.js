@@ -13,7 +13,7 @@ export function createCardMarkup (data) {
  
 const IMAGE_URL = "https://image.tmdb.org/t/p/w500/";
 
-const cardGenres = createStringOfGenresForCard(genre_ids);
+const cardGenres = createStringOfGenresForCard(genre_ids, genresStorage);
 
     return `
     <li class="card" data-id="${id}">
@@ -22,7 +22,7 @@ const cardGenres = createStringOfGenresForCard(genre_ids);
     <b class="card__film-name">${title}</b>
     <p class="card__description">
     ${cardGenres}
-    <span class="film-year">${date}</span>
+    <span class="film-year">| ${date}</span>
     </p>
     </a>
     </li>`

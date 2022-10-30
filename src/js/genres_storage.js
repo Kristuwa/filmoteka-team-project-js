@@ -13,10 +13,9 @@ export function saveGenres() {
   return methodsStorage.load(GENRES);
 };
 
-export function createStringOfGenresForCard(genresId){
+export function createStringOfGenresForCard(genresId, genresStorage){
   let genresString;
 const genresArray = [];
-const genresStorage = saveGenres();
 const selectedGenres =  genresId.map(id => {
 return genresStorage.filter(idGenre => idGenre.id === id);
 });
@@ -24,7 +23,7 @@ selectedGenres.map(genre => genresArray.push(genre[0].name));
 if(genresArray.length > 0 && genresArray.length <= 3){
    genresString = genresArray.join(", ");
 } else{
-   genresString = `${genresArray[0]}, ${genresArray[1]}, other`;
+   genresString = `${genresArray[0]}, ${genresArray[1]}, Other`;
 };
 return genresString;
 };
