@@ -1,7 +1,6 @@
 import './userAuth/firebase-auth-import';
 import Spinner from './spinner';
 import { renderMarkupTrending } from './render_trending.js';
-import { toggleCard, toggleModal } from './modal-team.js';
 import { handleSubmit } from './search_by_keywords';
 import { onModalOpenFilm } from './modal-film';
 import { onBackdropClick } from './modal-film';
