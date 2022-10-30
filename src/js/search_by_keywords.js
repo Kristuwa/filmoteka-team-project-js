@@ -29,6 +29,7 @@ export async function handleSubmit(evt) {
   } = evt.target;
   const valueSearchQuery = searchQuery.value.trim().toLowerCase();
   if (!valueSearchQuery) {
+    
     Notify.failure('Enter the name of the movie!');
     return;
   }
@@ -40,12 +41,13 @@ export async function handleSubmit(evt) {
 
     
     if (!results.length) {
+      queryHandler.query = localStorageMethod.load(localeStorageKeys.LAST_REQUEST);
       return Notify.failure(
         'Search result not successful. Enter the correct movie name.'
       );
     }
 
-    
+    localStorageMethod.save(localeStorageKeys.LAST_REQUEST, valueSearchQuery);
 
     pagination.removeMarkup();
     if (total_pages > 1) {
