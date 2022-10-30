@@ -40,11 +40,15 @@ export async function handleSubmit(evt) {
       await queryHandler.fetchQueryResultsForMovieSearch();
 
     if (!results.length) {
+      queryHandler.query = localStorageMethod.load(
+        localeStorageKeys.LAST_REQUEST
+      );
       return Notify.failure(
         'Search result not successful. Enter the correct movie name.'
       );
     }
 
+    localStorageMethod.save(localeStorageKeys.LAST_REQUEST, valueSearchQuery);
     pagination.removeMarkup();
     if (total_pages > 1) {
       pagination.totalPages = total_pages;
