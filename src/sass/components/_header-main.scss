@@ -86,6 +86,10 @@
   }
 }
 
+.nav-list__main:last-child {
+  margin-right: 0;
+}
+
 .header-main__btn {
   cursor: pointer;
   background: transparent;
@@ -155,7 +159,14 @@
   border: none;
   padding: 0;
   color: var(--primary-text-color);
+  //   transition: color var(--time) var(--function-animate);
 }
+
+// .search-btn:hover,
+// .search-btn:focus {
+//   color: var(--accent-color);
+// }
+
 .search-btn__icon {
   stroke: currentColor;
   fill: transparent;
@@ -172,6 +183,7 @@
   line-height: 16px;
   color: var(--primary-text-color);
 }
+
 .header-main__svg {
   fill: white;
 }

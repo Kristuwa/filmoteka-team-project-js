@@ -13,16 +13,45 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="./sass/index.scss" />
     <script type="module" src="./js/index.js"></script>
   </head>
   <body>
+    <!-- SPINNER -->
+    <div class="backdrop" data-action="load-spinner">
+      <div class="spinner-grow" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <!-- UP-BTN -->
+    <div class="upward active" onclick="scrollTopTop()"></div>
+
     <include src="./partials/header_main.html"></include>
     <include src="./partials/hero_main.html"></include>
     <include src="./partials/modal-one-film.html"></include>
-    <include src="./partials/modal-team.html"></include>
     <include src="./partials/modal-trailer.html"></include>
+    <include src="./partials/modal-team.html"></include>
     <include src="./partials/footer.html"></include>
     <include src="./partials/user.html"></include>
+
+    <script>
+      window.addEventListener('scroll', function () {
+        const scroll = document.querySelector('.upward');
+        scroll.classList.toggle('active', window.scrollY > 200);
+      });
+      function scrollTopTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+      }
+    </script>
   </body>
 </html>

@@ -1,0 +1,215 @@
+body.body-is-hidden {
+  overflow-y: hidden;
+  height: 100vh;
+}
+
+.modalbackdrop-film {
+  z-index: 50;
+  opacity: 0;
+  visibility: hidden;
+  overflow-y: scroll;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: 0.3s all;
+  &.modalbackdrop-film.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.modal-film {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  background-color: var(--background-color);
+  border-radius: 15px;
+  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.3);
+  width: 280px;
+  max-width: 95vw;
+  height: auto;
+  max-height: 95vh;
+  overflow-y: auto;
+  padding: 16px 16px 40px 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.33;
+  @media screen and (min-width: $tablet) {
+    width: 704px;
+    padding-left: 36px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 806px;
+    padding-left: 12px;
+  }
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.film-card-close {
+  margin-left: auto;
+  margin-bottom: 18px;
+  @include centeredFlex;
+  padding: 0;
+  background-color: inherit;
+  border: none;
+  border-radius: 5px;
+  @media screen and (min-width: $tablet) {
+    margin-bottom: 10px;
+  }
+  &:hover .film-card-close-svg,
+  &:focus .film-card-close-svg {
+    fill: var(--accent-color);
+  }
+}
+
+.film-card-close-svg {
+  fill: var(--secondary-text-color);
+  transition: fill var(--time) var(--function-animate);
+}
+
+.film-info {
+  @media screen and (min-width: $tablet) {
+    display: flex;
+  }
+}
+
+.film-info__poster {
+  flex-shrink: 0;
+  min-width: 240px;
+  min-height: 357px;
+  height: auto;
+  background-color: var(--add-text-color);
+  border-radius: 5px;
+  margin-bottom: 20px;
+  @media screen and (min-width: $tablet) {
+    width: 264px;
+    min-height: 374px;
+    margin-right: 68px;
+    margin-bottom: 0;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 375px;
+    min-height: 478px;
+    margin-right: 16px;
+  }
+}
+
+.flex-wrapper {
+  @media screen and (min-width: $tablet) {
+  }
+}
+
+.film-info__title {
+  text-transform: uppercase;
+  font-size: 20px;
+  line-height: 1.17;
+  margin-bottom: 20px;
+  @media screen and (min-width: $desktop) {
+    font-size: 30px;
+  }
+}
+
+.film-info__table {
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.spacer {
+  height: 6px;
+}
+
+.film-info__param {
+  color: var(--add-text-color);
+  width: 108px;
+}
+
+.film-info__vote {
+  display: inline-block;
+  text-align: center;
+  min-width: 36px;
+  height: 16px;
+  color: var(--primary-text-color);
+  background: var(--accent-color);
+  border-radius: 5px;
+  padding: 1px;
+}
+
+.film-info__data-up {
+  text-transform: uppercase;
+}
+
+.film-info__about {
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.film-info__desc {
+  max-height: 240px;
+  overflow-y: auto;
+  line-height: 1.67;
+  margin-bottom: 20px;
+  @media screen and (min-width: $tablet) {
+    max-height: 236px;
+    width: 280px;
+  }
+  @media screen and (min-width: $desktop) {
+    max-height: 160px;
+    width: 391px;
+  }
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @media screen and (min-width: $tablet) {
+    justify-content: center;
+    position: absolute;
+    transform: translateY(-100%);
+    right: 0;
+    gap: 20px;
+    width: 390px;
+  }
+  @media screen and (min-width: $desktop) {
+    gap: 15px;
+    width: 423px;
+  }
+}
+
+.film-card-addToWatched,
+.film-card-addToQueue {
+  text-transform: uppercase;
+  @include centeredFlex;
+  height: 44px;
+  width: 110px;
+  padding: 0;
+  color: inherit;
+  border: 1px solid var(--secondary-text-color);
+  border-radius: 5px;
+  background-color: inherit;
+  transition: color var(--time) var(--function-animate),
+    border var(--time) var(--function-animate),
+    background-color var(--time) var(--function-animate);
+  @media screen and (min-width: $tablet) {
+    width: 125px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 136px;
+  }
+  &:hover,
+  &:focus {
+    color: var(--primary-text-color);
+    border: none;
+    background-color: var(--accent-color);
+  }
+}

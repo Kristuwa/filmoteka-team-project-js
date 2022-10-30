@@ -39,6 +39,19 @@ export class QueryHandler {
       console.error(error);
     }
   }
+
+  // Search for genres:
+  async fetchQueryResultsForGenres() {
+    try {
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/genre/movie/list?api_key=${MOVIEDB_KEY}&language=en-US`
+      );
+      const genresData = response.data.genres;
+      return genresData;
+    } catch (error) {
+      console.error(error);
+    }
+  }
   // Get the primary information about a movie:
   async fetchQueryResultsForMovieInfo() {
     try {
@@ -53,14 +66,22 @@ export class QueryHandler {
     }
   }
   // Get the videos that have been added to a movie:
-  async fetchQueryResultsForVideo() {
+  async fetchQueryResultsForVideo(key) {
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${this.movieId}/videos?api_key=${MOVIEDB_KEY}&language=en-US`
+        `https://api.themoviedb.org/3/movie/${key}/videos?api_key=${MOVIEDB_KEY}&language=en-US`
       );
       const data = response.data.results;
-      this.incrementPage();
-      return data;
+      // this.incrementPage();
+      data.forEach(el => {
+        if (el.type === 'Trailer') {
+          trailerKey = el.key;
+        }
+      });
+
+      console.log(trailerKey);
+
+      return trailerKey;
     } catch (error) {
       console.error(error);
     }
