@@ -1,6 +1,6 @@
 footer > .container {
   position: absolute;
-  bottom: 0 auto;
+  top: auto;
   justify-content: center;
   align-content: center;
   display: flex;
@@ -38,7 +38,7 @@ footer > .container {
 .footer-block {
   display: flex;
 }
-.logo__icon-footer {
+.logo__icon {
   margin-left: 10px;
   margin-right: 10px;
 }
