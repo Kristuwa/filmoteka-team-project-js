@@ -9,8 +9,9 @@ const auth = getAuth(app);
 
 onAuthStateChanged(auth, user => {
   if (user) {
-    refs.userLibrary.classList.remove('hidden-tab');
+    refs.heroLibrary.classList.add('hidden-tab');
   } else {
+    refs.heroLibrary.classList.remove('hidden-tab');
   }
 });
 function onChangeTab() {

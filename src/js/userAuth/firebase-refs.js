@@ -36,4 +36,5 @@ export const refs = {
   regPswd: document.querySelector('#reg-pswd'),
 
   userLibrary: document.querySelector('.btn2'),
+  heroLibrary: document.querySelector('.hero__img-library'),
 };
