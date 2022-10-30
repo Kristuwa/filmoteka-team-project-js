@@ -3,6 +3,7 @@ import { QueryHandler } from './query_handler';
 import { saveGenres } from './genres_storage';
 import { Pagination, paginationRef } from './pagination';
 import methodsStorage from './locale-storage-methods';
+import {localeStorageKeys} from './localStorageKeys';
 
 export let genresStorage = [];
 
