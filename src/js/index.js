@@ -20,5 +20,3 @@ const spinner = new Spinner({
 spinner.enable(); // сейчас спинер выключен
 
 renderMarkupTrending();
-toggleModal();
-toggleCard();
