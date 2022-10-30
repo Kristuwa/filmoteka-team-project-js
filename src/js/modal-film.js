@@ -24,7 +24,7 @@ modalFilmList.addEventListener('click', onModalOpenFilm);
 //Пишем функцию, для открытия модального окна
 export function onModalOpenFilm(e) {
   e.preventDefault();
-  //   clearModal();
+  clearModal();
   //Вытягиваем id из карточки из атрибута data-id
   const id = Number(e.target.closest('li').dataset.id);
   //Проверяем localStorage на наличие массива с данными
@@ -78,7 +78,6 @@ function closeModal() {
   modalFilmBtnClose.removeEventListener('click', closeModal);
   document.removeEventListener('keydown', onEscBtnPress);
   modalBackdrop.removeEventListener('click', onBackdropClick);
-  clearModal();
 }
 
 export function onEscBtnPress(e) {
