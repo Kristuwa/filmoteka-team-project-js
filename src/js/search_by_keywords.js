@@ -1,25 +1,24 @@
 import { QueryHandler } from './query_handler';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { createCardMarkup } from './card_markup';
-
-import { pagination } from "./render_trending";
-
+import { pagination } from './render_trending';
 import localStorageMethod from './locale-storage-methods';
+import Spinner from './spinner';
 
 const queryHandler = new QueryHandler();
-
-
-// const formRef = document.querySelector('#search-form');
 const filmListRef = document.querySelector('.card-list');
+const FILMS = 'films';
+const spinner = new Spinner({
+  selector: '[data-action="load-spinner"]',
+});
 
-// formRef.addEventListener('submit', handleSubmit);
 Notify.init({
   timeout: 1500,
   position: 'center-top',
   backOverlay: false,
+  opacity: 0.8,
+  borderRadius: '25px',
 });
-
-const FILMS = 'films';
 
 export async function handleSubmit(evt) {
   evt.preventDefault();
@@ -32,6 +31,7 @@ export async function handleSubmit(evt) {
     return;
   }
 
+  spinner.disable();
   queryHandler.query = valueSearchQuery;
   try {
     const { results, total_results, page, total_pages } =
@@ -39,16 +39,19 @@ export async function handleSubmit(evt) {
 
     pagination.removeMarkup();
     if (total_pages > 1) {
-      pagination.totalPages = total_pages; 
+      pagination.totalPages = total_pages;
       pagination.page = page;
-      pagination.fetch = page => queryHandler.fetchQueryResultsForMovieSearch(page);
+      pagination.fetch = page =>
+        queryHandler.fetchQueryResultsForMovieSearch(page);
 
       pagination.renderMarkup();
-      }
+    }
     if (!results.length) {
-      return Notify.failure(
+      Notify.failure(
         'Search result not successful. Enter the correct movie name.'
       );
+      spinner.enable();
+      return;
     }
     queryHandler.resetPage();
     filmListRef.innerHTML = '';
@@ -58,5 +61,7 @@ export async function handleSubmit(evt) {
     filmListRef.insertAdjacentHTML('beforeend', markup);
   } catch (error) {
     console.log(error);
+  } finally {
+    spinner.enable();
   }
 }
