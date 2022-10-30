@@ -11,7 +11,7 @@ import { FILMS } from './render_trending';
 //Ищем по селектору все єлементы, с которыми работаем
 const genres = saveGenres();
 const modalFilmList = document.querySelector('.card-list');
-console.log(modalFilmList);
+
 const modalBackdrop = document.querySelector('.modalbackdrop-film');
 const modalFilm = document.querySelector('.modal-film');
 const btnTextWatched = document.querySelector('.film-card-addToWatched');
@@ -58,13 +58,13 @@ export function onModalOpenFilm(e) {
   modalFilmBtnClose.addEventListener('click', closeModal);
   document.addEventListener('keydown', onEscBtnPress);
   modalBackdrop.addEventListener('click', onBackdropClick);
-		// const modalBackdropActive = document.querySelector('.modalbackdrop-film.active');
+  // const modalBackdropActive = document.querySelector('.modalbackdrop-film.active');
   // modalBackdropActive.addEventListener('click', onAddToList);
   //   modalBackdropActive.addEventListener('click', onModalFilmClose);
   //Ищем фильм именно с таким id как в карточке как в hero
   const filmsData = storage.load(FILMS);
   const filmData = filmsData.filter(film => film.id === id);
-  console.log(filmData);
+
   //возращаем его разметку на модалку
   return modalCard.insertAdjacentHTML(
     'afterbegin',
@@ -177,3 +177,9 @@ function clearModal() {
   //   modalFilmBtnClose.insertAdjacentHTML('afterend', '');
   modalCard.innerHTML = '';
 }
+
+//  <video poster="${poster_path}" width="640" controls>
+// <source src="https://www.youtube.com/watch?v=${key}.webm" type="video/webm" />
+// <source src="https://www.youtube.com/watch?v=${key}.mp4" type="video/mp4" />
+// <source src="https://www.youtube.com/watch?v=${key}.ogg" type="video/ogg" />
+//   </video>;
