@@ -4,9 +4,7 @@ import { FILMS } from './render_trending';
 import { createStringOfGenresForCard } from './genres_storage';
 import { WACHED_KEY, QUEUE_KEY } from './add_to_list';
 
-// import {WACHED_KEY, QUEUE_KEY} from './locale-storage-methods'
 //Ищем по селектору все єлементы, с которыми работаем
-
 const modalFilmList = document.querySelector('.card-list');
 const modalBackdrop = document.querySelector('.modalbackdrop-film');
 const modalFilm = document.querySelector('.modal-film');
@@ -15,9 +13,6 @@ const btnTextQueue = document.querySelector('.film-card-addToQueue');
 const modalFilmBtnClose = document.querySelector('.film-card-close');
 const modalCard = document.querySelector('.film-card');
 
-// const WACHED_KEY = 'watchedVideoKey';
-// const QUEUE_KEY = 'queueVideoKey';
-
 //Вешаем события на галерею для открытия модального окна
 modalFilmList.addEventListener('click', onModalOpenFilm);
 
@@ -25,15 +20,17 @@ modalFilmList.addEventListener('click', onModalOpenFilm);
 export function onModalOpenFilm(e) {
   e.preventDefault();
   clearModal();
+
   //Вытягиваем id из карточки из атрибута data-id
   const id = Number(e.target.closest('li').dataset.id);
+
   //Проверяем localStorage на наличие массива с данными
   const videoListWatched = storage.load(WACHED_KEY)
     ? storage.load(WACHED_KEY)
     : [];
   const videoListQueue = storage.load(QUEUE_KEY) ? storage.load(QUEUE_KEY) : [];
-  //В зависимости от проверки: есть ли в localStorage фильмы с таким id , меняем текст на кнопках Whatched Queued
 
+  //В зависимости от проверки: есть ли в localStorage фильмы с таким id , меняем текст на кнопках Whatched Queued
   btnTextWatched.textContent = buttonText(
     videoListWatched,
     id,
@@ -46,21 +43,21 @@ export function onModalOpenFilm(e) {
     'add to queue',
     'remove from queue'
   );
+
   //Так как модалка скрыта, то добавляем класс active для ее отображения и body-is-hidden,чтоб зафиксировать body
   modalBackdrop.classList.add('active');
   modalFilm.classList.add('active');
   document.body.classList.add('body-is-hidden');
+
   //Вешаем события на кнопку close, Esc, backdrop
   modalFilmBtnClose.addEventListener('click', closeModal);
   document.addEventListener('keydown', onEscBtnPress);
   modalBackdrop.addEventListener('click', onBackdropClick);
-  // const modalBackdropActive = document.querySelector('.modalbackdrop-film.active');
-  // modalBackdropActive.addEventListener('click', onAddToList);
-  //   modalBackdropActive.addEventListener('click', onModalFilmClose);
+
   //Ищем фильм именно с таким id как в карточке как в hero
   const filmsData = storage.load(FILMS);
   const filmData = filmsData.filter(film => film.id === id);
-  console.log(filmData);
+
   //возращаем его разметку на модалку
   return modalCard.insertAdjacentHTML(
     'afterbegin',
@@ -74,6 +71,7 @@ function closeModal() {
   modalBackdrop.classList.remove('active');
   modalFilm.classList.remove('active');
   document.body.classList.remove('body-is-hidden');
+
   //Снимаем обработчики событий
   modalFilmBtnClose.removeEventListener('click', closeModal);
   document.removeEventListener('keydown', onEscBtnPress);
@@ -91,37 +89,23 @@ export function onBackdropClick(e) {
     closeModal();
   }
 }
+
 //Функция создания разметки
 function createMarkupModal({
   title,
   id,
-  poster_path,
+  poster_path = 'https://play-lh.googleusercontent.com/IO3niAyss5tFXAQP176P0Jk5rg_A_hfKPNqzC4gb15WjLPjo5I-f7oIZ9Dqxw2wPBAg',
+  genre_ids = '',
   vote_average,
   vote_count,
   overview,
   popularity,
   original_title,
-  genre_ids,
 }) {
   const IMAGE_URL = 'https://image.tmdb.org/t/p/w500/';
 
   const genresStorage = storage.load(GENRES);
   const genresString = createStringOfGenresForCard(genre_ids, genresStorage);
-  //   let genresString = '';
-  //   const genresArray = [];
-  //   const selectedGenres = genre_ids.map(id => {
-  //     return genres.filter(idGenre => idGenre.id === id);
-  //   });
-  //   selectedGenres.map(genre => genresArray.push(genre.name));
-  //   if (genresArray.length > 0 && genresArray.length <= 3) {
-  //     genresString = genresArray.join('');
-  //   } else if (genresArray.length === 0) {
-  //     return '';
-  //   } else {
-  //     genresString = `${genresArray[0]}, ${genresArray[1]}, other`;
-  //   }
-
-  console.log(genresString);
 
   return `<div class="film-info" data-id='${id}'>
   <img srcset="${IMAGE_URL}${poster_path}" src="${IMAGE_URL}${poster_path}" alt="film-poster" class="film-info__poster"/>
@@ -158,13 +142,12 @@ function createMarkupModal({
 	 </p>
 	 </div></div> `;
 }
+
 //Функция рендера надписи на кнопке при открытии модалки
 function buttonText(videoList, currentVideoId, textAdd, textRemove) {
   if (videoList?.length > 0) {
     for (let i = 0; i < videoList.length; i += 1) {
       if (videoList[i].id === currentVideoId) {
-        console.log(videoList[i].id);
-
         return textRemove;
       }
     }
@@ -173,6 +156,11 @@ function buttonText(videoList, currentVideoId, textAdd, textRemove) {
 }
 
 function clearModal() {
-  //   modalFilmBtnClose.insertAdjacentHTML('afterend', '');
   modalCard.innerHTML = '';
 }
+
+//  <video poster="${poster_path}" width="640" controls>
+// <source src="https://www.youtube.com/watch?v=${key}.webm" type="video/webm" />
+// <source src="https://www.youtube.com/watch?v=${key}.mp4" type="video/mp4" />
+// <source src="https://www.youtube.com/watch?v=${key}.ogg" type="video/ogg" />
+//   </video>;
