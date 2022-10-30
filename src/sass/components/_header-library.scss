@@ -76,26 +76,18 @@
   }
 }
 
-.container {
-  padding-right: 20px;
-  padding-left: 20px;
-
-  @include tablet {
-    padding-right: 32px;
-    padding-left: 32px;
-  }
-}
-
 .nav {
   display: flex;
   align-items: center;
 }
 
 .logo__link {
+  display: flex;
+  align-items: center;
   color: var(--primary-text-color);
 }
 
-.logo__icon {
+.logo__header-icon {
   rotate: 0deg;
   fill: transparent;
   stroke: currentColor;
@@ -120,8 +112,12 @@
     font-weight: 500;
     font-size: 30px;
     line-height: 1.17;
-    margin-left: 10px;
+    margin-left: 8px;
     color: var(--primary-text-color);
+  }
+
+  @include desktop {
+    margin-left: 10px;
   }
 }
 
@@ -136,7 +132,7 @@
 }
 
 .nav-list__item:not(:last-child) {
-  margin-right: 39px;
+  margin-right: 40px;
 }
 
 .nav-list__link {
