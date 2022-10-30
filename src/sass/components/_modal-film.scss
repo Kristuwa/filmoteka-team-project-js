@@ -105,6 +105,8 @@ body.body-is-hidden {
 }
 
 .flex-wrapper {
+  @media screen and (min-width: $tablet) {
+  }
 }
 
 .film-info__title {
@@ -112,8 +114,6 @@ body.body-is-hidden {
   font-size: 20px;
   line-height: 1.17;
   margin-bottom: 20px;
-  @media screen and (min-width: $tablet) {
-  }
   @media screen and (min-width: $desktop) {
     font-size: 30px;
   }
@@ -136,7 +136,7 @@ body.body-is-hidden {
 .film-info__vote {
   display: inline-block;
   text-align: center;
-  width: 36px;
+  min-width: 36px;
   height: 16px;
   color: var(--primary-text-color);
   background: var(--accent-color);
@@ -144,8 +144,6 @@ body.body-is-hidden {
   padding: 1px;
 }
 
-.film-info__votes {
-}
 .film-info__data-up {
   text-transform: uppercase;
 }
@@ -171,10 +169,20 @@ body.body-is-hidden {
 }
 
 .button-container {
-  @include centeredFlex;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
+  @media screen and (min-width: $tablet) {
+    justify-content: center;
+    position: absolute;
+    transform: translateY(-100%);
+    right: 0;
+    gap: 20px;
+    width: 390px;
+  }
   @media screen and (min-width: $desktop) {
-    justify-content: space-evenly;
+    gap: 15px;
+    width: 423px;
   }
 }
 
