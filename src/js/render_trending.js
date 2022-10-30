@@ -10,7 +10,7 @@ export let genresStorage = [];
 export const FILMS = "films";
 
 const queryHandler = new QueryHandler();
-const pagination = new Pagination();
+export const pagination = new Pagination();
 
 const filmListRef = document.querySelector(".card-list");
 
@@ -22,44 +22,45 @@ export function renderMarkupTrending(){
          saveGenres();
          genresStorage = saveGenres();
          const markup = results.map(createCardMarkup).join("");
-         filmListRef.insertAdjacentHTML("beforeend", markup);
+         filmListRef.innerHTML = markup;
             
          if (total_pages > 1) {
             pagination.totalPages = total_pages; 
             pagination.page = page;
-            pagination.renderMarkup(paginationRef);
+            pagination.fetch = page => queryHandler.fetchQueryResultsForTrending(page);
+            pagination.renderMarkup();
         }
 
        })
       .catch(error => console.log(error));
 }
+
 paginationRef.addEventListener('click', onChangePageClick)
 function onChangePageClick(e) {  
-        if (e.target.nodeName === 'UL') {
-            return;
-        }
-        if (e.target.className === 'btn__next') {
-            pagination.incrementPage();
-        }
-        if (e.target.className === 'btn__prev') {
-            pagination.decrementPage();
-        }
-        if (e.target.className === 'dots') {
-            return;
-        }
-        if (e.target.className === 'num') {
-            pagination.page = Number(e.target.textContent);
-        }
-        queryHandler.fetchQueryResultsForTrending(pagination.page)
-            .then(({results}) => { 
-               methodsStorage.save(FILMS, results);
-               saveGenres();
-               genresStorage = saveGenres();
-               const markup = results.map(createCardMarkup).join("");
-               filmListRef.innerHTML = markup;
-            })
-            .catch(error => console.log(error));
+   if (e.target.nodeName === 'UL') {
+      return;
+   }
+   if (e.target.className === 'btn__next') {
+      pagination.incrementPage();
+   }
+   if (e.target.className === 'btn__prev') {
+      pagination.decrementPage();
+   }
+   if (e.target.className === 'dots') {
+      return;
+   }
+   if (e.target.className === 'num') {
+      pagination.page = Number(e.target.textContent);
+   }
+         
+   pagination.fetch(pagination.page)
+      .then(({ results }) => { 
+         console.log(pagination.fetch);
+         const markup = results.map(createCardMarkup).join("");
+         
+         filmListRef.innerHTML = markup;})
+      .catch(error => console.log(error));
 
-         pagination.renderMarkup(paginationRef);
+   pagination.renderMarkup();
         
 }

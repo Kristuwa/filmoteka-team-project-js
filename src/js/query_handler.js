@@ -26,10 +26,10 @@ export class QueryHandler {
     }
   }
   // Search for movies:
-  async fetchQueryResultsForMovieSearch() {
+  async fetchQueryResultsForMovieSearch(page=1) {
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${MOVIEDB_KEY}&language=en-US&query=${this.searchQuery}&page=${this.page}&include_adult=false`
+        `https://api.themoviedb.org/3/search/movie?api_key=${MOVIEDB_KEY}&language=en-US&query=${this.searchQuery}&page=${page}&include_adult=false`
       );
       const data = response.data;
       this.incrementPage();

@@ -5,6 +5,8 @@ export class Pagination {
         this.totalPages = totalPages;
         this.page = page;
         // this.ref = paginationRef;
+
+        this.fetch = null;
         
 
     }
@@ -72,15 +74,18 @@ export class Pagination {
         return markup;
     }
 
-    renderMarkup(ref) {
-        
-        ref.innerHTML = this.createMarkup(); 
+    renderMarkup() {
+        paginationRef.innerHTML = this.createMarkup(); 
     }
     incrementPage() {
         this.page += 1;
     }
     decrementPage() {
         this.page -= 1;
+    }
+
+    removeMarkup() {
+        paginationRef.innerHTML = '';
     }
     // changePage(e) {
     //     if (e.target.nodeName === 'UL') {
