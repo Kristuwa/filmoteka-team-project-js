@@ -21,7 +21,8 @@
     "axios": "^1.1.3",
     "firebase": "^9.13.0",
     "modern-normalize": "^1.1.0",
-    "notiflix": "^3.2.5"
+    "notiflix": "^3.2.5",
+    "perfect-scrollbar": "^1.5.5"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",

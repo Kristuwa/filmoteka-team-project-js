@@ -7,6 +7,7 @@ import {
   onButtonAddToListWatched,
   onButtonAddToListQueue,
 } from './add_to_list';
+import PerfectScrollbar from 'perfect-scrollbar';
 //Ищем по селектору все єлементы, с которыми работаем
 const modalFilmList = document.querySelector('.card-list');
 const modalBackdrop = document.querySelector('.modalbackdrop-film');
@@ -21,7 +22,10 @@ const refs = {
   toQueueBtn: document.querySelector('.film-card-addToQueue'),
 };
 //Вешаем события на галерею для открытия модального окна
-modalFilmList.addEventListener('click', onModalOpenFilm);
+modalFilmList.addEventListener('click', event => {
+  onModalOpenFilm(event);
+  new PerfectScrollbar('.film-info__desc');
+});
 export let id;
 export let filmData = [];
 //Пишем функцию, для открытия модального окна
@@ -153,7 +157,7 @@ function createMarkupModal({
 	 </p>
 	 </div></div> `;
 }
-
+new PerfectScrollbar('.modal-film');
 //Функция рендера надписи на кнопке при открытии модалки
 function buttonText(videoList, currentVideoId, textAdd, textRemove) {
   if (videoList?.length > 0) {

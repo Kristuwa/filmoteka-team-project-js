@@ -44,18 +44,20 @@
     margin-bottom: 20px;
   }
   &__poster {
-    background-image: url("../images/poster-default.jpg");
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
+    
     border-radius: 5px;
-    @include desktop {
-      padding-bottom: 12px;
+    @media screen and (min-width: 1200px) {
+      margin-bottom: 12px;
+      min-height: 574px;
+
     }
-    @include tablet {
-      padding-bottom: 8px;
+    @media screen and (min-width: 768px) and (max-width: 1199px) {
+      margin-bottom: 8px;
+      min-height: 455px;
     }
-    @include mobile {
-      padding-bottom: 10px;
+    @media screen and (max-width: 767px) {
+      margin-bottom: 10px;
+      min-height: 402px;
     }
   }
   &__film-name {

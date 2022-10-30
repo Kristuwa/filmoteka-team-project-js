@@ -32,7 +32,7 @@ export class Pagination {
         }
 
         if (totalPages < 10) {
-            for (let i = 1; i < 10; i++) {
+            for (let i = 1; i <= totalPages; i++) {
                 markup += `<li class="num${i === page ? ' active' : ''}">${i}</li>`;
             }
         }
@@ -41,13 +41,13 @@ export class Pagination {
                 markup += `<li class="num${i === page ? ' active' : ''}">${i}</li>`;
             }
         }
-        if (page === totalPages) {
+        if (page === totalPages && totalPages > 9) {
             markup += firstPage + dots;
             for (let i = totalPages-6; i <= totalPages; i++) {
                 markup += `<li class="num${i === page ? ' active' : ''}">${i}</li>`;
             }
         }
-        if (page > totalPages-5 && page < totalPages) {
+        if (page > totalPages-5 && page < totalPages && totalPages > 9) {
             markup += firstPage + dots;
             for (let i = totalPages-6; i < totalPages; i++) {
                 markup += `<li class="num${i === page ? ' active' : ''}">${i}</li>`;
@@ -61,7 +61,7 @@ export class Pagination {
             }
         }
         
-        if (page < totalPages) {
+        if (page < totalPages && totalPages > 9) {
             if (page < totalPages - 4) {
                 markup += dots;
             }
@@ -87,24 +87,5 @@ export class Pagination {
     removeMarkup() {
         paginationRef.innerHTML = '';
     }
-    // changePage(e) {
-    //     if (e.target.nodeName === 'UL') {
-    //         return;
-    //     }
-    //     if (e.target.className === 'btn__next') {
-    //         this.incrementPage();
-    //     }
-    //     if (e.target.className === 'btn__prev') {
-    //         this.decrementPage();
-    //     }
-    //     if (e.target.className === 'dots') {
-    //         return;
-    //     }
-    //     if (e.target.className === 'num') {
-    //         this.page = Number(e.target.textContent);
-    //     }
-
-    //     this.renderMarkup(this.ref);
-    // }
 }
 

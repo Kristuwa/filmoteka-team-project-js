@@ -172,8 +172,7 @@
   fill: transparent;
   transition: stroke var(--time) var(--function-animate);
 
-  .search-btn:hover &,
-  .search-btn:focus & {
+  .search-btn:hover & {
     fill: transparent;
     stroke: var(--accent-color);
   }

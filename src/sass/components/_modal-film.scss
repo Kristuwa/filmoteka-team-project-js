@@ -155,6 +155,7 @@ body.body-is-hidden {
 }
 
 .film-info__desc {
+  position: relative;
   max-height: 240px;
   overflow-y: auto;
   line-height: 1.67;
