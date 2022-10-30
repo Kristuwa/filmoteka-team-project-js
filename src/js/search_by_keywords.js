@@ -1,8 +1,13 @@
 import { QueryHandler } from './query_handler';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { createCardMarkup } from './card_markup';
+
+import { pagination } from "./render_trending";
+
 import localStorageMethod from './locale-storage-methods';
+
 const queryHandler = new QueryHandler();
+
 
 // const formRef = document.querySelector('#search-form');
 const filmListRef = document.querySelector('.card-list');
@@ -29,10 +34,18 @@ export async function handleSubmit(evt) {
 
   queryHandler.query = valueSearchQuery;
   try {
-    const { results, total_results } =
+    const { results, total_results, page, total_pages } =
       await queryHandler.fetchQueryResultsForMovieSearch();
 
-    if (results.length === 0) {
+    pagination.removeMarkup();
+    if (total_pages > 1) {
+      pagination.totalPages = total_pages; 
+      pagination.page = page;
+      pagination.fetch = page => queryHandler.fetchQueryResultsForMovieSearch(page);
+
+      pagination.renderMarkup();
+      }
+    if (!results.length) {
       return Notify.failure(
         'Search result not successful. Enter the correct movie name.'
       );
