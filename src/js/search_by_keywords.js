@@ -9,7 +9,7 @@ import { localeStorageKeys } from './localStorageKeys';
 
 const queryHandler = new QueryHandler();
 const filmListRef = document.querySelector('.card-list');
-const FILMS = 'films';
+
 const spinner = new Spinner({
   selector: '[data-action="load-spinner"]',
 });
