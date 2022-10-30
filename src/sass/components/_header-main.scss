@@ -86,6 +86,10 @@
   }
 }
 
+.nav-list__main:last-child {
+  margin-right: 0;
+}
+
 .header-main__btn {
   cursor: pointer;
   background: transparent;
