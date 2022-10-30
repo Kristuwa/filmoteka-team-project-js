@@ -1,0 +1,37 @@
+.hero {
+  padding-top: 20px;
+  padding-bottom: 40px;
+  @include tablet {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+
+// чернетка для стилів рендеру ДЕСКТОП//
+
+// .hero__list {
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: center;
+// }
+
+// .hero__item {
+//   height: 634px;
+//   width: calc((100% - 32px) / 3);
+//   outline: 1px solid red;
+// }
+
+// .hero__item {
+//   margin-right: 16px;
+//   margin-bottom: 20px;
+// }
+
+// .hero__item:nth-child(3n + 3) {
+//   margin-right: 0px;
+// }
+
+.hero__img-library {
+  width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}

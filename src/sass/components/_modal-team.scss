@@ -1,0 +1,232 @@
+.backdrop-team {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: fixed;
+  z-index: 51;
+  top: 0;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &.is-hidden .modal {
+    transform: translate(-50%, -50%) scale(0);
+  }
+}
+
+.close-btn {
+  display: flex;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  fill: #ffffff;
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  cursor: pointer;
+}
+
+.modal-team {
+  background-color: #000000;
+  background-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.4)
+    ),
+    url('../images/header-bg-library-desk2@x.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  width: 98%;
+  height: 98%;
+  padding: 20px;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 10px;
+  overflow: auto;
+  @media screen and (max-width: 320px) {
+    width: 95vw;
+  }
+  @media screen and (max-width: 479px) {
+    width: 95vw;
+  }
+  @include desktop {
+    width: 95vw;
+  }
+}
+.icon-close {
+  width: 30px;
+  height: 30px;
+  color: #ffffff;
+}
+
+.is-hidden-team {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+.no-scroll {
+  overflow: hidden;
+}
+.footer-item {
+  border: 0;
+  text-decoration: underline;
+}
+.team-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.team-title {
+  color: antiquewhite;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.17;
+}
+.team-item {
+  display: flex;
+  padding: 10px;
+  gap: 10px;
+  width: calc((100% - 20px) / 2);
+  background-color: rgba(0, 255, 255, 0.08);
+}
+.team-item:hover.card-front1,
+.team-item:focus.card-front1 {
+  transform: translateY(0);
+  opacity: 1;
+}
+.team-img {
+  width: 40%;
+}
+.team-block {
+  max-width: 60%;
+  gap: 30px;
+}
+.team-name {
+  color: azure;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 1.17;
+}
+.team-position {
+  color: rgb(115, 245, 245);
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.17;
+}
+.team-functional {
+  color: antiquewhite;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.17;
+}
+.scene {
+  width: 200px;
+  height: 260px;
+  perspective: 600px;
+}
+.card-team {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+.card__face {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+}
+.card__face--front {
+  background: red;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+}
+
+.card__face--back {
+  background: blue;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  transform: rotateY(180deg);
+}
+.card.is-flipped {
+  transform: rotateY(180deg);
+}
+.card-front1 {
+  background-image: url('../images/krasovska.jpg');
+}
+.card-front2 {
+  background-image: url('../images/miakota.v.jpg');
+}
+.card-front3 {
+  background-image: url('../images/miakota.v.jpg');
+}
+.card-front4 {
+  background-image: url('../images/miakota.v.jpg');
+}
+.card-front5 {
+  background-image: url('../images/sorokolit.jpg');
+}
+.card-front6 {
+  background-image: url('../images/yevhen.leshchenko.jpg');
+}
+.card-front7 {
+  background-image: url('../images/miakota.v.jpg');
+}
+.card-front8 {
+  background-image: url('../images/miakota.v.jpg');
+}
+.card-front9 {
+  background-image: url('../images/miakota.v.jpg');
+}
+.card-front10 {
+  background-image: url('../images/miakota.v.jpg');
+}
+.card-front11 {
+  background-image: url('../images/miakota.v.jpg');
+}
+.card-back1 {
+  background-image: url('../images/anjelina.jpg');
+}
+.card-back2 {
+  background-image: url('../images/deni.dorman.jpg');
+}
+.card-back3 {
+}
+.card-back4 {
+}
+.card-back5 {
+}
+.card-back6 {
+}
+.card-back7 {
+}
+.card-back8 {
+}
+.card-back9 {
+}
+.card-back10 {
+}
+.card-back11 {
+}

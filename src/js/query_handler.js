@@ -14,27 +14,39 @@ export class QueryHandler {
     this.axios = require('axios');
   }
   // Get trending movies per last Week:
-  async fetchQueryResultsForTrending() {
+  async fetchQueryResultsForTrending(page=1) {
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/trending/movie/week?api_key=${MOVIEDB_KEY}`
+        `https://api.themoviedb.org/3/trending/movie/week?api_key=${MOVIEDB_KEY}&page=${page}`
       );
-      const data = response.data.results;
+      // const data = response.data.results;
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  // Search for movies:
+  async fetchQueryResultsForMovieSearch(page=1) {
+    try {
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/search/movie?api_key=${MOVIEDB_KEY}&language=en-US&query=${this.searchQuery}&page=${page}&include_adult=false`
+      );
+      const data = response.data;
       this.incrementPage();
       return data;
     } catch (error) {
       console.error(error);
     }
   }
-  // Search for movies:
-  async fetchQueryResultsForMovieSearch() {
+
+  // Search for genres:
+  async fetchQueryResultsForGenres() {
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${MOVIEDB_KEY}&language=en-US&query=${this.searchQuery}&page=${this.page}&include_adult=false`
+        `https://api.themoviedb.org/3/genre/movie/list?api_key=${MOVIEDB_KEY}&language=en-US`
       );
-      const data = response.data;
-      this.incrementPage();
-      return data;
+      const genresData = response.data.genres;
+      return genresData;
     } catch (error) {
       console.error(error);
     }
@@ -53,14 +65,22 @@ export class QueryHandler {
     }
   }
   // Get the videos that have been added to a movie:
-  async fetchQueryResultsForVideo() {
+  async fetchQueryResultsForVideo(key) {
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${this.movieId}/videos?api_key=${MOVIEDB_KEY}&language=en-US`
+        `https://api.themoviedb.org/3/movie/${key}/videos?api_key=${MOVIEDB_KEY}&language=en-US`
       );
       const data = response.data.results;
-      this.incrementPage();
-      return data;
+      // this.incrementPage();
+      data.forEach(el => {
+        if (el.type === 'Trailer') {
+          trailerKey = el.key;
+        }
+      });
+
+      console.log(trailerKey);
+
+      return trailerKey;
     } catch (error) {
       console.error(error);
     }

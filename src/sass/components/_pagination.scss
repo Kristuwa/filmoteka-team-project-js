@@ -1,0 +1,41 @@
+.pagination__list {
+    display: flex;
+    justify-content: center;
+    // gap: 10px;
+    margin-top: 20px;
+
+    font-weight: 500;
+    // font-size: 12px;
+    // line-height: 1.33;
+
+
+    
+    
+}
+.pagination__list li {
+    display: block;
+    padding: 12px;
+    min-width: 40px;
+    height: 40px;
+
+    border-radius: 5px;
+    text-align: center;
+
+    cursor: pointer;
+}
+
+.pagination__list .dots {
+    cursor: default;
+}
+
+.pagination__list li.active,
+.pagination__list li:not(.dots):hover,
+.pagination__list li:not(.dots):focus {
+    color: var(--primary-text-color);
+    background: var(--accent-color);
+}
+
+.btn__prev, 
+.btn__next {
+    background-color: var(--background-color);
+}
