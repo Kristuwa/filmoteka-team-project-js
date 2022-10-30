@@ -14,14 +14,13 @@ export class QueryHandler {
     this.axios = require('axios');
   }
   // Get trending movies per last Week:
-  async fetchQueryResultsForTrending() {
+  async fetchQueryResultsForTrending(page=1) {
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/trending/movie/week?api_key=${MOVIEDB_KEY}`
+        `https://api.themoviedb.org/3/trending/movie/week?api_key=${MOVIEDB_KEY}&page=${page}`
       );
-      const data = response.data.results;
-      this.incrementPage();
-      return data;
+      // const data = response.data.results;
+      return response.data;
     } catch (error) {
       console.error(error);
     }
