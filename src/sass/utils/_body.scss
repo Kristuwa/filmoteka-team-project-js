@@ -29,3 +29,12 @@ body {
 .link:focus {
   color: var(--accent-color);
 }
+.hero {
+  background-color: #111319;
+  background-image: linear-gradient(0deg, #929292cc, #f7f7f7c7),
+    url('../images/hero-bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+}
