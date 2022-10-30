@@ -28,44 +28,67 @@ export class Pagination {
             return;
         }
         if (page > 1) {
-            markup += btnPrev;
-        }
-
-        if (totalPages < 10) {
-            for (let i = 1; i <= totalPages; i++) {
-                markup += `<li class="num${i === page ? ' active' : ''}">${i}</li>`;
-            }
-        }
-        if (totalPages >= 10 && page < 6) {
-            for (let i = 1; i < 8; i++) {
-                markup += `<li class="num${i === page ? ' active' : ''}">${i}</li>`;
-            }
-        }
-        if (page === totalPages && totalPages > 9) {
-            markup += firstPage + dots;
-            for (let i = totalPages-6; i <= totalPages; i++) {
-                markup += `<li class="num${i === page ? ' active' : ''}">${i}</li>`;
-            }
-        }
-        if (page > totalPages-5 && page < totalPages && totalPages > 9) {
-            markup += firstPage + dots;
-            for (let i = totalPages-6; i < totalPages; i++) {
-                markup += `<li class="num${i === page ? ' active' : ''}">${i}</li>`;
-            }
-        }
-
-        if (page >= 6 && page <= totalPages - 5) {
-            markup += firstPage + dots;
-            for (let i = beforePages; i <= afterPages; i++) {
-                markup += `<li class="num${i === page ? ' active' : ''}">${i}</li>`;
-            }
+            markup += btnPrev;  
         }
         
-        if (page < totalPages && totalPages > 9) {
-            if (page < totalPages - 4) {
-                markup += dots;
+        if (window.screen.width < 767) {
+            if (totalPages <= 5) {
+                for (let i = 1; i <= totalPages; i++) {
+                    markup += `<li class="num${i === page ? ' active' : ''}">${i}</li>`;
+                }
             }
-            markup += lastPage;
+            if (page < 3 && totalPages > 5) {
+                for (let i = 1; i <= 5; i++) {
+                    markup += `<li class="num${i === page ? ' active' : ''}">${i}</li>`;
+                }
+            }
+            if (page > 2 && page < totalPages-1) {
+                for (let i = beforePages; i <= afterPages; i++) {
+                    markup += `<li class="num${i === page ? ' active' : ''}">${i}</li>`;
+                }
+            }
+            if (page > totalPages - 3 && totalPages > 5) {
+                for (let i = totalPages - 5; i <= totalPages; i++) {
+                    markup += `<li class="num${i === page ? ' active' : ''}">${i}</li>`;
+                }
+            }
+        } else {
+            if (totalPages < 10) {
+                for (let i = 1; i <= totalPages; i++) {
+                    markup += `<li class="num${i === page ? ' active' : ''}">${i}</li>`;
+                }
+            }
+            if (totalPages >= 10 && page < 6) {
+                for (let i = 1; i < 8; i++) {
+                    markup += `<li class="num${i === page ? ' active' : ''}">${i}</li>`;
+                }
+            }
+            if (page === totalPages && totalPages > 9) {
+                markup += firstPage + dots;
+                for (let i = totalPages-6; i <= totalPages; i++) {
+                    markup += `<li class="num${i === page ? ' active' : ''}">${i}</li>`;
+                }
+            }
+            if (page > totalPages-5 && page < totalPages && totalPages > 9) {
+                markup += firstPage + dots;
+                for (let i = totalPages-6; i < totalPages; i++) {
+                    markup += `<li class="num${i === page ? ' active' : ''}">${i}</li>`;
+                }
+            }
+
+            if (page >= 6 && page <= totalPages - 5) {
+                markup += firstPage + dots;
+                for (let i = beforePages; i <= afterPages; i++) {
+                    markup += `<li class="num${i === page ? ' active' : ''}">${i}</li>`;
+                }
+            }
+            
+            if (page < totalPages && totalPages > 9) {
+                if (page < totalPages - 4) {
+                    markup += dots;
+                }
+                markup += lastPage;
+            }
         }
 
         if (page < totalPages) {
