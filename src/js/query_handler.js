@@ -1,7 +1,7 @@
 'use strict';
 
 import axios from 'axios';
-
+import { renderMarkupTrending } from './render_trending';
 // Team-lead API key:
 const MOVIEDB_KEY = 'e5b8bd1b82d4f5b68280cf1e2b92e5f6';
 
@@ -20,6 +20,7 @@ export class QueryHandler {
         `https://api.themoviedb.org/3/trending/movie/week?api_key=${MOVIEDB_KEY}`
       );
       const data = response.data.results;
+
       this.incrementPage();
       return data;
     } catch (error) {
@@ -53,18 +54,29 @@ export class QueryHandler {
     }
   }
   // Get the videos that have been added to a movie:
-  async fetchQueryResultsForVideo() {
+  async fetchQueryResultsForVideo(key) {
+    let trailerKey = '';
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${this.movieId}/videos?api_key=${MOVIEDB_KEY}&language=en-US`
+        `https://api.themoviedb.org/3/movie/${key}/videos?api_key=${MOVIEDB_KEY}&language=en-US`
       );
       const data = response.data.results;
-      this.incrementPage();
-      return data;
+      console.log(data);
+      data.forEach(el => {
+        // console.log(el.type);
+        if (el.type === 'Trailer') {
+          trailerKey = el.key;
+        }
+      });
+
+      console.log(trailerKey);
+      // this.incrementPage();
+      return trailerKey;
     } catch (error) {
       console.error(error);
     }
   }
+
   incrementPage() {
     this.page += 1;
   }

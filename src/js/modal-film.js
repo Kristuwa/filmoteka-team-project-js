@@ -2,6 +2,7 @@ import { QueryHandler } from './query_handler';
 import { saveGenres } from './genres_storage';
 import storage from './locale-storage-methods';
 import { FILMS } from './render_trending';
+
 //  _______________________________________
 import { onAddToList } from './add_to_list';
 export let filmData = {};
@@ -33,7 +34,8 @@ export function onModalOpenFilm(e) {
   }
   //Вытягиваем id из карточки из атрибута data-id
   id = Number(e.target.closest('li').dataset.id);
-  console.log(id);
+  const x = newFetch.fetchQueryResultsForVideo(id);
+
   //Проверяем localStorage на наличие массива с данными
   const videoListWatched = storage.load(WACHED_KEY)
     ? storage.load(WACHED_KEY)
@@ -71,7 +73,7 @@ export function onModalOpenFilm(e) {
   //возращаем его разметку на модалку
   return modalFilm.insertAdjacentHTML(
     'afterbegin',
-    createMarkupModal(filmData[0])
+    createMarkupModal(filmData)
   );
 }
 
@@ -101,19 +103,23 @@ export function onBackdropClick(e) {
 }
 
 //Функция создания разметки
-function createMarkupModal({
-  title,
-  id,
-  poster_path,
-  vote_average,
-  vote_count,
-  overview,
-  popularity,
-  original_title,
-  genre_ids,
-}) {
+export function createMarkupModal(
+  {
+    title,
+    id,
+    poster_path,
+    vote_average,
+    vote_count,
+    overview,
+    popularity,
+    original_title,
+    genre_ids,
+  },
+  key
+) {
+  console.log(genre_ids);
   const IMAGE_URL = 'https://image.tmdb.org/t/p/w500/';
-
+  console.log(title);
   let genresString;
   const genresArray = [];
   const selectedGenres = genre_ids.map(id => {
@@ -175,3 +181,9 @@ export function buttonText(videoList, currentVideoId, textAdd, textRemove) {
   }
   return textAdd;
 }
+
+//  <video poster="${poster_path}" width="640" controls>
+// <source src="https://www.youtube.com/watch?v=${key}.webm" type="video/webm" />
+// <source src="https://www.youtube.com/watch?v=${key}.mp4" type="video/mp4" />
+// <source src="https://www.youtube.com/watch?v=${key}.ogg" type="video/ogg" />
+//   </video>;
