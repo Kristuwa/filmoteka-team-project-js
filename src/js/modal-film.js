@@ -103,7 +103,9 @@ function createMarkupModal({
   original_title,
 }) {
   const IMAGE_URL = 'https://image.tmdb.org/t/p/w500/';
-
+  const voteCount = vote_count.toFixed(0);
+  const voteAverage = vote_average.toFixed(1);
+  const popular = popularity.toFixed(1);
   const genresStorage = storage.load(GENRES);
   const genresString = createStringOfGenresForCard(genre_ids, genresStorage);
 
@@ -115,13 +117,13 @@ function createMarkupModal({
 		<tbody>
 		  <tr>
 		  <td class="film-info__param">Vote / Votes</td>
-		  <td><span class="film-info__vote">${vote_average}</span> / ${vote_count}
+		  <td><span class="film-info__vote">${voteAverage}</span> / ${voteCount}
 		  </td>
 			</tr>
 			<tr class="spacer"></tr>
 			<tr>
 		  <td class="film-info__param">Popularity</td>
-		  <td>${popularity}</td>
+		  <td>${popular}</td>
 			  </tr>
 			  <tr class="spacer"></tr>
 		  <tr>

@@ -20,9 +20,7 @@ export function createCardMarkup(data) {
     <a class="link card-film-link" href="#" aria-label="${title}">
     <img class="card__poster" data-id="${id}" src="${IMAGE_URL}${poster_path}" alt="film poster" height="634"  width="395"/>
     <b class="card__film-name">${title}</b>
-    <p class="card__description">
-    ${cardGenres}
-    <span class="film-year">| ${date}</span>
+    <p class="card__description">${cardGenres}<span class="film-year">${date}</span>
     </p>
     </a>
     </li>`;
