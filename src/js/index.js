@@ -8,6 +8,9 @@ import { onEscBtnPress } from './modal-film';
 import './acive_button';
 import './add_to_list';
 import { renderMarkupTrending } from './render_trending.js';
+import { toggleModal, toggleCard } from './modal-team.js';
+
+renderMarkupTrending();
 const formRef = document.querySelector('#search-form');
 formRef.addEventListener('submit', handleSubmit);
 // Экземпляр класса Spinner имеет 2 метода:
@@ -17,5 +20,3 @@ const spinner = new Spinner({
   selector: '[data-action="load-spinner"]',
 });
 spinner.enable(); // сейчас спинер выключен
-
-renderMarkupTrending();
