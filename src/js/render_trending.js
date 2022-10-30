@@ -4,6 +4,7 @@ import {QueryHandler} from './query_handler';
 import { saveGenres } from './genres_storage';
 import { Pagination, paginationRef } from "./pagination";
 import methodsStorage from './locale-storage-methods';
+import {localeStorageKeys} from './localStorageKeys';
 
 export let genresStorage = [];
 
@@ -29,8 +30,9 @@ export function renderMarkupTrending(){
             pagination.page = page;
             pagination.fetch = page => queryHandler.fetchQueryResultsForTrending(page);
             pagination.renderMarkup();
-        }
-
+         }
+         console.log(pagination.fetch);
+        methodsStorage.save(localeStorageKeys.LAST_REQUEST, `${pagination.fetch}`);
        })
       .catch(error => console.log(error));
 }
@@ -52,13 +54,13 @@ function onChangePageClick(e) {
    if (e.target.className === 'num') {
       pagination.page = Number(e.target.textContent);
    }
-         
+   methodsStorage.remove(FILMS);   
+   
    pagination.fetch(pagination.page)
       .then(({ results }) => { 
-         console.log(pagination.fetch);
-         const markup = results.map(createCardMarkup).join("");
          
-         filmListRef.innerHTML = markup;})
+         methodsStorage.save(FILMS, results);
+         filmListRef.innerHTML = results.map(createCardMarkup).join("");})
       .catch(error => console.log(error));
 
    pagination.renderMarkup();

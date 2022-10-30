@@ -2,9 +2,10 @@ import { QueryHandler } from './query_handler';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { createCardMarkup } from './card_markup';
 
-import { pagination } from "./render_trending";
+import { pagination, FILMS } from "./render_trending";
 
 import localStorageMethod from './locale-storage-methods';
+import {localeStorageKeys} from './localStorageKeys';
 
 const queryHandler = new QueryHandler();
 
@@ -19,7 +20,7 @@ Notify.init({
   backOverlay: false,
 });
 
-const FILMS = 'films';
+// const FILMS = 'films';
 
 export async function handleSubmit(evt) {
   evt.preventDefault();
@@ -37,6 +38,15 @@ export async function handleSubmit(evt) {
     const { results, total_results, page, total_pages } =
       await queryHandler.fetchQueryResultsForMovieSearch();
 
+    
+    if (!results.length) {
+      return Notify.failure(
+        'Search result not successful. Enter the correct movie name.'
+      );
+    }
+
+    
+
     pagination.removeMarkup();
     if (total_pages > 1) {
       pagination.totalPages = total_pages; 
@@ -44,18 +54,15 @@ export async function handleSubmit(evt) {
       pagination.fetch = page => queryHandler.fetchQueryResultsForMovieSearch(page);
 
       pagination.renderMarkup();
-      }
-    if (!results.length) {
-      return Notify.failure(
-        'Search result not successful. Enter the correct movie name.'
-      );
     }
-    queryHandler.resetPage();
-    filmListRef.innerHTML = '';
+    
     Notify.success(`Hooray! We found ${total_results} movie!`);
+
+    localStorageMethod.remove(FILMS);
     localStorageMethod.save(FILMS, results);
+
     const markup = results.map(createCardMarkup).join('');
-    filmListRef.insertAdjacentHTML('beforeend', markup);
+    filmListRef.innerHTML = markup;
   } catch (error) {
     console.log(error);
   }
