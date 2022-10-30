@@ -3,8 +3,9 @@ const refs = {
   closeModalBtn: document.querySelector('[data-modal-close]'),
   modal: document.querySelector('[data-modal]'),
   body: document.querySelector('body'),
-  card: document.querySelector('.card'),
+  card: document.querySelector('.card-team'),
 };
+console.log(refs.card);
 
 refs.openModalBtn.addEventListener('click', toggleModal);
 refs.closeModalBtn.addEventListener('click', toggleModal);
