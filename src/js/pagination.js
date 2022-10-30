@@ -87,24 +87,5 @@ export class Pagination {
     removeMarkup() {
         paginationRef.innerHTML = '';
     }
-    // changePage(e) {
-    //     if (e.target.nodeName === 'UL') {
-    //         return;
-    //     }
-    //     if (e.target.className === 'btn__next') {
-    //         this.incrementPage();
-    //     }
-    //     if (e.target.className === 'btn__prev') {
-    //         this.decrementPage();
-    //     }
-    //     if (e.target.className === 'dots') {
-    //         return;
-    //     }
-    //     if (e.target.className === 'num') {
-    //         this.page = Number(e.target.textContent);
-    //     }
-
-    //     this.renderMarkup(this.ref);
-    // }
 }
 
