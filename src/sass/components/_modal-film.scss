@@ -160,11 +160,11 @@ body.body-is-hidden {
   line-height: 1.67;
   margin-bottom: 20px;
   @media screen and (min-width: $tablet) {
-    max-height: 236px;
+    max-height: 140px;
     width: 280px;
   }
   @media screen and (min-width: $desktop) {
-    max-height: 160px;
+    max-height: 220px;
     width: 391px;
   }
 }
