@@ -2,29 +2,21 @@ import { genresStorage } from './render_trending';
 import { createStringOfGenresForCard } from './genres_storage';
 
 export function createCardMarkup(data) {
-  const {
-    title,
-    poster_path,
-    release_date,
-    genre_ids,
-    id,
-  } = data;
-let date = release_date;
-  if(date===undefined){
-    date = " ";
-  } else{
+  const { title, poster_path, release_date, genre_ids, id } = data;
+  let date = release_date;
+  if (typeof date !== 'string') {
+    date = '';
+  } else {
     date = release_date.slice(0, 4);
   }
-  
+
   const IMAGE_URL = 'https://image.tmdb.org/t/p/w500/';
   let cardGenres;
-  if(genre_ids===undefined){
-    cardGenres = "";
-  }else{
+  if (genre_ids.length === 0) {
+    cardGenres = 'No information';
+  } else {
     cardGenres = createStringOfGenresForCard(genre_ids, genresStorage);
   }
-
-  
 
   return `
     <li class="card" data-id="${id}">
