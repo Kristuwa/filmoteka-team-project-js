@@ -10,6 +10,7 @@ import {
   updatePassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from './firebase-config';
@@ -17,6 +18,14 @@ import { firebaseConfig } from './firebase-config';
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const auth = getAuth(app);
+
+Notify.init({
+  timeout: 1500,
+  position: 'center-top',
+  backOverlay: false,
+  opacity: 0.8,
+  borderRadius: '25px',
+});
 
 export default class User {
   constructor(userData) {
@@ -37,8 +46,8 @@ export default class User {
         updateProfile(auth.currentUser, {
           displayName: `${this.userData.name}`,
         });
-
-        alert(`User ${this.userData.name} created`);
+        Notify.success(`User ${this.userData.name} created`);
+        // alert(`User ${this.userData.name} created`);
 
         signOut(auth).then(() => {
           refs.userLibrary.classList.add('hidden-tab');
@@ -53,21 +62,23 @@ export default class User {
     const user = auth.currentUser;
 
     if (!this.userData.email || !this.userData.pswd) {
-      alert('Please enter your email and password');
+      Notify.failure(`Please enter your email and password`);
       return;
     }
+    // if (user === user) {
+    //   // Notify.success(`User signed in`);
+    // } else {
+    //   return;
+    // }
 
     signInWithEmailAndPassword(auth, this.userData.email, this.userData.pswd)
       .then(userCredential => {
         const user = userCredential.user;
-
-        refs.userLibrary.classList.remove('hidden-tab');
-
-        alert(`User ${user.displayName} signed in`);
+        // alert(`User ${user.displayName} signed in`);
+        Notify.success(`User ${user.displayName} signed in`);
       })
       .catch(error => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        Notify.failure(`Please enter your email and password`);
       });
   }
 
