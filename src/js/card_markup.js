@@ -1,26 +1,27 @@
 import { genresStorage } from './render_trending';
 import { createStringOfGenresForCard } from './genres_storage';
-
+import { genresStorage } from './genres_storage';
 export function createCardMarkup(data) {
   const { title, poster_path, release_date, genre_ids, id } = data;
 
   let date = release_date;
-  if (date===null) {
+  if (date === null) {
     date = '';
   } else {
     date = release_date.slice(0, 4);
   }
 
   let imageUrl = `https://image.tmdb.org/t/p/w500/${poster_path}`;
-  if(poster_path === null){
-     imageUrl = 'https://www.bworldonline.com/wp-content/uploads/2022/04/cinema02_14-01.jpg';
+  if (poster_path === null) {
+    imageUrl =
+      'https://www.bworldonline.com/wp-content/uploads/2022/04/cinema02_14-01.jpg';
   }
-  
+
   let cardGenres;
   if (genre_ids.length === 0) {
     cardGenres = 'No information';
   } else {
-    cardGenres = createStringOfGenresForCard(genre_ids, genresStorage);
+    cardGenres = createStringOfGenresForCard(genre_ids);
   }
 
   return `

@@ -1,9 +1,9 @@
 import methodsStorage from './locale-storage-methods';
 import { QueryHandler } from './query_handler';
-import { storage } from './locale-storage-methods';
-export const GENRES = 'genres';
 
 const getGenders = new QueryHandler();
+export const GENRES = 'genres';
+export const genresStorage = methodsStorage.load(GENRES);
 
 export function saveGenres() {
   getGenders
@@ -15,7 +15,7 @@ export function saveGenres() {
   return methodsStorage.load(GENRES);
 }
 
-export function createStringOfGenresForCard(genresId, genresStorage) {
+export function createStringOfGenresForCard(genresId) {
   let genresString;
   const genresArray = [];
   const selectedGenres = genresId.map(id => {
@@ -23,9 +23,9 @@ export function createStringOfGenresForCard(genresId, genresStorage) {
   });
 
   selectedGenres.map(genre => {
-    //  console.log(genre);
-    genresArray.push(genre.name);
+    genresArray.push(genre[0].name);
   });
+
   if (genresArray.length > 0 && genresArray.length <= 3) {
     genresString = genresArray.join(', ');
   } else {

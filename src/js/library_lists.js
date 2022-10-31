@@ -4,6 +4,7 @@ import { createCardMarkup } from './card_markup';
 import { FILMS } from './render_trending';
 import { ref } from 'firebase/database';
 import { modalFilmBtnClose } from './modal-film';
+
 const refs = {
   watchedBtn: document.querySelector('.btn__watched'),
   queueBtn: document.querySelector('.btn__queue'),
@@ -23,11 +24,8 @@ export function onWachedLibBtnClick(event) {
   // якщо в localstorage є дані, то записуємо їх в масив
   if (storageData) {
     storageArray = storageData;
-    // console.log(storageArray);
-
     // Перезаписуємо films щоб модалка відкривалась
     storage.save(FILMS, storageArray);
-
     // Рендеримо розмітку
     const markup = storageArray.map(createCardMarkup).join('');
     refs.filmListRef.innerHTML = '';
@@ -48,14 +46,10 @@ export function onQueueLibBtnClick(event) {
   // якщо в localstorage є дані, то записуємо їх в масив
   if (storageData) {
     storageArray = storageData;
-    // console.log(storageArray);
-
     // Перезаписуємо films щоб модалка відкривалась
     storage.save(FILMS, storageArray);
-
     // Рендеримо розмітку
     const markup = storageArray.map(createCardMarkup).join('');
-    //  console.log(storageArray);
     refs.filmListRef.innerHTML = markup;
   } else {
     console.log('wached storage is empty');
@@ -69,8 +63,6 @@ export function onRenderNewListQueue() {
   const newFilmsList = storage.load(FILMS);
   const markup = newFilmsList.map(createCardMarkup).join('');
   refs.filmListRef.innerHTML = markup;
-  //   console.log(filmsList);
-  //   console.log('нарисовал');
 }
 
 export function onRenderNewListWatched() {
@@ -80,5 +72,4 @@ export function onRenderNewListWatched() {
   const newFilmsList = storage.load(FILMS);
   const markup = newFilmsList.map(createCardMarkup).join('');
   refs.filmListRef.innerHTML = markup;
-  //   console.log(filmsList);
 }

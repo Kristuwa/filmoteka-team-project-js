@@ -1,11 +1,9 @@
 import { createCardMarkup } from './card_markup';
 import { QueryHandler } from './query_handler';
-import { saveGenres } from './genres_storage';
+import { gendersStorage } from './genres_storage';
 import { Pagination, paginationRef } from './pagination';
 import methodsStorage from './locale-storage-methods';
 import { localeStorageKeys } from './localStorageKeys';
-
-export let genresStorage = [];
 
 export const FILMS = 'films';
 
@@ -20,8 +18,6 @@ export function renderMarkupTrending() {
     .then(data => {
       const { page, total_pages, results } = data;
       methodsStorage.save(FILMS, results);
-
-      genresStorage = saveGenres();
       const markup = results.map(createCardMarkup).join('');
       filmListRef.innerHTML = markup;
 
