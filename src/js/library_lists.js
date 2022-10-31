@@ -4,6 +4,7 @@ import { createCardMarkup } from './card_markup';
 import { FILMS } from './render_trending';
 import { ref } from 'firebase/database';
 import { modalFilmBtnClose } from './modal-film';
+import { createCardMarkupLibrary } from './card-markup-library';
 
 const refs = {
   watchedBtn: document.querySelector('.btn__watched'),
@@ -24,6 +25,7 @@ export function onWachedLibBtnClick(event) {
   // якщо в localstorage є дані, то записуємо їх в масив
   if (storageData) {
     storageArray = storageData;
+    console.log(storageArray);
     // Перезаписуємо films щоб модалка відкривалась
     storage.save(FILMS, storageArray);
     // Рендеримо розмітку

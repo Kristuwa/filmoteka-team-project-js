@@ -19,6 +19,7 @@
 }
 
 .card {
+  padding-bottom: 10px;
   border: none;
   border-radius: 5px;
   margin-left: auto;
@@ -69,14 +70,50 @@
     }
   }
   &__film-name {
+    text-align: left;
     text-transform: uppercase;
     color: var(--secondary-text-color);
+    flex-grow: 1;
   }
   &__description {
+    display: flex;
+    align-items: center;
     color: var(--accent-color);
+    flex-grow: 1;
   }
 }
 
+.card__description-rating {
+  margin-left: 8px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 12px;
+  line-height: 1.16;
+  color: var(--primary-text-color);
+  background-color: var(--accent-color);
+  @media screen and (min-width: 1280px) {
+    padding: 3px 12px 3px 12px;
+  }
+  @media screen and (max-width: 1279px){
+    padding: 1px 10px 1px 10px;
+  }
+  
+}
+
+.description-wrapper{
+  @media screen and(min-width: 1280px){
+    min-height: 72px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    min-width: 48px;
+  }
+  @media screen and(max-width: 767px) {
+    min-width: 36px;
+  }
+  display: flex;
+  flex-direction: column;
+  padding-left: 5px;
+}
 
 .card:hover,
 .card:focus {
