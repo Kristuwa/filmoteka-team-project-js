@@ -4,18 +4,14 @@ import './acive_button';
 import './add_to_list';
 import './library_lists';
 
-
 import { onModalOpenFilm } from './modal-film';
 import { onBackdropClick } from './modal-film';
 import { onEscBtnPress } from './modal-film';
 import { modalFilmBtnClose } from './modal-film';
-import { onRerenderFilmList } from './library_lists';
 import { toggleModal, toggleCard } from './modal-team.js';
 //оставила пока для Сашиной работы
 renderMarkupTrending();
 //********* */
-//ВЕшаем событие на кнопку закрытия, чтоб перерендерилась страница после закрытия модалки
-modalFilmBtnClose.addEventListener('click', onRerenderFilmList);
 
 const formRef = document.querySelector('#search-form');
 formRef.addEventListener('submit', handleSubmit);
