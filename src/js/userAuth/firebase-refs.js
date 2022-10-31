@@ -37,6 +37,9 @@ export const refs = {
 
   userLibrary: document.querySelector('.btn2'),
   heroLibrary: document.querySelector('.hero__img-library'),
-  watchedBtn: document.querySelector('#btn__watched'),
-  queueBtn: document.querySelector('.btn__queue '),
+  watchedBtn: document.querySelector('.btn__watched'),
+  queueBtn: document.querySelector('.btn__queue'),
+  heroLibrary: document.querySelector('.card-list'),
+  modalCardWached: document.querySelector('.film-card-addToWatched'),
+  modalCardQueue: document.querySelector('.film-card-addToQueue'),
 };

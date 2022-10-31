@@ -8,7 +8,7 @@ import { onModalOpenFilm } from './modal-film';
 import { onBackdropClick } from './modal-film';
 import { onEscBtnPress } from './modal-film';
 import { toggleModal, toggleCard } from './modal-team.js';
-import './day-night';
+import './day-night-library';
 import './userAuth/firebase-library';
 saveGenres();
 import { onWachedLibBtnClick } from './library_lists';

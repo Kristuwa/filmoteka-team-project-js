@@ -10,15 +10,9 @@ const auth = getAuth(app);
 
 // onAuthStateChanged(auth, user => {
 //   if (!user) {
-//     refs.userLibrary.addEventListener(
+//     refs.modalCardWached.addEventListener(
 //       'click',
 //       Notify.failure('Sorry, Your are not allowed to perform this action.')
-//     );
-//   }
-//   if (user) {
-//     refs.watchedBtn.addEventListener(
-//       'click',
-//       Notify.failure('hhrthtrthrhtrht.')
 //     );
 //   }
 // });

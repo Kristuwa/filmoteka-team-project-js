@@ -14,11 +14,7 @@ onAuthStateChanged(auth, user => {
       'click',
       Notify.failure('Sorry, Your are not allowed to perform this action.')
     );
-  }
-  if (!user) {
-    refs.watchedBtn.addEventListener(
-      'click',
-      Notify.failure('hhrthtrthrhtrht.')
-    );
+  } else {
+    refs.heroLibrary.classList.remove('hidden-tab');
   }
 });
