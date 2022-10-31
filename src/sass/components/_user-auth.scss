@@ -144,8 +144,7 @@
   color: #03e9f4;
   font-size: 12px;
 }
-.log-in-email:focus ~ .log-in-email-label,
-.log-in-email:valid ~ .log-in-email-label {
+.log-in-email-label {
   top: -25px;
   left: 0;
   color: #03e9f4;
@@ -180,8 +179,7 @@
   color: #03e9f4;
   font-size: 12px;
 }
-.log-in-password:focus ~ .log-in-password-label,
-.log-in-password:valid ~ .log-in-password-label {
+.log-in-password-label {
   top: -25px;
   left: 0;
   color: #03e9f4;
