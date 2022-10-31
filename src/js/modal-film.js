@@ -14,7 +14,7 @@ const modalBackdrop = document.querySelector('.modalbackdrop-film');
 const modalFilm = document.querySelector('.modal-film');
 const btnTextWatched = document.querySelector('.film-card-addToWatched');
 const btnTextQueue = document.querySelector('.film-card-addToQueue');
-const modalFilmBtnClose = document.querySelector('.film-card-close');
+export const modalFilmBtnClose = document.querySelector('.film-card-close');
 const modalCard = document.querySelector('.film-card');
 const refs = {
   modalFilmList: document.querySelector('.card-list'),
