@@ -3,6 +3,7 @@ import Spinner from './spinner';
 import './acive_button';
 import './add_to_list';
 import './library_lists';
+import './day-night';
 
 import { onModalOpenFilm } from './modal-film';
 import { onBackdropClick } from './modal-film';

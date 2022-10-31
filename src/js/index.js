@@ -8,6 +8,7 @@ import { onEscBtnPress } from './modal-film';
 import './acive_button';
 import './add_to_list';
 import { toggleModal, toggleCard } from './modal-team.js';
+import './day-night';
 
 renderMarkupTrending();
 const formRef = document.querySelector('#search-form');
