@@ -96,9 +96,12 @@ header {
 .container-footer {
   position: relative;
   transition: box-shadow 300ms linear;
-  background: #1a1818;
   box-shadow: 0px 0px 100px 10px (rgb(17, 17, 17));
   &.dark {
+    background: #1a1818;
+    & p {
+      color: #fff;
+    }
     & .header-list__link--active::after {
       box-shadow: 0px 3px 10px #ff6b02;
     }
@@ -144,56 +147,20 @@ header {
 }
 .modal-film.dark {
   background-color: rgb(46, 46, 46);
-  border: 2px solid #ff6b02;
-  box-shadow: 0px 0px 6px 6px (#ff6b027a);
+  box-shadow: 0 0 50px 5px rgb(255, 40, 40);
   & img {
-    border-radius: 20px;
     border: 1px solid #ff6b02;
   }
-  & h1,
-  & th,
-  & p {
+  & h2,
+  & table,
+  & p,
+  & td {
     color: #fff;
   }
   & button {
     border-color: #fff;
     color: #fff;
     transition: background-color 300ms linear, border 300ms linear;
-  }
-  & svg {
-    fill: #fff;
-    transition: fill 300ms linear;
-    &:hover,
-    &:focus {
-      fill: #ff6b02;
-    }
-  }
-}
-.modal-dark.dark {
-  background-color: rgb(46, 46, 46);
-  border: 2px solid #ff6b02;
-  box-shadow: 0px 0px 6px 6px (#ff6b027a);
-  & img {
-    border-radius: 20px;
-    border: 1px solid #ff6b02;
-  }
-  & h1,
-  & th,
-  & p {
-    color: #fff;
-  }
-  & button {
-    border-color: #fff;
-    color: #fff;
-    transition: background-color 300ms linear, border 300ms linear;
-  }
-  & svg {
-    fill: #fff;
-    transition: fill 300ms linear;
-    &:hover,
-    &:focus {
-      fill: #ff6b02;
-    }
   }
 }
 .backdrop.is-hidden .modal {
@@ -202,7 +169,4 @@ header {
 .modal {
   transform: translateX(0);
   transition: transform 1s linear;
-}
-.text-white.dark {
-  color: #fff;
 }

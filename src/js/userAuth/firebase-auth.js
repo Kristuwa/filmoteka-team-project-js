@@ -8,15 +8,20 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-onAuthStateChanged(auth, user => {
-  if (user) {
-  } else {
-    refs.userLibrary.addEventListener('click', notifyNoPermission());
-  }
-});
-function notifyNoPermission() {
-  Notify.failure('Sorry, Your are not allowed to perform this action.');
-}
+// onAuthStateChanged(auth, user => {
+//   if (!user) {
+//     refs.userLibrary.addEventListener(
+//       'click',
+//       Notify.failure('Sorry, Your are not allowed to perform this action.')
+//     );
+//   }
+//   if (user) {
+//     refs.watchedBtn.addEventListener(
+//       'click',
+//       Notify.failure('hhrthtrthrhtrht.')
+//     );
+//   }
+// });
 
 function onChangeTab() {
   onHidePswd();

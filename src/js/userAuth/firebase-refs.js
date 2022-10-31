@@ -37,4 +37,6 @@ export const refs = {
 
   userLibrary: document.querySelector('.btn2'),
   heroLibrary: document.querySelector('.hero__img-library'),
+  watchedBtn: document.querySelector('#btn__watched'),
+  queueBtn: document.querySelector('.btn__queue '),
 };

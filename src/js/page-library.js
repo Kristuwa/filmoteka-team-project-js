@@ -9,4 +9,5 @@ import { onBackdropClick } from './modal-film';
 import { onEscBtnPress } from './modal-film';
 import { toggleModal, toggleCard } from './modal-team.js';
 import './day-night';
+import './userAuth/firebase-library';
 saveGenres();
