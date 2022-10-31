@@ -113,11 +113,12 @@ header {
 }
 .day-nigth-btn-box {
   position: absolute;
-  top: 180px;
+  top: 200px;
   left: 50%;
   transform: translateX(110px);
   @media screen and (min-width: 768px) {
     transform: translateX(300px);
+    top: 180px;
   }
   @media screen and (min-width: 1280px) {
     transform: translateX(550px);
