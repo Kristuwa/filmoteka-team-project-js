@@ -7,6 +7,7 @@ import { onBackdropClick } from './modal-film';
 import { onEscBtnPress } from './modal-film';
 import './acive_button';
 import './add_to_list';
+import './library_lists';
 import { renderMarkupTrending } from './render_trending.js';
 import { toggleModal, toggleCard } from './modal-team.js';
 
