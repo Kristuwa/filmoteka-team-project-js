@@ -1,5 +1,5 @@
 import './userAuth/firebase-auth-import';
-import './acive_button';
+import './active_button';
 import Spinner from './spinner';
 import { saveGenres } from './genres_storage';
 import './add_to_list';
@@ -11,3 +11,5 @@ import { toggleModal, toggleCard } from './modal-team.js';
 import './day-night';
 import './userAuth/firebase-library';
 saveGenres();
+import { onWachedLibBtnClick } from './library_lists';
+onWachedLibBtnClick();
