@@ -12,13 +12,15 @@ body {
   background-color: transparent;
 
   transition: color var(--time) var(--function-animate),
-    background-color var(--time) var(--function-animate);
+    background-color var(--time) var(--function-animate),
+    border var(--time) var(--function-animate);
 }
 
 .btn:hover,
 .btn:focus {
-  color: var(--accent-color);
-  background-color: var(--primary-text-color);
+  color: var(--primary-text-color);
+  background-color: var(--accent-color);
+  border: var(--accent-color);
 }
 
 .link {

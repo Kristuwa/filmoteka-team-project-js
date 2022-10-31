@@ -1,4 +1,5 @@
 import './userAuth/firebase-auth-import';
+import './acive_button';
 import Spinner from './spinner';
 import { saveGenres } from './genres_storage';
 import './add_to_list';
