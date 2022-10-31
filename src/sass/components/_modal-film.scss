@@ -194,7 +194,7 @@ body.body-is-hidden {
   @include centeredFlex;
   height: 44px;
   width: 110px;
-  padding: 0;
+  padding: 5px;
   color: inherit;
   border: 1px solid var(--secondary-text-color);
   border-radius: 5px;
