@@ -107,8 +107,8 @@ export function onBackdropClick(e) {
 function createMarkupModal({
   title,
   id,
-  poster_path = 'https://play-lh.googleusercontent.com/IO3niAyss5tFXAQP176P0Jk5rg_A_hfKPNqzC4gb15WjLPjo5I-f7oIZ9Dqxw2wPBAg',
-  genre_ids = '',
+  poster_path,
+  genre_ids,
   vote_average,
   vote_count,
   overview,
@@ -121,9 +121,21 @@ function createMarkupModal({
   const popular = popularity.toFixed(1);
   const genresStorage = storage.load(GENRES);
   const genresString = createStringOfGenresForCard(genre_ids, genresStorage);
+  let imageUrl = `https://image.tmdb.org/t/p/w500/${poster_path}`;
+  if (poster_path === null) {
+    imageUrl =
+      'https://www.bworldonline.com/wp-content/uploads/2022/04/cinema02_14-01.jpg';
+  }
+
+  let cardGenres;
+  if (genre_ids.length === 0) {
+    cardGenres = 'No information';
+  } else {
+    cardGenres = genresString;
+  }
 
   return `<div class="film-info" data-id='${id}'>
-  <img srcset="${IMAGE_URL}${poster_path}" src="${IMAGE_URL}${poster_path}" alt="film-poster" class="film-info__poster"/>
+  <img srcset="${imageUrl}" src="${imageUrl}" alt="film-poster" class="film-info__poster"/>
   <div class="flex-wrapper">
   <h2 class="film-info__title">${title}</h2>
   <table class="film-info__table">
@@ -146,7 +158,7 @@ function createMarkupModal({
 		  <tr class="spacer"></tr>
 		  <tr>
 		  <td class="film-info__param">Genre</td>
-         <td>${genresString}</td>
+         <td>${cardGenres}</td>
 			  </tr>
 		
 		</tbody>
