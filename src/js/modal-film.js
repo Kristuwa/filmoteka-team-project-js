@@ -120,7 +120,7 @@ function createMarkupModal({
   const voteAverage = vote_average.toFixed(1);
   const popular = popularity.toFixed(1);
   const genresStorage = storage.load(GENRES);
-
+  const about = overview === '' ? 'No information' : `${overview}`;
   let genresNameList = '';
   const genresArray = [];
   const selectedGenres = genre_ids.map(id => {
@@ -175,7 +175,7 @@ function createMarkupModal({
 	 </table>
 	 <p class="film-info__about">About</p>
 	 <p class="film-info__desc">
-	 ${overview}
+	 ${about}
 	 </p>
 	 </div></div> `;
 }
