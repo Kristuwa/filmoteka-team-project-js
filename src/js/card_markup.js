@@ -5,7 +5,7 @@ export function createCardMarkup(data) {
   const { title, poster_path, release_date, genre_ids, id } = data;
 
   let date = release_date;
-  if (date === null) {
+  if (!date) {
     date = 'No information';
     console.log(date);
   } else {
