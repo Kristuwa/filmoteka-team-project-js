@@ -9,16 +9,15 @@
     margin-top: -32px;
     flex-wrap: wrap;
   }
+  @media screen and(min-width: 768px) and(max-width: 1279px) {
+    margin-left: -32px;
+  }
   @media screen and(min-width: 1280px) {
     margin-left: -16px;
-  }
-  @media screen and(min-width: 768px) and(max-width: 1280px) {
-    margin-left: -32px;
   }
 }
 
 .card__container {
-  padding-bottom: 10px;
   border: none;
   border-radius: 5px;
   margin-left: auto;
@@ -30,9 +29,23 @@
   background-color: var(--primary-text-color);
   transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     scale 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media screen and(max-width: 767px) {
+    margin-bottom: 20px;
+    min-height: 440px;
+  }
+
   @media screen and (min-width: 768px) {
     margin-top: 32px;
   }
+
+  @media screen and (min-width: 768px) and(max-width: 1279px) {
+    margin-left: 32px;
+    flex-basis: calc((100% - 64px) / 2);
+    margin-right: 0;
+    min-height: 495px;
+  }
+
   @media screen and(min-width: 1280px) {
     margin-left: 16px;
     flex-basis: calc((100% - 48px) / 3);
@@ -41,34 +54,21 @@
     line-height: 1.2;
     min-height: 634px;
   }
-  @media screen and (min-width: 768px) and(max-width: 1279px) {
-    margin-left: 32px;
-    flex-basis: calc((100% - 64px) / 2);
-    margin-right: 0;
-    min-height: 495px;
-  }
-
-  @media screen and(max-width: 767px) {
-    margin-bottom: 20px;
-    min-height: 440px;
-  }
 }
 
 .card__poster {
   border-radius: 5px;
-  @media screen and (min-width: 1280px) {
-    margin-bottom: 12px;
-    height: 574px;
-  }
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    margin-bottom: 8px;
-    height: 455px;
-  }
   @media screen and (max-width: 767px) {
-    margin-bottom: 10px;
     height: 400px;
   }
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    height: 455px;
+  }
+  @media screen and (min-width: 1280px) {
+    height: 574px;
+  }
 }
+
 .card__film-name {
   text-align: left;
   text-transform: uppercase;
@@ -99,18 +99,27 @@
 }
 
 .description-wrapper {
-  @media screen and(min-width: 1280px) {
-    min-height: 72px;
-  }
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    min-width: 48px;
-  }
-  @media screen and(max-width: 767px) {
-    min-width: 36px;
-  }
+  flex-grow: 1;
+  padding-bottom: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
   display: flex;
   flex-direction: column;
-  padding-left: 5px;
+
+  @media screen and(max-width: 767px) {
+    padding-top: 10px;
+    min-width: 36px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    min-width: 48px;
+  }
+  @media screen and(min-width: 1280px) {
+    padding-bottom: 12px;
+    padding-top: 12px;
+    min-height: 72px;
+  }
 }
 
 .card__container:hover,
