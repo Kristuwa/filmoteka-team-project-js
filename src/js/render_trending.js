@@ -4,6 +4,7 @@ import { gendersStorage } from './genres_storage';
 import { Pagination, paginationRef } from './pagination';
 import methodsStorage from './locale-storage-methods';
 import { localeStorageKeys } from './localStorageKeys';
+import { refs } from "./refs";
 
 export const FILMS = 'films';
 
@@ -32,8 +33,8 @@ export function renderMarkupTrending() {
     .catch(error => console.log(error));
 }
 
-// paginationRef.addEventListener('click', onChangePageClick);
-function onChangePageClick(e) {
+refs.pagination.addEventListener('click', onChangePageClick);
+export function onChangePageClick(e) {
   if (e.target.nodeName === 'UL') {
     return;
   }
