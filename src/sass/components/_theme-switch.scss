@@ -102,6 +102,10 @@ header {
     & p {
       color: #fff;
     }
+    & button {
+      background: inherit;
+      color: #fff;
+    }
     & .header-list__link--active::after {
       box-shadow: 0px 3px 10px #ff6b02;
     }
@@ -162,24 +166,24 @@ header {
     transition: background-color 300ms linear, border 300ms linear;
   }
 }
-.modal-dark.dark {
-  background-color: rgb(46, 46, 46);
-  box-shadow: 0 0 50px 5px rgb(255, 40, 40);
-  & img {
-    border: 1px solid #ff6b02;
-  }
-  & h2,
-  & table,
-  & p,
-  & td {
-    color: #fff;
-  }
-  & button {
-    border-color: #fff;
-    color: #fff;
-    transition: background-color 300ms linear, border 300ms linear;
-  }
-}
+// .modal-dark.dark {
+//   background-color: rgb(46, 46, 46);
+//   box-shadow: 0 0 50px 5px rgb(255, 40, 40);
+//   & img {
+//     border: 1px solid #ff6b02;
+//   }
+//   & h2,
+//   & table,
+//   & p,
+//   & td {
+//     color: #fff;
+//   }
+//   & button {
+//     border-color: #fff;
+//     color: #fff;
+//     transition: background-color 300ms linear, border 300ms linear;
+//   }
+// }
 .backdrop.is-hidden .modal {
   transform: translateX(200%);
 }
@@ -188,6 +192,7 @@ header {
   transition: transform 1s linear;
 }
 .pagination__list.dark li {
+  border: 1px solid #171717;
   color: white;
-  background: #434242;
+  background: #2c2c2c;
 }

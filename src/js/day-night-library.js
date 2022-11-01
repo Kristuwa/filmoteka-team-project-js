@@ -20,12 +20,8 @@ function addDarkClassToHTML() {
       document.querySelector('.card__container').classList.add('dark');
       document.querySelector('.modal-film ').classList.add('dark');
       document.querySelector('.card-list').classList.add('dark');
-      // document.querySelector('.modal-dark').classList.add('dark');
       document.querySelector('.pagination__list').classList.add('dark');
     } else {
-      // document.querySelector('.main-render').classList.remove('dark');
-      // document.querySelector('.queued-render').classList.remove('dark');
-
       document.querySelector('.hero').classList.remove('dark');
       document.querySelector('.themetoggle').classList.remove('dark');
       document.querySelector('.material-icons').classList.remove('dark');
