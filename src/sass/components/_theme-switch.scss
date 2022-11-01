@@ -113,11 +113,12 @@ header {
 }
 .day-nigth-btn-box {
   position: absolute;
-  top: 180px;
+  top: 200px;
   left: 50%;
   transform: translateX(110px);
   @media screen and (min-width: 768px) {
     transform: translateX(300px);
+    top: 180px;
   }
   @media screen and (min-width: 1280px) {
     transform: translateX(550px);
@@ -144,6 +145,24 @@ header {
 //   }
 // }
 .modal-film.dark {
+  background-color: rgb(46, 46, 46);
+  box-shadow: 0 0 50px 5px rgb(255, 40, 40);
+  & img {
+    border: 1px solid #ff6b02;
+  }
+  & h2,
+  & table,
+  & p,
+  & td {
+    color: #fff;
+  }
+  & button {
+    border-color: #fff;
+    color: #fff;
+    transition: background-color 300ms linear, border 300ms linear;
+  }
+}
+.modal-dark.dark {
   background-color: rgb(46, 46, 46);
   box-shadow: 0 0 50px 5px rgb(255, 40, 40);
   & img {
