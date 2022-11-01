@@ -1,8 +1,6 @@
 export default class Spinner {
   constructor({ selector }) {
     this.refs = this.getRefs(selector);
-    console.log(selector);
-    console.log(this.refs);
   }
 
   getRefs(selector) {

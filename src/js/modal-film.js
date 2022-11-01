@@ -8,6 +8,10 @@ import {
   onButtonAddToListQueue,
 } from './add_to_list';
 import PerfectScrollbar from 'perfect-scrollbar';
+import { QueryHandler } from './query_handler';
+
+const queryHandler = new QueryHandler();
+
 //Ищем по селектору все єлементы, с которыми работаем
 const modalFilmList = document.querySelector('.card-list');
 export const modalBackdrop = document.querySelector('.modalbackdrop-film');
@@ -34,7 +38,10 @@ export function onModalOpenFilm(e) {
   clearModal();
 
   //Вытягиваем id из карточки из атрибута data-id
+
   id = Number(e.target.closest('li').dataset.id);
+
+  queryHandler.fetchQueryResultsForVideo(id);
 
   //Проверяем localStorage на наличие массива с данными
   const videoListWatched = storage.load(WACHED_KEY)
