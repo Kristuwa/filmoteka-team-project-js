@@ -8,7 +8,10 @@ import { onModalOpenFilm } from './modal-film';
 import { onBackdropClick } from './modal-film';
 import { onEscBtnPress } from './modal-film';
 import { toggleModal, toggleCard } from './modal-team.js';
+// import { refs } from "./refs";
+// import { onChangePageInLibraryClick } from "./library_lists";
 
+// // refs.pagination.removeEventListener('click', onChangePageInLibraryClick);
 saveGenres();
 renderMarkupTrending();
 

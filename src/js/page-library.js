@@ -9,5 +9,11 @@ import { onBackdropClick } from './modal-film';
 import { onEscBtnPress } from './modal-film';
 import { toggleModal, toggleCard } from './modal-team.js';
 saveGenres();
-import {onWachedLibBtnClick} from './library_lists'
+import { onWachedLibBtnClick } from './library_lists';
+import { refs } from "./refs";
+import { onChangePageClick } from './render_trending';
+
+refs.pagination.removeEventListener('click', onChangePageClick);
+
 onWachedLibBtnClick();
+
