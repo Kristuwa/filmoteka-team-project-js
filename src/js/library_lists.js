@@ -3,7 +3,8 @@ import storage from './locale-storage-methods';
 import { createCardMarkup } from './card_markup';
 import { FILMS } from './render_trending';
 import { ref } from 'firebase/database';
-import { modalFilmBtnClose } from './modal-film';
+import { modalFilmBtnClose, modalBackdrop } from './modal-film';
+import { createCardMarkupLibrary } from './card-markup-library';
 
 const refs = {
   watchedBtn: document.querySelector('.btn__watched'),
@@ -16,16 +17,25 @@ refs.queueBtn.addEventListener('click', event => onQueueLibBtnClick(event));
 
 // Функція рендерить фільми із localstorage watchedVideoKey і перезаписує films
 export function onWachedLibBtnClick(event) {
-  // console.log(event.target);
   modalFilmBtnClose.removeEventListener('click', onRenderNewListQueue);
+  modalBackdrop.removeEventListener('click', onBackdropClickRerenderingQueue);
+  document.removeEventListener('keydown', onEscBtnPressRerenderingQueue);
+
   modalFilmBtnClose.addEventListener('click', onRenderNewListWatched);
+  modalBackdrop.addEventListener('click', onBackdropClickRerenderingWatched);
+  document.addEventListener('keydown', onEscBtnPressRerenderingWatched);
+
   let storageArray = [];
   const storageData = storage.load(WACHED_KEY);
+
   // якщо в localstorage є дані, то записуємо їх в масив
   if (storageData) {
     storageArray = storageData;
+    console.log(storageArray);
+
     // Перезаписуємо films щоб модалка відкривалась
     storage.save(FILMS, storageArray);
+
     // Рендеримо розмітку
     const markup = storageArray.map(createCardMarkup).join('');
     refs.filmListRef.innerHTML = '';
@@ -37,12 +47,17 @@ export function onWachedLibBtnClick(event) {
 
 // Функція рендерить фільми із localstorage queueVideoKey і перезаписує films
 export function onQueueLibBtnClick(event) {
-  // console.log(event.target);
   modalFilmBtnClose.removeEventListener('click', onRenderNewListWatched);
-  modalFilmBtnClose.addEventListener('click', onRenderNewListQueue);
-  let storageArray = [];
+  modalBackdrop.removeEventListener('click', onBackdropClickRerenderingWatched);
+  document.removeEventListener('keydown', onEscBtnPressRerenderingWatched);
 
+  modalFilmBtnClose.addEventListener('click', onRenderNewListQueue);
+  modalBackdrop.addEventListener('click', onBackdropClickRerenderingQueue);
+  document.addEventListener('keydown', onEscBtnPressRerenderingQueue);
+
+  let storageArray = [];
   const storageData = storage.load(QUEUE_KEY);
+
   // якщо в localstorage є дані, то записуємо їх в масив
   if (storageData) {
     storageArray = storageData;
@@ -72,4 +87,28 @@ export function onRenderNewListWatched() {
   const newFilmsList = storage.load(FILMS);
   const markup = newFilmsList.map(createCardMarkup).join('');
   refs.filmListRef.innerHTML = markup;
+}
+
+function onEscBtnPressRerenderingWatched(e) {
+  if (e.code === 'Escape') {
+    onRenderNewListWatched();
+  }
+}
+
+function onBackdropClickRerenderingWatched(e) {
+  if (e.target === modalBackdrop) {
+    onRenderNewListWatched();
+  }
+}
+
+function onEscBtnPressRerenderingQueue(e) {
+  if (e.code === 'Escape') {
+    onRenderNewListQueue();
+  }
+}
+
+function onBackdropClickRerenderingQueue(e) {
+  if (e.target === modalBackdrop) {
+    onRenderNewListQueue();
+  }
 }
