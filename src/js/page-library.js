@@ -10,4 +10,10 @@ import './day-night-library';
 import './userAuth/firebase-library';
 saveGenres();
 import { onWachedLibBtnClick } from './library_lists';
+import { refs } from "./refs";
+import { onChangePageClick } from './render_trending';
+
+refs.pagination.removeEventListener('click', onChangePageClick);
+
 onWachedLibBtnClick();
+
