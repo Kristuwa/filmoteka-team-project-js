@@ -6,7 +6,7 @@ export function createCardMarkupLibrary(data) {
     data;
   const rating = vote_average.toFixed(1);
   let date = release_date;
-  if (date === null) {
+  if (!date) {
     date = 'No information';
     console.log(date);
   } else {
