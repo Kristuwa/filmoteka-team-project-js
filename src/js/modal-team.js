@@ -3,18 +3,19 @@ const refs = {
   closeModalBtn: document.querySelector('[data-modal-close]'),
   modal: document.querySelector('[data-modal]'),
   body: document.querySelector('body'),
+  listCard: document.querySelector('.team-list'),
   card: document.querySelector('.card-team'),
 };
-console.log(refs.card);
 
 refs.openModalBtn.addEventListener('click', toggleModal);
 refs.closeModalBtn.addEventListener('click', toggleModal);
-refs.card.addEventListener('click', toggleCard);
+refs.listCard.addEventListener('click', toggleCard);
 
 export function toggleModal() {
   refs.modal.classList.toggle('is-hidden-team');
   refs.body.classList.toggle('no-scroll');
 }
-export function toggleCard() {
-  refs.card.classList.toggle('is-flipped');
+export function toggleCard(event) {
+  console.log(event.target.nodeName);
+  event.target.classList.toggle('is-flipped');
 }
