@@ -5,8 +5,8 @@
   position: fixed;
   z-index: 51;
   top: 0;
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 1500ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 1500ms cubic-bezier(0.4, 0, 0.2, 1);
   &.is-hidden .modal {
     transform: translate(-50%, -50%) scale(0);
   }
@@ -22,10 +22,10 @@
   border: none;
   position: absolute;
   top: 3px;
+
   right: 3px;
   cursor: pointer;
 }
-
 .modal-team {
   background-color: #000000;
   background-image: linear-gradient(
@@ -41,18 +41,17 @@
   width: 98%;
   height: 98%;
   padding: 20px;
-  margin: 0 auto;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 10px;
+  transition: transform 1500ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 20px;
   overflow: auto;
-  @media screen and (max-width: 320px) {
+  @include mobile {
     width: 95vw;
   }
-  @media screen and (max-width: 479px) {
+  @include tablet {
     width: 95vw;
   }
   @include desktop {
@@ -64,7 +63,6 @@
   height: 30px;
   color: #ffffff;
 }
-
 .is-hidden-team {
   visibility: hidden;
   opacity: 0;
@@ -84,7 +82,6 @@
   justify-content: space-around;
   gap: 10px;
 }
-
 .team-title {
   color: antiquewhite;
   font-family: 'Roboto';
@@ -97,20 +94,29 @@
   display: flex;
   padding: 10px;
   gap: 10px;
-  width: calc((100% - 20px) / 2);
+  width: 100%;
+  border-radius: 8px;
   background-color: rgba(0, 255, 255, 0.08);
+  @include tablet {
+    width: calc((100% - 20px) / 2);
+  }
+  @include desktop {
+    width: calc((100% - 30px) / 3);
+  }
 }
-.team-item:hover.card-front1,
-.team-item:focus.card-front1 {
-  transform: translateY(0);
+.team-item:hover.card-front,
+.team-item:focus.card-front {
+  transform: translateX(0);
   opacity: 1;
 }
 .team-img {
-  width: 40%;
+  width: 45%;
 }
 .team-block {
-  max-width: 60%;
-  gap: 30px;
+  display: flex;
+  flex-direction: column;
+  max-width: 55%;
+  gap: 15px;
 }
 .team-name {
   color: azure;
@@ -139,94 +145,113 @@
 .scene {
   width: 200px;
   height: 260px;
-  perspective: 600px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 1500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .card-team {
   width: 100%;
   height: 100%;
+  border-radius: 4px;
   position: relative;
-  transition: transform 1s;
-  transform-style: preserve-3d;
+  transition: transform 1500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-team:hover .card__face--back,
+.card-team:focus .card__face--back {
+  transform: translateX(0);
+  opacity: 1;
 }
 .card__face {
   position: absolute;
   height: 100%;
   width: 100%;
+  border-radius: 4px;
   backface-visibility: hidden;
 }
 .card__face--front {
-  background: red;
+  background-image: url('../images/inkognito.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   text-align: center;
 }
-
 .card__face--back {
-  background: blue;
+  background-image: url('../images/inkognito.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  text-align: center;
+  text-align: center; //
   transform: rotateY(180deg);
-}
-.card.is-flipped {
-  transform: rotateY(180deg);
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: transform 1500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .card-front1 {
   background-image: url('../images/krasovska.jpg');
 }
-.card-front2 {
-  background-image: url('../images/miakota.v.jpg');
-}
 .card-front3 {
   background-image: url('../images/miakota.v.jpg');
 }
+.card-front2 {
+  background-image: url('../images/misha.jpg');
+}
 .card-front4 {
-  background-image: url('../images/miakota.v.jpg');
+  background-image: url('../images/ekaterina.jpg');
 }
 .card-front5 {
   background-image: url('../images/sorokolit.jpg');
 }
 .card-front6 {
-  background-image: url('../images/yevhen.leshchenko.jpg');
+  background-image: url('../images/galina.jpg');
 }
 .card-front7 {
-  background-image: url('../images/miakota.v.jpg');
+  background-image: url('../images/romaniv.jpg');
 }
 .card-front8 {
-  background-image: url('../images/miakota.v.jpg');
+  background-image: url('../images/yevhen.leshchenko.jpg');
 }
 .card-front9 {
-  background-image: url('../images/miakota.v.jpg');
+  background-image: url('../images/anastasiya.jpg');
 }
 .card-front10 {
-  background-image: url('../images/miakota.v.jpg');
+  background-image: url('../images/sergij.jpg');
 }
 .card-front11 {
-  background-image: url('../images/miakota.v.jpg');
+  background-image: url('../images/evhenij.zinich.jpg');
 }
 .card-back1 {
   background-image: url('../images/anjelina.jpg');
 }
-.card-back2 {
+.card-back3 {
   background-image: url('../images/deni.dorman.jpg');
 }
-.card-back3 {
+.card-back2 {
+  background-image: url('../images/djesi.aisenberg.jpg');
 }
 .card-back4 {
+  background-image: url('../images/kate.bekket.jpg');
 }
 .card-back5 {
+  background-image: url('../images/robo.jpg');
 }
 .card-back6 {
+  background-image: url('../images/alisa.mult.jpg');
 }
 .card-back7 {
+  background-image: url('../images/keri.jpg');
 }
 .card-back8 {
+  background-image: url('../images/dep.jpg');
 }
 .card-back9 {
+  background-image: url('../images/ledi.bag.jpg');
 }
 .card-back10 {
+  background-image: url('../images/benedict.kem.jpg');
 }
 .card-back11 {
+  background-image: url('../images/rayan.jpg');
 }
