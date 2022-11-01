@@ -10,7 +10,7 @@ import {
 import PerfectScrollbar from 'perfect-scrollbar';
 //Ищем по селектору все єлементы, с которыми работаем
 const modalFilmList = document.querySelector('.card-list');
-const modalBackdrop = document.querySelector('.modalbackdrop-film');
+export const modalBackdrop = document.querySelector('.modalbackdrop-film');
 const modalFilm = document.querySelector('.modal-film');
 const btnTextWatched = document.querySelector('.film-card-addToWatched');
 const btnTextQueue = document.querySelector('.film-card-addToQueue');
@@ -79,7 +79,7 @@ export function onModalOpenFilm(e) {
 }
 
 //Функция закрытия модалки
-function closeModal() {
+export function closeModal() {
   //Убираем классы, для скрытия модалки
   modalBackdrop.classList.remove('active');
   modalFilm.classList.remove('active');
