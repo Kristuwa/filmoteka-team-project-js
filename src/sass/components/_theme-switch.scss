@@ -162,6 +162,24 @@ header {
     transition: background-color 300ms linear, border 300ms linear;
   }
 }
+.modal-dark.dark {
+  background-color: rgb(46, 46, 46);
+  box-shadow: 0 0 50px 5px rgb(255, 40, 40);
+  & img {
+    border: 1px solid #ff6b02;
+  }
+  & h2,
+  & table,
+  & p,
+  & td {
+    color: #fff;
+  }
+  & button {
+    border-color: #fff;
+    color: #fff;
+    transition: background-color 300ms linear, border 300ms linear;
+  }
+}
 .backdrop.is-hidden .modal {
   transform: translateX(200%);
 }
