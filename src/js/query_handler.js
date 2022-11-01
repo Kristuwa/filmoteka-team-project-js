@@ -1,11 +1,9 @@
 'use strict';
 
 import axios from 'axios';
-
+import { TRAILER_KEY } from './localStorageKeys';
 // Team-lead API key:
 const MOVIEDB_KEY = 'e5b8bd1b82d4f5b68280cf1e2b92e5f6';
-const STORAGE_TRAILER_KEY = 'local-trailer-key';
-
 export class QueryHandler {
   constructor() {
     this.page = 1;
@@ -84,7 +82,7 @@ export class QueryHandler {
         }
       });
 
-      localStorage.setItem(STORAGE_TRAILER_KEY, JSON.stringify(trailerKey));
+      localStorage.setItem(TRAILER_KEY, JSON.stringify(trailerKey));
     } catch (error) {
       console.error(error);
     }

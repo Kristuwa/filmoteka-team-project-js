@@ -1,13 +1,14 @@
 import * as basicLightbox from 'basiclightbox';
+import { TRAILER_KEY } from './localStorageKeys';
+import { refs } from './refs';
 export { openModalTrailer };
 
-const playBtn = document.querySelector('.trailer-btn');
-const modalTrailer = document.querySelector('.position');
+// const modalTrailer = document.querySelector('.position');
 
-playBtn.addEventListener('click', openModalTrailer);
+refs.playBtn.addEventListener('click', openModalTrailer);
 
 function openModalTrailer(e) {
-  const getTrailerKey = localStorage.getItem('local-trailer-key');
+  const getTrailerKey = localStorage.getItem(TRAILER_KEY);
   const { key } = JSON.parse(getTrailerKey);
 
   const instance = basicLightbox.create(`
@@ -16,6 +17,5 @@ function openModalTrailer(e) {
 `);
   instance.show();
 
-  const closeBtn = document.querySelector('.close-btn-trailer');
-  closeBtn.addEventListener('click', () => instance.close());
+  refs.closeBtnTrailer.addEventListener('click', () => instance.close());
 }
