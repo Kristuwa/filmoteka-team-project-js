@@ -1,6 +1,5 @@
 import './userAuth/firebase-auth-import';
 import Spinner from './spinner';
-
 import { saveGenres } from './genres_storage';
 import { renderMarkupTrending } from './render_trending.js';
 import { handleSubmit } from './search_by_keywords';
