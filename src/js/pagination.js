@@ -18,8 +18,8 @@ export class Pagination {
         const firstPage = `<li class="num">1</li>`;
         const lastPage = `<li class="num">${totalPages}</li>`;
         const dots = `<li class="dots">...</li>`;
-        const btnPrev = `<li class="btn__prev">Prev</li>`;
-        const btnNext = `<li class="btn__next">Next</li>`;
+        const btnPrev = `<li class="btn__prev"></li>`;
+        const btnNext = `<li class="btn__next"></li>`;
 
         let beforePages = page - 2;
         let afterPages = page + 2;
