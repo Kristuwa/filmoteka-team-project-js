@@ -2,9 +2,9 @@ import { genresStorage } from './render_trending';
 import { createStringOfGenresForCard } from './genres_storage';
 import { genresStorage } from './genres_storage';
 export function createCardMarkupLibrary(data) {
-  const { title, poster_path, release_date, genre_ids, id, vote_average
-  } = data;
-const rating = vote_average.toFixed(1);
+  const { title, poster_path, release_date, genre_ids, id, vote_average } =
+    data;
+  const rating = vote_average.toFixed(1);
   let date = release_date;
   if (date === null) {
     date = 'No information';
@@ -27,7 +27,7 @@ const rating = vote_average.toFixed(1);
   }
 
   return `
-    <li class="card" data-id="${id}">
+    <li class="card__container" data-id="${id}">
     <a class="link card-film-link" href="#" aria-label="${title}">
     <img class="card__poster" data-id="${id}" src="${imageUrl}" height="574"  width="395"/>
     <div class="description-wrapper">

@@ -26,7 +26,7 @@ export function createCardMarkup(data) {
   }
 
   return `
-    <li class="card" data-id="${id}">
+    <li class="card__container" data-id="${id}">
     <a class="link card-film-link" href="#" aria-label="${title}">
     <img class="card__poster" data-id="${id}" src="${imageUrl}" height="574"  width="395"/>
     <div class="description-wrapper">
