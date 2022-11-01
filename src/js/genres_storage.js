@@ -1,8 +1,8 @@
-import methodsStorage from './locale-storage-methods';
 import { QueryHandler } from './query_handler';
+import methodsStorage from './locale-storage-methods';
+import { GENRES } from './localStorageKeys';
 
 const getGenders = new QueryHandler();
-export const GENRES = 'genres';
 export const genresStorage = methodsStorage.load(GENRES);
 
 export function saveGenres() {

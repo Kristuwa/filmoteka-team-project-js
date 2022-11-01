@@ -1,13 +1,11 @@
-import { genresStorage } from './render_trending';
 import { createStringOfGenresForCard } from './genres_storage';
-import { genresStorage } from './genres_storage';
+
 export function createCardMarkup(data) {
   const { title, poster_path, release_date, genre_ids, id } = data;
 
   let date = release_date;
   if (!date) {
     date = 'No information';
-    console.log(date);
   } else {
     date = release_date.slice(0, 4);
   }

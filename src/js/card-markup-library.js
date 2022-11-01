@@ -1,14 +1,13 @@
-import { genresStorage } from './render_trending';
 import { createStringOfGenresForCard } from './genres_storage';
-import { genresStorage } from './genres_storage';
+
 export function createCardMarkupLibrary(data) {
   const { title, poster_path, release_date, genre_ids, id, vote_average } =
     data;
   const rating = vote_average.toFixed(1);
   let date = release_date;
+
   if (!date) {
     date = 'No information';
-    console.log(date);
   } else {
     date = release_date.slice(0, 4);
   }

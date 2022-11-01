@@ -1,33 +1,35 @@
-import { WACHED_KEY, QUEUE_KEY } from './add_to_list';
+import { WATCHED_KEY, QUEUE_KEY, FILMS } from './localStorageKeys';
 import storage from './locale-storage-methods';
-import { FILMS } from './render_trending';
 import { ref } from 'firebase/database';
-import { modalFilmBtnClose, modalBackdrop } from './modal-film';
 import { createCardMarkupLibrary } from './card-markup-library';
 import { refs } from './refs';
 import { Pagination } from './pagination';
 
 const paginationLibrary = new Pagination();
-// слухач подій на кнопку
+
 refs.watchedBtn.addEventListener('click', event => onWachedLibBtnClick(event));
 refs.queueBtn.addEventListener('click', event => onQueueLibBtnClick(event));
 refs.pagination.addEventListener('click', onChangePageInLibraryClick);
 
-// Функція рендерить фільми із localstorage watchedVideoKey і перезаписує films
 export function onWachedLibBtnClick(event) {
-  modalFilmBtnClose.removeEventListener('click', onRenderNewListQueue);
-  modalBackdrop.removeEventListener('click', onBackdropClickRerenderingQueue);
+  refs.modalFilmBtnClose.removeEventListener('click', onRenderNewListQueue);
+  refs.modalBackdrop.removeEventListener(
+    'click',
+    onBackdropClickRerenderingQueue
+  );
   document.removeEventListener('keydown', onEscBtnPressRerenderingQueue);
 
-  modalFilmBtnClose.addEventListener('click', onRenderNewListWatched);
-  modalBackdrop.addEventListener('click', onBackdropClickRerenderingWatched);
+  refs.modalFilmBtnClose.addEventListener('click', onRenderNewListWatched);
+  refs.modalBackdrop.addEventListener(
+    'click',
+    onBackdropClickRerenderingWatched
+  );
   document.addEventListener('keydown', onEscBtnPressRerenderingWatched);
 
-  const storageData = storage.load(WACHED_KEY);
+  const storageData = storage.load(WATCHED_KEY);
 
-  // якщо в localstorage є дані, то записуємо їх в масив
   if (storageData) {
-    paginationLibrary.lastQuery = WACHED_KEY;
+    paginationLibrary.lastQuery = WATCHED_KEY;
     addPagination(storageData);
     renderMarkupFilmsByLibrary(storageData);
   } else {
@@ -35,17 +37,19 @@ export function onWachedLibBtnClick(event) {
   }
 }
 
-// Функція рендерить фільми із localstorage queueVideoKey і перезаписує films
 export function onQueueLibBtnClick(event) {
-  modalFilmBtnClose.removeEventListener('click', onRenderNewListWatched);
-  modalBackdrop.removeEventListener('click', onBackdropClickRerenderingWatched);
+  refs.modalFilmBtnClose.removeEventListener('click', onRenderNewListWatched);
+  refs.modalBackdrop.removeEventListener(
+    'click',
+    onBackdropClickRerenderingWatched
+  );
   document.removeEventListener('keydown', onEscBtnPressRerenderingWatched);
 
-  modalFilmBtnClose.addEventListener('click', onRenderNewListQueue);
-  modalBackdrop.addEventListener('click', onBackdropClickRerenderingQueue);
+  refs.modalFilmBtnClose.addEventListener('click', onRenderNewListQueue);
+  refs.modalBackdrop.addEventListener('click', onBackdropClickRerenderingQueue);
   document.addEventListener('keydown', onEscBtnPressRerenderingQueue);
 
-  let storageArray = [];
+  //   let storageArray = [];
   const storageData = storage.load(QUEUE_KEY);
 
   // якщо в localstorage є дані, то записуємо їх в масив
@@ -70,7 +74,7 @@ export function onRenderNewListQueue() {
 }
 
 export function onRenderNewListWatched() {
-  const storageData = storage.load(WACHED_KEY);
+  const storageData = storage.load(WATCHED_KEY);
   paginationLibrary.calculateTotalPages(storageData.length);
   if (paginationLibrary.page > paginationLibrary.totalPages) {
     paginationLibrary.decrementPage();
@@ -130,7 +134,7 @@ function onEscBtnPressRerenderingWatched(e) {
 }
 
 function onBackdropClickRerenderingWatched(e) {
-  if (e.target === modalBackdrop) {
+  if (e.target === refs.modalBackdrop) {
     onRenderNewListWatched();
   }
 }
@@ -142,7 +146,7 @@ function onEscBtnPressRerenderingQueue(e) {
 }
 
 function onBackdropClickRerenderingQueue(e) {
-  if (e.target === modalBackdrop) {
+  if (e.target === refs.modalBackdrop) {
     onRenderNewListQueue();
   }
 }
