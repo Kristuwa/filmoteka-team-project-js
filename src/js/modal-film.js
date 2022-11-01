@@ -120,18 +120,28 @@ function createMarkupModal({
   const voteAverage = vote_average.toFixed(1);
   const popular = popularity.toFixed(1);
   const genresStorage = storage.load(GENRES);
+
+  let genresNameList = '';
+  const genresArray = [];
+  const selectedGenres = genre_ids.map(id => {
+    return genresStorage.filter(idGenre => idGenre.id === id);
+  });
+
+  selectedGenres.map(genre => {
+    genresArray.push(genre[0].name);
+  });
+
+  if (genre_ids.length === 0) {
+    genresNameList = 'No information';
+  } else {
+    genresNameList = genresArray.join(', ');
+  }
+
   const genresString = createStringOfGenresForCard(genre_ids, genresStorage);
   let imageUrl = `https://image.tmdb.org/t/p/w500/${poster_path}`;
   if (poster_path === null) {
     imageUrl =
       'https://www.bworldonline.com/wp-content/uploads/2022/04/cinema02_14-01.jpg';
-  }
-
-  let cardGenres;
-  if (genre_ids.length === 0) {
-    cardGenres = 'No information';
-  } else {
-    cardGenres = genresString;
   }
 
   return `<div class="film-info" data-id='${id}'>
@@ -158,7 +168,7 @@ function createMarkupModal({
 		  <tr class="spacer"></tr>
 		  <tr>
 		  <td class="film-info__param">Genre</td>
-         <td>${cardGenres}</td>
+         <td>${genresNameList}</td>
 			  </tr>
 		
 		</tbody>
