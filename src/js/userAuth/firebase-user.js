@@ -119,8 +119,6 @@ export default class User {
     const user = auth.currentUser;
 
     signOut(auth).then(() => {
-      refs.userLibrary.classList.add('hidden-tab');
-
       location.reload();
     });
 

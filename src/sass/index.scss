@@ -8,6 +8,7 @@
 @import './utils/util-classes';
 
 @import './components/film-card';
+@import './components/modal-film';
 @import './components/modal-team';
 @import './components/modal-trailer';
 @import './components/header-main';
@@ -16,11 +17,10 @@
 @import './components/hero-library';
 @import './components/spinner';
 @import './components/up-btn';
-@import './components/modal-film';
 @import './components/pagination';
-
 @import './components/user-auth';
 @import './components/footer';
 
 // Custom scrollbar:
 @import 'perfect-scrollbar/css/perfect-scrollbar';
+@import './components/theme-switch';

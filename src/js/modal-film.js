@@ -10,7 +10,7 @@ import {
 import PerfectScrollbar from 'perfect-scrollbar';
 //Ищем по селектору все єлементы, с которыми работаем
 const modalFilmList = document.querySelector('.card-list');
-const modalBackdrop = document.querySelector('.modalbackdrop-film');
+export const modalBackdrop = document.querySelector('.modalbackdrop-film');
 const modalFilm = document.querySelector('.modal-film');
 const btnTextWatched = document.querySelector('.film-card-addToWatched');
 const btnTextQueue = document.querySelector('.film-card-addToQueue');
@@ -79,7 +79,7 @@ export function onModalOpenFilm(e) {
 }
 
 //Функция закрытия модалки
-function closeModal() {
+export function closeModal() {
   //Убираем классы, для скрытия модалки
   modalBackdrop.classList.remove('active');
   modalFilm.classList.remove('active');
@@ -120,18 +120,28 @@ function createMarkupModal({
   const voteAverage = vote_average.toFixed(1);
   const popular = popularity.toFixed(1);
   const genresStorage = storage.load(GENRES);
+  const about = overview === '' ? 'No information' : `${overview}`;
+  let genresNameList = '';
+  const genresArray = [];
+  const selectedGenres = genre_ids.map(id => {
+    return genresStorage.filter(idGenre => idGenre.id === id);
+  });
+
+  selectedGenres.map(genre => {
+    genresArray.push(genre[0].name);
+  });
+
+  if (genre_ids.length === 0) {
+    genresNameList = 'No information';
+  } else {
+    genresNameList = genresArray.join(', ');
+  }
+
   const genresString = createStringOfGenresForCard(genre_ids, genresStorage);
   let imageUrl = `https://image.tmdb.org/t/p/w500/${poster_path}`;
   if (poster_path === null) {
     imageUrl =
       'https://www.bworldonline.com/wp-content/uploads/2022/04/cinema02_14-01.jpg';
-  }
-
-  let cardGenres;
-  if (genre_ids.length === 0) {
-    cardGenres = 'No information';
-  } else {
-    cardGenres = genresString;
   }
 
   return `<div class="film-info" data-id='${id}'>
@@ -158,14 +168,14 @@ function createMarkupModal({
 		  <tr class="spacer"></tr>
 		  <tr>
 		  <td class="film-info__param">Genre</td>
-         <td>${cardGenres}</td>
+         <td>${genresNameList}</td>
 			  </tr>
 		
 		</tbody>
 	 </table>
 	 <p class="film-info__about">About</p>
 	 <p class="film-info__desc">
-	 ${overview}
+	 ${about}
 	 </p>
 	 </div></div> `;
 }
