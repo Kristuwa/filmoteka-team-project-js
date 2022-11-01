@@ -1,13 +1,11 @@
 import { WACHED_KEY, QUEUE_KEY } from './add_to_list';
 import storage from './locale-storage-methods';
-import { createCardMarkup } from './card_markup';
 import { FILMS } from './render_trending';
 import { ref } from 'firebase/database';
 import { modalFilmBtnClose, modalBackdrop } from './modal-film';
 import { createCardMarkupLibrary } from './card-markup-library';
-import { refs } from "./refs";
-import { Pagination } from "./pagination";
-
+import { refs } from './refs';
+import { Pagination } from './pagination';
 
 const paginationLibrary = new Pagination();
 // слухач подій на кнопку
@@ -29,11 +27,9 @@ export function onWachedLibBtnClick(event) {
 
   // якщо в localstorage є дані, то записуємо їх в масив
   if (storageData) {
-
     paginationLibrary.lastQuery = WACHED_KEY;
     addPagination(storageData);
     renderMarkupFilmsByLibrary(storageData);
-
   } else {
     console.log('wached storage is empty');
   }
@@ -64,18 +60,18 @@ export function onQueueLibBtnClick(event) {
 
 export function onRenderNewListQueue() {
   const storageData = storage.load(QUEUE_KEY);
-  paginationLibrary.calculateTotalPages(storageData.length)
+  paginationLibrary.calculateTotalPages(storageData.length);
   if (paginationLibrary.page > paginationLibrary.totalPages) {
     paginationLibrary.decrementPage();
   }
-  
+
   renderMarkupFilmsByLibrary(storageData);
   paginationLibrary.renderMarkup();
 }
 
 export function onRenderNewListWatched() {
   const storageData = storage.load(WACHED_KEY);
-  paginationLibrary.calculateTotalPages(storageData.length)
+  paginationLibrary.calculateTotalPages(storageData.length);
   if (paginationLibrary.page > paginationLibrary.totalPages) {
     paginationLibrary.decrementPage();
   }
@@ -101,7 +97,9 @@ function renderMarkupFilmsByLibrary(data) {
   storage.remove(FILMS);
   storage.save(FILMS, storageArray);
 
-  refs.filmListRef.innerHTML = storageArray.map(createCardMarkup).join('');
+  refs.filmListRef.innerHTML = storageArray
+    .map(createCardMarkupLibrary)
+    .join('');
   paginationLibrary.renderMarkup();
 }
 
@@ -123,7 +121,6 @@ export function onChangePageInLibraryClick(e) {
   }
   const storageData = storage.load(paginationLibrary.lastQuery);
   renderMarkupFilmsByLibrary(storageData);
-  
 }
 
 function onEscBtnPressRerenderingWatched(e) {
