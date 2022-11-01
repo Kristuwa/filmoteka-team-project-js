@@ -5,7 +5,7 @@ import { firebaseConfig } from './firebase-config';
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-const auth = getAuth(app);
+export const auth = getAuth();
 
 export default class dataStorage {
   constructor({ queue, watched }) {

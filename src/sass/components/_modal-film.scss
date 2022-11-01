@@ -31,12 +31,12 @@ body.body-is-hidden {
   overflow-x: hidden;
   overflow-y: scroll;
   background-color: var(--background-color);
-  border-radius: 15px;
+  border-radius: 3px;
   box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.3);
   width: 280px;
   max-width: 95vw;
   height: auto;
-  max-height: 95vh;
+  max-height: 85vh;
   overflow-y: auto;
   padding: 16px 16px 40px 20px;
   font-style: normal;
@@ -161,12 +161,12 @@ body.body-is-hidden {
   line-height: 1.67;
   margin-bottom: 20px;
   @media screen and (min-width: $tablet) {
-    max-height: 140px;
+    max-height: 125px;
     width: 280px;
   }
   @media screen and (min-width: $desktop) {
     max-height: 220px;
-    width: 391px;
+    width: 385px;
   }
 }
 
@@ -194,7 +194,7 @@ body.body-is-hidden {
   @include centeredFlex;
   height: 44px;
   width: 110px;
-  padding: 0;
+  padding: 5px;
   color: inherit;
   border: 1px solid var(--secondary-text-color);
   border-radius: 5px;
@@ -214,4 +214,8 @@ body.body-is-hidden {
     border: none;
     background-color: var(--accent-color);
   }
+}
+
+.disabled {
+  pointer-events: none;
 }

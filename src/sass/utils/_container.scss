@@ -1,4 +1,4 @@
-.container {
+.container-filmoteka {
   min-width: 320px;
   width: 100%;
   margin: 0 auto;
@@ -10,8 +10,8 @@
   }
   @include tablet {
     width: 768px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 32px;
+    padding-right: 32px;
   }
   @include desktop {
     width: 1280px;

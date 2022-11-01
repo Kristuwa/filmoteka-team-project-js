@@ -9,15 +9,15 @@
     margin-top: -32px;
     flex-wrap: wrap;
   }
-  @include tablet {
+  @media screen and(min-width: 768px) and(max-width: 1279px) {
     margin-left: -32px;
   }
-  @include desktop {
+  @media screen and(min-width: 1280px) {
     margin-left: -16px;
   }
 }
 
-.card {
+.card__container {
   border: none;
   border-radius: 5px;
   margin-left: auto;
@@ -25,59 +25,107 @@
   font-size: 12px;
   font-weight: 500;
   line-height: 1.3;
+  scale: 1;
+  background-color: var(--primary-text-color);
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    scale 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media screen and(max-width: 767px) {
+    margin-bottom: 20px;
+    min-height: 440px;
+  }
+
   @media screen and (min-width: 768px) {
     margin-top: 32px;
   }
-  @include tablet {
+
+  @media screen and (min-width: 768px) and(max-width: 1279px) {
     margin-left: 32px;
     flex-basis: calc((100% - 64px) / 2);
     margin-right: 0;
+    min-height: 495px;
   }
-  @include desktop {
+
+  @media screen and(min-width: 1280px) {
     margin-left: 16px;
     flex-basis: calc((100% - 48px) / 3);
     font-size: 20px;
     margin-right: 0;
     line-height: 1.2;
-  }
-  @include mobile {
-    margin-bottom: 20px;
-  }
-  &__poster {
-    
-    border-radius: 5px;
-    @media screen and (min-width: 1200px) {
-      margin-bottom: 12px;
-      min-height: 574px;
-
-    }
-    @media screen and (min-width: 768px) and (max-width: 1199px) {
-      margin-bottom: 8px;
-      min-height: 455px;
-    }
-    @media screen and (max-width: 767px) {
-      margin-bottom: 10px;
-      min-height: 402px;
-    }
-  }
-  &__film-name {
-    text-transform: uppercase;
-    color: var(--secondary-text-color);
-  }
-  &__description {
-    color: var(--accent-color);
+    min-height: 634px;
   }
 }
 
-.card-film-link {
-  scale: 1;
-  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
-    scale 300ms cubic-bezier(0.4, 0, 0.2, 1);
+.card__poster {
+  border-radius: 5px;
+  @media screen and (max-width: 767px) {
+    height: 400px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    height: 455px;
+  }
+  @media screen and (min-width: 1280px) {
+    height: 574px;
+  }
 }
-.card-film-link:hover,
-.card-film-link:focus {
+
+.card__film-name {
+  text-align: left;
+  text-transform: uppercase;
+  color: var(--secondary-text-color);
+  flex-grow: 1;
+}
+.card__description {
+  display: flex;
+  align-items: center;
+  color: var(--accent-color);
+  flex-grow: 1;
+}
+
+.card__description-rating {
+  margin-left: 8px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 12px;
+  line-height: 1.16;
+  color: var(--primary-text-color);
+  background-color: var(--accent-color);
+  @media screen and (min-width: 1280px) {
+    padding: 3px 12px 3px 12px;
+  }
+  @media screen and (max-width: 1279px) {
+    padding: 1px 10px 1px 10px;
+  }
+}
+
+.description-wrapper {
+  flex-grow: 1;
+  padding-bottom: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  display: flex;
+  flex-direction: column;
+
+  @media screen and(max-width: 767px) {
+    padding-top: 10px;
+    min-width: 36px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    min-width: 48px;
+  }
+  @media screen and(min-width: 1280px) {
+    padding-bottom: 12px;
+    padding-top: 12px;
+    min-height: 72px;
+  }
+}
+
+.card__container:hover,
+.card__container:focus {
   background-color: var(--background-color);
-  scale: 0.97;
+  scale: 1.03;
 }
 
 .film-year {

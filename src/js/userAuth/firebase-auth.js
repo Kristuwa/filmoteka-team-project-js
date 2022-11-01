@@ -4,16 +4,24 @@ import { firebaseConfig } from './firebase-config';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { refs } from './firebase-refs';
 import User from './firebase-user';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-onAuthStateChanged(auth, user => {
-  if (user) {
-    refs.heroLibrary.classList.add('hidden-tab');
-  } else {
-    refs.heroLibrary.classList.remove('hidden-tab');
-  }
-});
+// onAuthStateChanged(auth, user => {
+//   if (!user) {
+//     // document.querySelector('.film-card-addToWatched').classList.add('disabled');
+//     // refs.modalCardWached.addEventListener(
+//     //   'click',
+//     //   Notify.failure('Sorry, Your are not allowed to perform this action.')
+//     // );
+//   } else {
+//     document
+//       .querySelector('.film-card-addToWatched')
+//       .classList.remove('disabled');
+//   }
+// });
+
 function onChangeTab() {
   onHidePswd();
 
@@ -64,7 +72,7 @@ function onOpenModalAuth() {
     refs.logInForm.addEventListener('submit', onLogInUser);
   }
 
-  refs.body.setAttribute('style', 'overflow: hidden');
+  refs.body.setAttribute('style', 'overflow: hidden; pointer-events: none;');
 }
 
 function onCloseModalAuth(e) {

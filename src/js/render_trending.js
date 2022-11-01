@@ -1,18 +1,12 @@
 import { createCardMarkup } from './card_markup';
 import { QueryHandler } from './query_handler';
-import { saveGenres } from './genres_storage';
-import { Pagination, paginationRef } from './pagination';
+import { Pagination } from './pagination';
 import methodsStorage from './locale-storage-methods';
-import {localeStorageKeys} from './localStorageKeys';
-
-export let genresStorage = [];
-
-export const FILMS = 'films';
+import { FILMS } from './localStorageKeys';
+import { refs } from './refs';
 
 const queryHandler = new QueryHandler();
 export const pagination = new Pagination();
-
-const filmListRef = document.querySelector('.card-list');
 
 export function renderMarkupTrending() {
   return queryHandler
@@ -20,10 +14,8 @@ export function renderMarkupTrending() {
     .then(data => {
       const { page, total_pages, results } = data;
       methodsStorage.save(FILMS, results);
-      saveGenres();
-      genresStorage = saveGenres();
       const markup = results.map(createCardMarkup).join('');
-      filmListRef.innerHTML = markup;
+      refs.filmListRef.innerHTML = markup;
 
       if (total_pages > 1) {
         pagination.totalPages = total_pages;
@@ -36,8 +28,8 @@ export function renderMarkupTrending() {
     .catch(error => console.log(error));
 }
 
-paginationRef.addEventListener('click', onChangePageClick);
-function onChangePageClick(e) {
+refs.pagination.addEventListener('click', onChangePageClick);
+export function onChangePageClick(e) {
   if (e.target.nodeName === 'UL') {
     return;
   }
@@ -57,10 +49,10 @@ function onChangePageClick(e) {
   pagination
     .fetch(pagination.page)
     .then(({ results }) => {
-      console.log(pagination.fetch);
+      // console.log(pagination.fetch);
       const markup = results.map(createCardMarkup).join('');
       methodsStorage.save(FILMS, results);
-      filmListRef.innerHTML = markup;
+      refs.filmListRef.innerHTML = markup;
     })
     .catch(error => console.log(error));
 
