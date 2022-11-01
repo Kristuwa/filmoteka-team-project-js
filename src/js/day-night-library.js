@@ -17,10 +17,10 @@ function addDarkClassToHTML() {
       document.querySelector('header').classList.add('dark');
       document.querySelector('.day-nigth-btn-box').classList.add('dark');
       document.querySelector('.container-footer').classList.add('dark');
-      document.querySelector('.card').classList.add('dark');
+      document.querySelector('.card__container').classList.add('dark');
       document.querySelector('.modal-film ').classList.add('dark');
       document.querySelector('.card-list').classList.add('dark');
-      document.querySelector('.modal-dark').classList.add('dark');
+      // document.querySelector('.modal-dark').classList.add('dark');
       document.querySelector('.pagination__list').classList.add('dark');
     } else {
       // document.querySelector('.main-render').classList.remove('dark');
@@ -32,10 +32,9 @@ function addDarkClassToHTML() {
       document.querySelector('header').classList.remove('dark');
       document.querySelector('.day-nigth-btn-box').classList.remove('dark');
       document.querySelector('.container-footer').classList.remove('dark');
-      document.querySelector('.card').classList.remove('dark');
+      document.querySelector('.card__container').classList.remove('dark');
       document.querySelector('.modal-film ').classList.remove('dark');
       document.querySelector('.card-list').classList.remove('dark');
-      document.querySelector('.modal-dark').classList.remove('dark');
       document.querySelector('.pagination__list').classList.remove('dark');
     }
   } catch (err) {}
