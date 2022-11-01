@@ -215,3 +215,7 @@ body.body-is-hidden {
     background-color: var(--accent-color);
   }
 }
+
+.disabled {
+  pointer-events: none;
+}
