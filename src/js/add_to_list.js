@@ -2,6 +2,8 @@
 import storage from './locale-storage-methods';
 // import { FILMS } from './render_trending';
 import { filmData, id } from './modal-film';
+import { auth } from './userAuth/firebase-storage';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 export const WACHED_KEY = 'watchedVideoKey';
 export const QUEUE_KEY = 'queueVideoKey';
 
@@ -15,6 +17,10 @@ export function onButtonAddToListWatched(e) {
   let storageArray = [];
   const btn = refs.toWatchBtn;
   const storageData = storage.load(WACHED_KEY);
+  if (auth.currentUser === null) {
+    Notify.failure('Sorry, Your are not allowed to perform this action.');
+    return;
+  }
   if (storageData) {
     storageArray = storageData;
   }
@@ -38,6 +44,10 @@ export function onButtonAddToListQueue(e) {
   let storageArray = [];
   const btn = refs.toQueueBtn;
   const storageData = storage.load(QUEUE_KEY);
+  if (auth.currentUser === null) {
+    Notify.failure('Sorry, Your are not allowed to perform this action.');
+    return;
+  }
   if (storageData) {
     storageArray = storageData;
   }
