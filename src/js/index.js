@@ -8,6 +8,9 @@ import { onEscBtnPress } from './modal-film';
 import './acive_button';
 import './add_to_list';
 import { renderMarkupTrending } from './render_trending.js';
+import { onPlayVideo } from './play_trailer_btn';
+import { openModalTrailer, closeModalTrailer } from './play_trailer_btn';
+
 const formRef = document.querySelector('#search-form');
 formRef.addEventListener('submit', handleSubmit);
 // Экземпляр класса Spinner имеет 2 метода:

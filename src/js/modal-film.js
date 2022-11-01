@@ -3,6 +3,9 @@ import storage from './locale-storage-methods';
 import { FILMS } from './render_trending';
 import { createStringOfGenresForCard } from './genres_storage';
 import { WACHED_KEY, QUEUE_KEY } from './add_to_list';
+import { QueryHandler } from './query_handler';
+
+const queryHandler = new QueryHandler();
 
 // import {WACHED_KEY, QUEUE_KEY} from './locale-storage-methods'
 //Ищем по селектору все єлементы, с которыми работаем
@@ -27,6 +30,7 @@ export function onModalOpenFilm(e) {
   clearModal();
   //Вытягиваем id из карточки из атрибута data-id
   const id = Number(e.target.closest('li').dataset.id);
+  queryHandler.fetchQueryResultsForVideo(id);
   //Проверяем localStorage на наличие массива с данными
   const videoListWatched = storage.load(WACHED_KEY)
     ? storage.load(WACHED_KEY)

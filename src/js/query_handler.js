@@ -4,6 +4,7 @@ import axios from 'axios';
 
 // Team-lead API key:
 const MOVIEDB_KEY = 'e5b8bd1b82d4f5b68280cf1e2b92e5f6';
+const STORAGE_TRAILER_KEY = 'local-trailer-key';
 
 export class QueryHandler {
   constructor() {
@@ -12,6 +13,7 @@ export class QueryHandler {
     this.searchQuery = '';
     this.movieId = null;
     this.axios = require('axios');
+    // console.log(this.movieId);
   }
   // Get trending movies per last Week:
   async fetchQueryResultsForTrending() {
@@ -66,27 +68,40 @@ export class QueryHandler {
     }
   }
   // Get the videos that have been added to a movie:
-  async fetchQueryResultsForVideo() {
+  async fetchQueryResultsForVideo(id) {
+    let trailerKey = '';
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${this.movieId}/videos?api_key=${MOVIEDB_KEY}&language=en-US`
+        `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${MOVIEDB_KEY}&language=en-US`
       );
       const data = response.data.results;
-      this.incrementPage();
-      return data;
+
+      data.forEach(data => {
+        if (data.type === 'Trailer') {
+          trailerKey = {
+            key: data.key,
+          };
+        }
+      });
+
+      localStorage.setItem(STORAGE_TRAILER_KEY, JSON.stringify(trailerKey));
     } catch (error) {
       console.error(error);
     }
   }
+
   incrementPage() {
     this.page += 1;
   }
+
   resetPage() {
     this.page = 1;
   }
+
   get query() {
     return this.searchQuery;
   }
+
   set query(newQuery) {
     this.searchQuery = newQuery;
   }
