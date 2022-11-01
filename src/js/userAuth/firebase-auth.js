@@ -67,7 +67,7 @@ function onOpenModalAuth() {
     refs.logInForm.addEventListener('submit', onLogInUser);
   }
 
-  refs.body.setAttribute('style', 'overflow: hidden');
+  refs.body.setAttribute('style', 'overflow: hidden; pointer-events: none;');
 }
 
 function onCloseModalAuth(e) {

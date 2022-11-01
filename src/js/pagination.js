@@ -1,12 +1,12 @@
-export const paginationRef = document.querySelector('.pagination__list');
+import { refs } from "./refs";
 
 export class Pagination {
-    constructor(totalPages, page) {
-        this.totalPages = totalPages;
-        this.page = page;
-        // this.ref = paginationRef;
-
+    constructor() {
+        this.totalPages = 1;
+        this.page = 1;
+        this.filmsOnPage = 1;
         this.fetch = null;
+        this.lastQuery = '';
         
 
     }
@@ -25,7 +25,7 @@ export class Pagination {
         let afterPages = page + 2;
         
         if (totalPages === 1) {
-            return;
+            return '';
         }
         if (page > 1) {
             markup += btnPrev;  
@@ -98,7 +98,10 @@ export class Pagination {
     }
 
     renderMarkup() {
-        paginationRef.innerHTML = this.createMarkup(); 
+        refs.pagination.innerHTML = this.createMarkup(); 
+    }
+    removeMarkup() {
+        refs.pagination.innerHTML = '';
     }
     incrementPage() {
         this.page += 1;
@@ -106,9 +109,25 @@ export class Pagination {
     decrementPage() {
         this.page -= 1;
     }
-
-    removeMarkup() {
-        paginationRef.innerHTML = '';
+    resetPage() {
+        this.page = 1;
     }
+    
+
+    calculateTotalPages(items) {
+            this.totalPages = Math.ceil(items / this.filmsOnPage);
+    }
+    calculateFilmsOnPage() {
+        if (window.screen.width < 768) {
+            this.filmsOnPage = 4;
+        }
+        if (window.screen.width >= 768 && window.screen.width < 1280) {
+            this.filmsOnPage = 8;
+        }
+        if (window.screen.width >= 1280) {
+            this.filmsOnPage = 9;
+        }
+    }
+    
 }
 

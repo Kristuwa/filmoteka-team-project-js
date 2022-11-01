@@ -8,9 +8,13 @@ import {
   onButtonAddToListQueue,
 } from './add_to_list';
 import PerfectScrollbar from 'perfect-scrollbar';
+import { QueryHandler } from './query_handler';
+
+const queryHandler = new QueryHandler();
+
 //Ищем по селектору все єлементы, с которыми работаем
 const modalFilmList = document.querySelector('.card-list');
-const modalBackdrop = document.querySelector('.modalbackdrop-film');
+export const modalBackdrop = document.querySelector('.modalbackdrop-film');
 const modalFilm = document.querySelector('.modal-film');
 const btnTextWatched = document.querySelector('.film-card-addToWatched');
 const btnTextQueue = document.querySelector('.film-card-addToQueue');
@@ -34,7 +38,10 @@ export function onModalOpenFilm(e) {
   clearModal();
 
   //Вытягиваем id из карточки из атрибута data-id
+
   id = Number(e.target.closest('li').dataset.id);
+
+  queryHandler.fetchQueryResultsForVideo(id);
 
   //Проверяем localStorage на наличие массива с данными
   const videoListWatched = storage.load(WACHED_KEY)
@@ -79,7 +86,7 @@ export function onModalOpenFilm(e) {
 }
 
 //Функция закрытия модалки
-function closeModal() {
+export function closeModal() {
   //Убираем классы, для скрытия модалки
   modalBackdrop.classList.remove('active');
   modalFilm.classList.remove('active');
@@ -120,7 +127,7 @@ function createMarkupModal({
   const voteAverage = vote_average.toFixed(1);
   const popular = popularity.toFixed(1);
   const genresStorage = storage.load(GENRES);
-
+  const about = overview === '' ? 'No information' : `${overview}`;
   let genresNameList = '';
   const genresArray = [];
   const selectedGenres = genre_ids.map(id => {
@@ -175,7 +182,7 @@ function createMarkupModal({
 	 </table>
 	 <p class="film-info__about">About</p>
 	 <p class="film-info__desc">
-	 ${overview}
+	 ${about}
 	 </p>
 	 </div></div> `;
 }

@@ -4,10 +4,11 @@ import { saveGenres } from './genres_storage';
 import { renderMarkupTrending } from './render_trending.js';
 import { handleSubmit } from './search_by_keywords';
 import './add_to_list';
-import { onModalOpenFilm } from './modal-film';
-import { onBackdropClick } from './modal-film';
-import { onEscBtnPress } from './modal-film';
+import './modal-film';
+import { onPlayVideo } from './play_trailer_btn';
+import { openModalTrailer, closeModalTrailer } from './play_trailer_btn';
 import { toggleModal, toggleCard } from './modal-team.js';
+
 import './day-night';
 
 saveGenres();
