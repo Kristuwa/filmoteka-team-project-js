@@ -1,9 +1,9 @@
-// import { BASE_URL, KEY, API_URL } from './url';
 import axios from 'axios';
 import { MOVIEDB_KEY } from './query_handler';
 import storage from './locale-storage-methods';
 import { createCardMarkup } from './card_markup';
 import { refs } from './refs';
+import { filterItem } from './refs';
 import { renderMarkupTrending } from './render_trending'
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Pagination } from './pagination';
@@ -11,18 +11,13 @@ import { Pagination } from './pagination';
 
 const BASE_URL = 'https://api.themoviedb.org/3/'
 
-// ✅ Елементи форми
-// 🟨 Перенести у рефи
-export const filterItem = {
-  filterForm: document.querySelector('#filter-form'),
-  genreForm: document.querySelector('#genreForm'),
-  yearForm: document.querySelector('#yearForm'),
-  resetButton: document.querySelector('#button__reset'),
-};
+// Слухачі подій
+filterItem.genreForm.addEventListener('input', eventGenre);
+filterItem.yearForm.addEventListener('input', eventYear);
+filterItem.resetButton.addEventListener('click', onResetSearch);
 
 
-
-//✅ Змінні для запиту на бекенд
+// Змінні для запиту на бекенд
 let formSearch = {
   year: '',
   genre: '',
@@ -30,6 +25,38 @@ let formSearch = {
   discover: `trending`,
   page: '',
 };
+
+
+//Пошук рендер фильму по жанру __________________________
+async function eventGenre(evt) {
+  evt.preventDefault();
+
+  if (evt) {
+    formSearch.genre = evt.target.value;
+    // console.log('genre id:', evt.target.value);
+    formSearch.page = 1;
+
+    await getSearchForm(formSearch.genre, formSearch.year, formSearch.page)
+      .then(data => {
+
+
+        if (data.results.length !== 0) {
+          refs.filmListRef.innerHTML = '';
+          // console.log('видаляємо фільми зі сторінки');
+          const markup = data.results.map(createCardMarkup).join('');
+          refs.filmListRef.innerHTML = markup;
+          // console.log('create markup');
+        } else {
+         
+          Notify.failure(`Nothing was found for your request`);
+ 
+        }
+      })
+      .catch(error => console.log(error))
+
+  }
+}
+
 
 // Пошук і рендер фільмів по роках __________________________
 async function eventYear(evt) {
@@ -45,52 +72,19 @@ async function eventYear(evt) {
         
 
         if (data.results.length !== 0) {
-
-                    refs.filmListRef.innerHTML = '';
-          console.log('видаляємо фільми зі сторінки');
-          const markup = data.results.map(createCardMarkup).join('');
-          refs.filmListRef.innerHTML = markup;
-          console.log('create markup');
-        } else {
-         
-          Notify.failure(`Nothing was found for your request`);
-        }
-      })
-      .catch(error => console.log(error))
-
-  }
-}
-
-
-//Пошук рендер фильму по жанру __________________________
-async function eventGenre(evt) {
-  evt.preventDefault();
-
-  if (evt) {
-    formSearch.genre = evt.target.value;
-    console.log('genre id:', evt.target.value);
-    formSearch.page = 1;
-
-    await getSearchForm(formSearch.genre, formSearch.year, formSearch.page)
-      .then(data => {
-
-
-        if (data.results.length !== 0) {
           refs.filmListRef.innerHTML = '';
-          console.log('видаляємо фільми зі сторінки');
+          // console.log('видаляємо фільми зі сторінки');
           const markup = data.results.map(createCardMarkup).join('');
           refs.filmListRef.innerHTML = markup;
-          console.log('create markup');
+          // console.log('create markup');
         } else {
-         
-          Notify.failure(`Nothing was found for your request`);
- 
-        }
-      })
-      .catch(error => console.log(error))
 
-  }
-}
+          Notify.failure(`Nothing was found for your request`);
+        };
+      }).catch(error => console.log(error))
+  };
+};
+
 
 // Запит на бекенд по жанру або року __________________________
 export async function getSearchForm(
@@ -116,7 +110,7 @@ export async function getSearchForm(
   // console.log(formSearch.genre);
   
   formSearch.query = `&query=${query}`;
-  console.log(query);
+  // console.log(query);
   // formSearch.page = page !== 0 || page !== '' ? `&page=${page}` : '';
 
   if (query === '') {
@@ -148,31 +142,7 @@ export async function getSearchForm(
 }
 
 
-filterItem.genreForm.addEventListener('input', eventGenre);
-filterItem.yearForm.addEventListener('input', eventYear);
-
-filterItem.resetButton.addEventListener('click', onResetSearch);
-
-
-
-
-
-
-
-//Сброс настроек поиска
-function onResetSearch(evt) {
-  evt.preventDefault();
-
-  filterItem.genreForm.options.selectedIndex = 0;
-  filterItem.yearForm.options.selectedIndex = 0;
-  formSearch.genre = '';
-  formSearch.year = '';
-  formSearch.page = 1;
-  refs.filmListRef.innerHTML = '';
-  renderMarkupTrending()
-}
-
-//Створення і рендер розмітки в select YEAR
+//Створення і рендер розмітки в select YEAR ___________________
 function createSelectOptions() {
   let arrayYear = [];
   const date = new Date();
@@ -186,5 +156,18 @@ function createSelectOptions() {
   filterItem.yearForm.insertAdjacentHTML('beforeend', elements);
 };
 
+
+// Скидання фільтру по кнопці reset
+function onResetSearch(evt) {
+  evt.preventDefault();
+
+  filterItem.genreForm.options.selectedIndex = 0;
+  filterItem.yearForm.options.selectedIndex = 0;
+  formSearch.genre = '';
+  formSearch.year = '';
+  formSearch.page = 1;
+  refs.filmListRef.innerHTML = '';
+  renderMarkupTrending()
+}
 createSelectOptions();
 

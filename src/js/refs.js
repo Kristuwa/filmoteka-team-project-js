@@ -12,3 +12,11 @@ export const refs = {
   libraryListButtons: document.querySelector('.btn__list'),
   playBtn: document.querySelector('.trailer-btn'),
 };
+
+// Елементи форми фільтра
+export const filterItem = {
+  filterForm: document.querySelector('#filter-form'),
+  genreForm: document.querySelector('#genreForm'),
+  yearForm: document.querySelector('#yearForm'),
+  resetButton: document.querySelector('#button__reset'),
+};
