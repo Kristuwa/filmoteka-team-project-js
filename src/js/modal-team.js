@@ -9,13 +9,9 @@ const refs = {
 
 refs.openModalBtn.addEventListener('click', toggleModal);
 refs.closeModalBtn.addEventListener('click', toggleModal);
-refs.listCard.addEventListener('click', toggleCard);
+refs.closeModalBtn.addEventListener('keydown', toggleModal);
 
 export function toggleModal() {
   refs.modal.classList.toggle('is-hidden-team');
   refs.body.classList.toggle('no-scroll');
-}
-export function toggleCard(event) {
-  console.log(event.target.nodeName);
-  event.target.classList.toggle('is-flipped');
 }
