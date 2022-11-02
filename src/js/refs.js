@@ -13,4 +13,10 @@ export const refs = {
   playBtn: document.querySelector('.trailer-btn'),
   closeModalSvg: document.querySelector('.film-card-close-svg'),
   upward: document.querySelector('.upward'),
+  openModalBtn: document.querySelector('.footer-item'),
+  closeModalBtn: document.querySelector('[data-modal-close]'),
+  modal: document.querySelector('[data-modal]'),
+  body: document.querySelector('body'),
+  listCard: document.querySelector('.team-list'),
+  card: document.querySelector('.card-team'),
 };
