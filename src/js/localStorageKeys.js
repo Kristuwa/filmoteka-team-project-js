@@ -1,5 +1,6 @@
 const localeStorageKeys = {
   LAST_REQUEST: 'last-request',
+  LAST_PAGE: 'last-page',
   FILMS: 'films',
   GENRES: 'genres',
   WATCHED_KEY: 'watchedVideoKey',
@@ -9,6 +10,7 @@ const localeStorageKeys = {
 
 export const {
   LAST_REQUEST,
+  LAST_PAGE,
   FILMS,
   GENRES,
   WATCHED_KEY,
