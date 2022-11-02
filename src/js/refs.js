@@ -11,4 +11,6 @@ export const refs = {
   modalCard: document.querySelector('.film-card'),
   libraryListButtons: document.querySelector('.btn__list'),
   playBtn: document.querySelector('.trailer-btn'),
+  closeModalSvg: document.querySelector('.film-card-close-svg'),
+  upward: document.querySelector('.upward'),
 };
