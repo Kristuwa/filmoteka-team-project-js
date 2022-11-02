@@ -32,6 +32,9 @@
     color: var(--primary-text-color);
     background: var(--accent-color);
 }
+.pagination__list .num {
+    background-color: #ffffff69;
+}
 .btn__prev {
     background-image: url('../../src/images/arrow-left.svg');
 }
@@ -46,7 +49,7 @@
     background-position: center;
     border:none;
     transition: background-color 0.25s ease-in;
-    background-color: rgba(0, 0, 0, 0.027);
+    background-color: #ffffff69;
   
     &:hover {
           background-color: #FF6B08;
@@ -60,10 +63,12 @@
     margin: 3px;
     border:none;
     padding: 10px 5px 1px 5px;
+    background-color: #ffffff69;
 }
 @media screen and (min-width: 1200px) {
     .pagination__list {
         margin-top: 60px;
+        
     }
   }
   @media screen and (min-width: 320px) {
