@@ -8,7 +8,6 @@ import './modal-film';
 import { onPlayVideo } from './play_trailer_btn';
 import { openModalTrailer, closeModalTrailer } from './play_trailer_btn';
 import { toggleModal, toggleCard } from './modal-team.js';
-
 saveGenres();
 renderMarkupTrending();
 import './day-night';
