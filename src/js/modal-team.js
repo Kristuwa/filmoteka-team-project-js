@@ -6,16 +6,20 @@ const refs = {
   listCard: document.querySelector('.team-list'),
   card: document.querySelector('.card-team'),
 };
-
-refs.openModalBtn.addEventListener('click', toggleModal);
-refs.closeModalBtn.addEventListener('click', toggleModal);
-// refs.listCard.addEventListener('click', toggleCard);
-
-export function toggleModal() {
-  refs.modal.classList.toggle('is-hidden-team');
-  refs.body.classList.toggle('no-scroll');
+function onEscBtnPress(e) {
+  if (e.code === 'Escape') {
+    removeModal();
+  }
 }
-// export function toggleCard(event) {
-//   console.log(event.target.nodeName);
-//   event.target.classList.toggle('is-flipped');
-// }
+refs.openModalBtn.addEventListener('click', addModal);
+refs.closeModalBtn.addEventListener('click', removeModal);
+document.addEventListener('keydown', onEscBtnPress);
+
+export function removeModal() {
+  refs.modal.classList.add('is-hidden-team');
+  refs.body.classList.remove('no-scroll');
+}
+export function addModal() {
+  refs.modal.classList.remove('is-hidden-team');
+  refs.body.classList.add('no-scroll');
+}
