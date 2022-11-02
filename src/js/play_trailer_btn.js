@@ -16,6 +16,6 @@ function openModalTrailer(e) {
   <iframe  width="660" height="415" src='https://www.youtube.com/embed/${key}' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 `);
   instance.show();
-
-  refs.closeBtnTrailer.addEventListener('click', () => instance.close());
+  const closeBtnTrailer = document.querySelector('.close-btn-trailer');
+  closeBtnTrailer.addEventListener('click', () => instance.close());
 }
