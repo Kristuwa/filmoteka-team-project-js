@@ -10,10 +10,15 @@ const auth = getAuth(app);
 
 // onAuthStateChanged(auth, user => {
 //   if (!user) {
-//     refs.modalCardWached.addEventListener(
-//       'click',
-//       Notify.failure('Sorry, Your are not allowed to perform this action.')
-//     );
+//     // document.querySelector('.film-card-addToWatched').classList.add('disabled');
+//     // refs.modalCardWached.addEventListener(
+//     //   'click',
+//     //   Notify.failure('Sorry, Your are not allowed to perform this action.')
+//     // );
+//   } else {
+//     document
+//       .querySelector('.film-card-addToWatched')
+//       .classList.remove('disabled');
 //   }
 // });
 
@@ -67,7 +72,7 @@ function onOpenModalAuth() {
     refs.logInForm.addEventListener('submit', onLogInUser);
   }
 
-  refs.body.setAttribute('style', 'overflow: hidden');
+  refs.body.setAttribute('style', 'overflow: hidden; pointer-events: none;');
 }
 
 function onCloseModalAuth(e) {

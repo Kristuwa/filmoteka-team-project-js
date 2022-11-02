@@ -1,41 +1,80 @@
 .pagination__list {
     display: flex;
+    align-items: center;
     justify-content: center;
-    // gap: 10px;
-    margin-top: 20px;
-
-    font-weight: 500;
-    // font-size: 12px;
-    // line-height: 1.33;
-
-
-    
-    
+    margin-top: 40px;
 }
 .pagination__list li {
-    display: block;
+    display: flex;
+    justify-content: space-around;
     padding: 12px;
-    min-width: 40px;
-    height: 40px;
-
+    min-width: 38px;
+    height: 38px;
     border-radius: 5px;
     text-align: center;
-
+    appearance: none;
+    border: none;
+    outline: none;
     cursor: pointer;
+    margin: 2px;
+    color: rgba(1, 0, 0, 2);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
+    font-style: normal; 
+    transition: background-color 0.25s ease-in;
+    
 }
-
-.pagination__list .dots {
-    cursor: default;
-}
-
 .pagination__list li.active,
-.pagination__list li:not(.dots):hover,
-.pagination__list li:not(.dots):focus {
+.pagination__list .num:not(.dots):hover,
+.pagination__list .num:not(.dots):focus {
     color: var(--primary-text-color);
     background: var(--accent-color);
 }
-
-.btn__prev, 
+.pagination__list .num {
+    background-color: #ffffff69;
+}
+.btn__prev {
+    background-image: url('../../src/images/arrow-left.svg');
+}
+ 
 .btn__next {
-    background-color: var(--background-color);
+    background-image: url('../../src/images/arrow-right.svg');
+}
+.btn__prev, .btn__next {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: inherit;
+    background-position: center;
+    border:none;
+    transition: background-color 0.25s ease-in;
+    background-color: #ffffff69;
+  
+    &:hover {
+          background-color: #FF6B08;
+          color: #FFFFFF;
+          border-radius: 5px;
+    }
+} 
+.pagination__list .dots {
+    width: 40px;
+    height: 40px;
+    margin: 3px;
+    border:none;
+    padding: 10px 5px 1px 5px;
+    background-color: #ffffff69;
+}
+@media screen and (min-width: 1200px) {
+    .pagination__list {
+        margin-top: 60px;
+        
+    }
+  }
+  @media screen and (min-width: 320px) {
+    .pagination__list li {
+        width: 40px;
+        height: 40px;
+        margin: 3px;
+    }
 }

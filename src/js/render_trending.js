@@ -1,25 +1,27 @@
 import { createCardMarkup } from './card_markup';
 import { QueryHandler } from './query_handler';
-import { gendersStorage } from './genres_storage';
-import { Pagination, paginationRef } from './pagination';
+import { Pagination } from './pagination';
 import methodsStorage from './locale-storage-methods';
-import { localeStorageKeys } from './localStorageKeys';
-
-export const FILMS = 'films';
+import { FILMS, LAST_PAGE } from './localStorageKeys';
+import { refs } from './refs';
 
 const queryHandler = new QueryHandler();
 export const pagination = new Pagination();
 
-const filmListRef = document.querySelector('.card-list');
-
 export function renderMarkupTrending() {
+  let page = 1;
+  const lastPage = methodsStorage.load(LAST_PAGE);
+  if (lastPage) {
+    page = lastPage;
+  }
+
   return queryHandler
-    .fetchQueryResultsForTrending()
+    .fetchQueryResultsForTrending(page)
     .then(data => {
       const { page, total_pages, results } = data;
       methodsStorage.save(FILMS, results);
       const markup = results.map(createCardMarkup).join('');
-      filmListRef.innerHTML = markup;
+      refs.filmListRef.innerHTML = markup;
 
       if (total_pages > 1) {
         pagination.totalPages = total_pages;
@@ -32,8 +34,8 @@ export function renderMarkupTrending() {
     .catch(error => console.log(error));
 }
 
-// paginationRef.addEventListener('click', onChangePageClick);
-function onChangePageClick(e) {
+refs.pagination.addEventListener('click', onChangePageClick);
+export function onChangePageClick(e) {
   if (e.target.nodeName === 'UL') {
     return;
   }
@@ -49,14 +51,19 @@ function onChangePageClick(e) {
   if (e.target.className === 'num') {
     pagination.page = Number(e.target.textContent);
   }
-
+  
+  
+  if (pagination.fetch.toString().includes('Trending')) {
+    methodsStorage.save(LAST_PAGE, pagination.page);
+  }
+  
   pagination
     .fetch(pagination.page)
     .then(({ results }) => {
-      console.log(pagination.fetch);
+      // console.log(pagination.fetch);
       const markup = results.map(createCardMarkup).join('');
       methodsStorage.save(FILMS, results);
-      filmListRef.innerHTML = markup;
+      refs.filmListRef.innerHTML = markup;
     })
     .catch(error => console.log(error));
 

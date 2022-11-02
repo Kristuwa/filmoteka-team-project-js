@@ -1,6 +1,9 @@
 body {
   transition: background 500ms linear;
 }
+body.dark {
+  background: #000;
+}
 .hero.dark {
   background: #1a1818;
 }
@@ -102,6 +105,10 @@ header {
     & p {
       color: #fff;
     }
+    & button {
+      background: inherit;
+      color: #fff;
+    }
     & .header-list__link--active::after {
       box-shadow: 0px 3px 10px #ff6b02;
     }
@@ -113,11 +120,12 @@ header {
 }
 .day-nigth-btn-box {
   position: absolute;
-  top: 180px;
+  top: 200px;
   left: 50%;
   transform: translateX(110px);
   @media screen and (min-width: 768px) {
     transform: translateX(300px);
+    top: 180px;
   }
   @media screen and (min-width: 1280px) {
     transform: translateX(550px);
@@ -129,21 +137,43 @@ header {
   }
 }
 
-// .pagination.dark li {
-//   color: #fff;
-//   fill: #fff;
-//   background-color: rgb(67, 66, 66);
-//   transition: box-shadow 300ms linear, background-color 300ms linear;
-//   &:hover,
-//   &:focus {
-//     box-shadow: 0px 0px 4px 4px #ff6b0275;
-//   }
-//   &.active {
-//     background-color: #ff6b02;
-//     box-shadow: 0px 0px 4px 4px #ff6b0275;
-//   }
-// }
 .modal-film.dark {
+  background-color: rgb(46, 46, 46);
+  box-shadow: 0 0 50px 5px rgb(255, 40, 40);
+  & img {
+    border: 1px solid #ff6b02;
+  }
+  & h2,
+  & table,
+  & p,
+  & td {
+    color: #fff;
+  }
+  & button {
+    border-color: #fff;
+    color: #fff;
+    transition: background-color 300ms linear, border 300ms linear;
+  }
+}
+.modal.dark {
+  background-color: rgb(46, 46, 46);
+  box-shadow: 0 0 50px 5px rgb(255, 40, 40);
+  & img {
+    border: 1px solid #ff6b02;
+  }
+  & h2,
+  & table,
+  & p,
+  & td {
+    color: #fff;
+  }
+  & button {
+    border-color: #fff;
+    color: #fff;
+    transition: background-color 300ms linear, border 300ms linear;
+  }
+}
+.modal-dark.dark {
   background-color: rgb(46, 46, 46);
   box-shadow: 0 0 50px 5px rgb(255, 40, 40);
   & img {
@@ -168,7 +198,9 @@ header {
   transform: translateX(0);
   transition: transform 1s linear;
 }
-.pagination__list.dark li {
-  color: white;
-  background: #434242;
-}
+// .pagination__list.dark li {
+//   border: 1px solid #171717;
+//   color: white;
+//   background: #2c2c2c;
+// }
+

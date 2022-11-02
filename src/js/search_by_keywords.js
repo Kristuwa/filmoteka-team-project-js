@@ -3,13 +3,12 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { createCardMarkup } from './card_markup';
 import localStorageMethod from './locale-storage-methods';
 import Spinner from './spinner';
-import { pagination, FILMS } from './render_trending';
+import { pagination } from './render_trending';
 import localStorageMethod from './locale-storage-methods';
-import { localeStorageKeys } from './localStorageKeys';
+import { FILMS, LAST_REQUEST } from './localStorageKeys';
+import { refs } from './refs';
 
 const queryHandler = new QueryHandler();
-const filmListRef = document.querySelector('.card-list');
-
 const spinner = new Spinner({
   selector: '[data-action="load-spinner"]',
 });
@@ -40,15 +39,13 @@ export async function handleSubmit(evt) {
       await queryHandler.fetchQueryResultsForMovieSearch();
 
     if (!results.length) {
-      queryHandler.query = localStorageMethod.load(
-        localeStorageKeys.LAST_REQUEST
-      );
+      queryHandler.query = localStorageMethod.load(LAST_REQUEST);
       return Notify.failure(
         'Search result not successful. Enter the correct movie name.'
       );
     }
 
-    localStorageMethod.save(localeStorageKeys.LAST_REQUEST, valueSearchQuery);
+    localStorageMethod.save(LAST_REQUEST, valueSearchQuery);
     pagination.removeMarkup();
     if (total_pages > 1) {
       pagination.totalPages = total_pages;
@@ -72,7 +69,7 @@ export async function handleSubmit(evt) {
     localStorageMethod.save(FILMS, results);
 
     const markup = results.map(createCardMarkup).join('');
-    filmListRef.innerHTML = markup;
+    refs.filmListRef.innerHTML = markup;
   } catch (error) {
     console.log(error);
   } finally {

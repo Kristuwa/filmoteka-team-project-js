@@ -1,9 +1,9 @@
 .upward {
   position: fixed;
   bottom: 700px;
-  right: 40px;
-  width: 50px;
-  height: 50px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
   background: url(../images/up-btn.png);
   background-size: cover;
   z-index: 50;
@@ -11,10 +11,18 @@
   visibility: hidden;
   opacity: 0;
   transition: 0.5s;
+  @media screen and (min-width: $tablet) {
+    right: 40px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 50px;
+    height: 50px;
+  }
 }
 
 .upward.active {
-  bottom: 40px;
+  bottom: 25px;
   visibility: visible;
   opacity: 1;
 }

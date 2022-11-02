@@ -1,0 +1,107 @@
+.trailer-btn {
+  position: fixed;
+  top: 35%;
+
+  left: 42%;
+
+  // background-image: url(../images/play-btn.png);
+  // background-size: cover;
+  cursor: pointer;
+
+  &__play {
+    width: 60px;
+    height: 60px;
+    fill: #fff;
+    opacity: 0.4;
+    transition: 0.3s linear;
+  }
+
+  &__play:hover,
+  &__play:focus {
+    opacity: 0.8;
+  }
+
+  @media screen and (min-width: $tablet) {
+    top: 40%;
+    left: 19%;
+    width: 70px;
+    height: 70px;
+  }
+  // @media screen and (min-width: $desktop) {
+  // }
+}
+.basicLightbox {
+  left: -10px;
+}
+
+.trailer-box {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background-color: #fff;
+}
+
+.close-btn-trailer {
+  cursor: pointer;
+  position: absolute;
+  top: -39px;
+  right: 150px;
+  padding: 10px;
+
+  @media screen and (min-width: $tablet) {
+    top: -43px;
+    right: 5px;
+  }
+}
+.close-btn-trailer:before,
+.close-btn-trailer:after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 2px;
+  width: 24px;
+  height: 4px;
+  background: red;
+  transition-property: all;
+  transition-duration: 250ms;
+  transition-timing-function: linear;
+  transition-delay: 0;
+}
+.close-btn-trailer:before {
+  transform: rotate(45deg);
+}
+.close-btn-trailer:after {
+  transform: rotate(-45deg);
+}
+
+.close-btn-trailer:hover::after {
+  transform: rotate(130deg);
+}
+.close-btn-trailer:hover::before {
+  transform: rotate(220deg);
+}
+
+.basicLightbox__placeholder {
+  display: grid;
+  place-items: center;
+}
+
+.basicLightbox__placeholder > iframe {
+  width: 300px;
+  height: 270px;
+
+  @media screen and (min-width: $tablet) {
+    width: 660px;
+    height: 370px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 850px;
+    height: 470px;
+  }
+}
+
+.hidden-btn-close-modal {
+  opacity: 0;
+  visibility: hidden;
+}
