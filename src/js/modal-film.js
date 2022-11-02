@@ -131,7 +131,7 @@ function createMarkupModal({
   }
 
   return `<div class="film-info" data-id='${id}'>
-  <img srcset="${imageUrl}" src="${imageUrl}" alt="film-poster" class="film-info__poster"/>
+  <img srcset="${imageUrl}" src="${imageUrl}" alt="${title}" class="film-info__poster"/>
   <div class="flex-wrapper">
   <h2 class="film-info__title">${title}</h2>
   <table class="film-info__table">
@@ -141,17 +141,17 @@ function createMarkupModal({
 		  <td><span class="film-info__vote">${voteAverage}</span> / ${voteCount}
 		  </td>
 			</tr>
-			<tr class="spacer"></tr>
+			<tr class="spacer"><td></td><td></td></tr>
 			<tr>
 		  <td class="film-info__param">Popularity</td>
 		  <td>${popular}</td>
 			  </tr>
-			  <tr class="spacer"></tr>
+			  <tr class="spacer"><td></td><td></td></tr>
 		  <tr>
 		  <td class="film-info__param">Original Title</td>
       <td class="film-info__data-up">${original_title}</td>
 		  </tr>
-		  <tr class="spacer"></tr>
+		  <tr class="spacer"><td></td><td></td></tr>
 		  <tr>
 		  <td class="film-info__param">Genre</td>
          <td>${genresNameList}</td>
