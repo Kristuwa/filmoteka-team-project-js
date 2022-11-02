@@ -11,7 +11,7 @@ function openModalTrailer(e) {
   const getTrailerKey = localStorage.getItem(TRAILER_KEY);
   const { key } = JSON.parse(getTrailerKey);
 
-  //   refs.closeModalSvg.classList.add('hidden-btn-close-modal');
+  refs.closeModalSvg.classList.add('hidden-btn-close-modal');
 
   const instance = basicLightbox.create(`
   <div class="close-btn-trailer"></div>
@@ -22,6 +22,6 @@ function openModalTrailer(e) {
   const closeBtnTrailer = document.querySelector('.close-btn-trailer');
   closeBtnTrailer.addEventListener('click', () => {
     instance.close();
-    //  refs.closeModalSvg.classList.remove('hidden-btn-close-modal');
+    refs.closeModalSvg.classList.remove('hidden-btn-close-modal');
   });
 }
