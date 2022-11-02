@@ -21,3 +21,5 @@ const spinner = new Spinner({
   selector: '[data-action="load-spinner"]',
 });
 spinner.enable(); // сейчас спинер выключен
+// Filter
+import './filter'
