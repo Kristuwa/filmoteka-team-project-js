@@ -7,7 +7,7 @@ import { filterItem } from './refs';
 import { renderMarkupTrending } from './render_trending'
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Pagination } from './pagination';
-
+import './modal-film';
 
 const BASE_URL = 'https://api.themoviedb.org/3/'
 
@@ -133,7 +133,8 @@ export async function getSearchForm(
   // Запит
   const fetchCard = await axios.get(url);
   // Записуємо результат запиту у localstorage
-  storage.save('resultFilterItems', fetchCard.data.results)
+  // storage.save('resultFilterItems', fetchCard.data.results)
+  storage.save('films', fetchCard.data.results)
 //  Записуємо загальну кількість результатів
   storage.save('totalItems', fetchCard.data.total_pages);
 // Записуємо кількість за один запит
