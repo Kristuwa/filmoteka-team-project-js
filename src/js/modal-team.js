@@ -1,21 +1,22 @@
-const refs = {
-  openModalBtn: document.querySelector('.footer-item'),
-  closeModalBtn: document.querySelector('[data-modal-close]'),
-  modal: document.querySelector('[data-modal]'),
-  body: document.querySelector('body'),
-  listCard: document.querySelector('.team-list'),
-  card: document.querySelector('.card-team'),
-};
+import { refs } from './refs';
 
-refs.openModalBtn.addEventListener('click', toggleModal);
-refs.closeModalBtn.addEventListener('click', toggleModal);
-// refs.listCard.addEventListener('click', toggleCard);
-
-export function toggleModal() {
-  refs.modal.classList.toggle('is-hidden-team');
-  refs.body.classList.toggle('no-scroll');
+function onEscBtnPress(e) {
+  if (e.code === 'Escape') {
+    removeModal();
+  }
 }
-// export function toggleCard(event) {
-//   console.log(event.target.nodeName);
-//   event.target.classList.toggle('is-flipped');
-// }
+refs.openModalBtn.addEventListener('click', addModal);
+
+export function removeModal() {
+  refs.modal.classList.add('is-hidden-team');
+  refs.body.classList.remove('no-scroll');
+  refs.closeModalBtn.removeEventListener('click', removeModal);
+  document.removeEventListener('keydown', onEscBtnPress);
+}
+
+export function addModal() {
+  refs.modal.classList.remove('is-hidden-team');
+  refs.body.classList.add('no-scroll');
+  refs.closeModalBtn.addEventListener('click', removeModal);
+  document.addEventListener('keydown', onEscBtnPress);
+}
