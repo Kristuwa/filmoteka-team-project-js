@@ -4,6 +4,8 @@ import { MOVIEDB_KEY } from './query_handler';
 import storage from './locale-storage-methods';
 import { createCardMarkup } from './card_markup';
 import { refs } from './refs';
+import { Pagination } from './pagination';
+
 // import { getAPI } from './popularRender';
 // import { generateContent } from './createListItem';
 // import { Loading, Notify } from 'notiflix';
@@ -37,7 +39,7 @@ let formSearch = {
 
 
 
-//Поиск рендер фильма по жанру
+//Пошук рендер фильму по жанру
 async function eventGenre(evt) {
   evt.preventDefault();
 
@@ -54,14 +56,13 @@ async function eventGenre(evt) {
           refs.filmListRef.innerHTML = '';
           console.log('видаляємо фільми зі сторінки');
           const markup = data.results.map(createCardMarkup).join('');
-      refs.filmListRef.innerHTML = markup;
-          // createCardMarkup(data.results);
+          refs.filmListRef.innerHTML = markup;
           console.log('create markup');
         } else {
          
           Notify.failure(`Nothing was found for your request`);
-          refs.list.innerHTML = ` <img src="${'https://cdn.dribbble.com/users/4266416/screenshots/8269080/media/69de53b0834d3b0c493f21d4ce773dfd.png'}"
-          alt="no movies found" class="no__found">`;
+          // refs.list.innerHTML = ` <img src="${'https://cdn.dribbble.com/users/4266416/screenshots/8269080/media/69de53b0834d3b0c493f21d4ce773dfd.png'}"
+          // alt="no movies found" class="no__found">`;
         }
       })
       .catch(error => console.log(error))
@@ -71,7 +72,6 @@ async function eventGenre(evt) {
   }
 }
 
-// 
 // Запит на бекенд по жанру або року
 export async function getSearchForm(
   genre = '',
@@ -79,11 +79,16 @@ export async function getSearchForm(
   page = '',
   query = ''
 ) {
+
+  // якщо значення фільтра не дорівнює Start або рік не дорінвює ''
+  // то в запит підставляємо рік вибраний у формі
   formSearch.year =
     filterItem.yearForm.value !== 'start' || year !== ''
       ? `&primary_release_year=${filterItem.yearForm.value}`
       : '';
-// ✅
+  
+// ✅ якщо значення фільтра не дорівнює '' та не дорівнює start
+// то в запит підставляємо значення вибране у формі
   formSearch.genre =
     genre !== '' && filterItem.genreForm.value !== 'start'
       ? `&with_genres=${filterItem.genreForm.value}`
@@ -128,6 +133,44 @@ filterItem.genreForm.addEventListener('input', eventGenre);
 // filterItem.yearForm.addEventListener('input', eventYear);
 
 // filterItem.resetButton.addEventListener('click', onResetSearch);
+
+
+// Пагінація __________________________________________________
+// export const pagination = new Pagination();
+// refs.pagination.addEventListener('click', onChangePageClick);
+
+// export function onChangePageClick(e) {
+//   if (e.target.nodeName === 'UL') {
+//     return;
+//   }
+//   if (e.target.className === 'btn__next') {
+//     pagination.incrementPage();
+//   }
+//   if (e.target.className === 'btn__prev') {
+//     pagination.decrementPage();
+//   }
+//   if (e.target.className === 'dots') {
+//     return;
+//   }
+//   if (e.target.className === 'num') {
+//     pagination.page = Number(e.target.textContent);
+//   }
+
+//   pagination
+//     .fetch(pagination.page)
+//     .then(({ results }) => {
+//       // console.log(pagination.fetch);
+//       const markup = results.map(createCardMarkup).join('');
+//       methodsStorage.save(FILMS, results);
+//       refs.filmListRef.innerHTML = markup;
+//     })
+//     .catch(error => console.log(error));
+
+//   pagination.renderMarkup();
+// }
+
+
+
 
 
 
@@ -189,16 +232,16 @@ filterItem.genreForm.addEventListener('input', eventGenre);
 //   getAPI(API_URL);
 // }
 
-// //Coздание и рендер разметки в select YEAR
-// (function createSelectOptions() {
-//   let arrayYear = [];
-//   const date = new Date();
+//Coздание и рендер разметки в select YEAR
+(function createSelectOptions() {
+  let arrayYear = [];
+  const date = new Date();
 
-//   for (let i = date.getFullYear(); i >= 1950; i -= 1) {
-//     arrayYear.push(
-//       `<option class = 'filter__form-years' value="${i}">${i}</option>`
-//     );
-//   }
-//   const elements = arrayYear.join('');
-//   filterItem.yearForm.insertAdjacentHTML('beforeend', elements);
-// })();
+  for (let i = date.getFullYear(); i >= 1950; i -= 1) {
+    arrayYear.push(
+      `<option class = 'filter__form-years' value="${i}">${i}</option>`
+    );
+  }
+  const elements = arrayYear.join('');
+  filterItem.yearForm.insertAdjacentHTML('beforeend', elements);
+})();

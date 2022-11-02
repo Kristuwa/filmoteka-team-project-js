@@ -29,6 +29,7 @@ export function renderMarkupTrending() {
 }
 
 refs.pagination.addEventListener('click', onChangePageClick);
+
 export function onChangePageClick(e) {
   if (e.target.nodeName === 'UL') {
     return;
