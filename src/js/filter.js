@@ -46,6 +46,16 @@ async function eventGenre(evt) {
           const markup = data.results.map(createCardMarkup).join('');
           refs.filmListRef.innerHTML = markup;
           // console.log('create markup');
+          
+// const { page, total_pages } = data;
+//    if (total_pages > 1) {
+//         pagination.totalPages = total_pages;
+//         pagination.page = page;
+//         pagination.fetch = page => getSearchForm(page);
+//         pagination.renderMarkup();
+//       }
+
+
         } else {
          
           Notify.failure(`Nothing was found for your request`);
@@ -172,3 +182,7 @@ function onResetSearch(evt) {
 }
 createSelectOptions();
 
+// Пагінація _________________________________________
+
+export const pagination = new Pagination();
+console.log(pagination);
