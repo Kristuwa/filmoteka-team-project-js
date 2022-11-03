@@ -76,8 +76,8 @@ header {
 .day {
   fill: white;
   position: absolute;
-  top: -2;
-  left: -48px;
+  top: -1;
+  left: -40px;
   transition: transform 300ms linear, fill 300ms linear;
   @media screen and (min-width: 768px) {
     top: -2;
@@ -87,12 +87,12 @@ header {
 .night {
   fill: white;
   position: absolute;
-  top: -2;
-  right: -48px;
+  top: -1;
+  right: -40px;
   transition: transform 300ms linear, fill 300ms linear;
   @media screen and (min-width: 768px) {
     top: -2;
-    left: -48px;
+    left: 25px;
   }
 }
 .card-list.dark {
@@ -136,7 +136,7 @@ header {
 }
 .day-nigth-btn-box {
   position: absolute;
-  top: 200px;
+  top: 205px;
   // top: 85px;
   // left: 46.5%;
   right: 55%;
