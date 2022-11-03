@@ -3,7 +3,6 @@ import { refs } from "./refs";
 import { createCardMarkup } from './card_markup';
 import localStorageMethod from './locale-storage-methods';
 import { FILMS, LAST_REQUEST } from './localStorageKeys';
-// import { queryHandler, spinner } from "./search_by_keywords";
 import { QueryHandler } from './query_handler';
 import {pagination} from './render_trending'
 const queryHandlerVoice = new QueryHandler();
@@ -58,9 +57,8 @@ if (SpeechRecognition) {
     const current = e.resultIndex;
     const transcript = e.results[current][0].transcript;
 
-    if (transcript.toLowerCase().trim() === 'stop') {
-      recognition.stop();
-    } else if (!searchFormInput.value) {
+    
+     if (!searchFormInput.value) {
       searchFormInput.value = transcript;
     } else {
       if (transcript.toLowerCase().trim() === 'search') {
@@ -73,7 +71,7 @@ if (SpeechRecognition) {
       }
     }
   }
-  refs.info.textContent = 'Voice Commands: "stop", "reset", "search"';
+  refs.info.textContent = 'Voice Commands: "reset", "search"';
 } else {
   console.log('Your Browser does not support speech Recognition');
   refs.info.textContent = 'Your Browser does not support Speech Recognition';
@@ -83,7 +81,7 @@ if (SpeechRecognition) {
 async function onSearch() {
  
   const valueSearchQuery = refs.searchFormInput.value.trim().toLowerCase();
-
+  
   queryHandlerVoice.query = valueSearchQuery;
 
   try {
