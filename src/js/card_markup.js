@@ -2,7 +2,6 @@ import { createStringOfGenresForCard } from './genres_storage';
 
 export function createCardMarkup(data) {
   const { title, poster_path, release_date, genre_ids, id } = data;
-
   let date = release_date;
   if (!date) {
     date = 'No information';
@@ -17,7 +16,7 @@ export function createCardMarkup(data) {
   }
 
   let cardGenres;
-  if (genre_ids.length === 0) {
+  if (!genre_ids) {
     cardGenres = 'No information';
   } else {
     cardGenres = createStringOfGenresForCard(genre_ids);

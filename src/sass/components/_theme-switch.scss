@@ -9,14 +9,18 @@ body.dark {
 }
 .material-icons {
   background-color: rgb(255, 255, 255);
-  height: 19px;
-  width: 19px;
+  height: 15px;
+  width: 15px;
   z-index: 2;
   position: absolute;
   top: 1px;
   left: 1px;
   border-radius: 50%;
   transition: transform 300ms linear, background-color 300ms linear;
+  @media screen and (min-width: 768px) {
+    height: 19px;
+    width: 19px;
+  }
   &.dark {
     transform: translateX(100%);
     background-color: #000;
@@ -49,8 +53,8 @@ body.dark {
   }
 }
 .themetoggle {
-  height: 21px;
-  width: 40px;
+  height: 17px;
+  width: 35px;
   border-radius: 10px;
   background-color: #ff6b02;
   position: absolute;
@@ -58,6 +62,10 @@ body.dark {
   left: 0;
   transform: translateX(-50%);
   transition: box-shadow 300ms linear;
+  @media screen and (min-width: 768px) {
+    height: 21px;
+    width: 40px;
+  }
   &:hover {
     box-shadow: 0px 0px 5px 5px (#ff6b027b);
   }
@@ -68,16 +76,24 @@ header {
 .day {
   fill: white;
   position: absolute;
-  top: -2;
-  left: -48px;
+  top: -1;
+  left: -40px;
   transition: transform 300ms linear, fill 300ms linear;
+  @media screen and (min-width: 768px) {
+    top: -2;
+    left: -48px;
+  }
 }
 .night {
   fill: white;
   position: absolute;
-  top: -2;
-  right: -48px;
+  top: -1;
+  right: -40px;
   transition: transform 300ms linear, fill 300ms linear;
+  @media screen and (min-width: 768px) {
+    top: -2;
+    left: 25px;
+  }
 }
 .card-list.dark {
   color: white;
@@ -120,15 +136,21 @@ header {
 }
 .day-nigth-btn-box {
   position: absolute;
-  top: 200px;
-  left: 50%;
+  top: 205px;
+  // top: 85px;
+  // left: 46.5%;
+  right: 55%;
   transform: translateX(110px);
   @media screen and (min-width: 768px) {
     transform: translateX(300px);
+    right: 50%;
+    // left: 50%;
     top: 180px;
   }
   @media screen and (min-width: 1280px) {
     transform: translateX(550px);
+    right: 50%;
+    // left: 50%;
   }
   &.dark .day,
   &.dark .night {
@@ -203,4 +225,12 @@ header {
 //   color: white;
 //   background: #2c2c2c;
 // }
-
+.day-icon,
+.night-icon {
+  width: 18px;
+  height: 18px;
+  @media screen and (min-width: 768px) {
+    height: 24px;
+    width: 24px;
+  }
+}

@@ -42,30 +42,38 @@
         autocomplete="off"
         placeholder="Movie search"
       />
+
       <div class="search-btn__box">
         <button aria-label="Search" type="submit" class="search-btn button">
           <svg class="search-btn__icon" width="12" height="12">
             <use href="./images/icons.svg#icon-search"></use>
           </svg>
         </button>
-        <button aria-label="Voice-Search" type="button" class="search-btn button header-main__svg search-btn__mic">
+        <button
+          aria-label="Voice-Search"
+          type="button"
+          class="search-btn button header-main__svg search-btn__mic"
+        >
           <svg class="search-btn__icon mic-stop" width="12" height="12">
             <use href="./images/icons.svg#mic"></use>
           </svg>
         </button>
       </div>
-      <p class="search-form__info"></p>
     </form>
+    <p class="search-form__info"></p>
+
+    <include src="./partials/filter.html"></include>
+
     <div class="day-nigth-btn-box">
       <span class="day">
-        <svg class="" width="24" height="24">
+        <svg class="day-icon">
           <use href="./images/icons.svg#icon-sun"></use></svg
       ></span>
       <a href="#" class="themetoggle" aria-label="theme of page">
         <span class="material-icons"></span
       ></a>
       <span class="night">
-        <svg class="" width="24" height="24">
+        <svg class="night-icon">
           <use href="./images/icons.svg#icon-moon"></use></svg
       ></span>
     </div>
