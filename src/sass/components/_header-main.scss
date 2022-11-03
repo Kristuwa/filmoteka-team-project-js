@@ -117,6 +117,7 @@
   margin-left: auto;
   margin-right: auto;
   position: relative;
+  // margin-top: 24px;
   margin-top: 54px;
   width: 280px;
 
@@ -205,6 +206,7 @@
 .search-form__info {
   margin-top: 4px;
   color: transparent;
+  // color: #fff;
 
   transition: color var(--function-animate) var(--time);
 }

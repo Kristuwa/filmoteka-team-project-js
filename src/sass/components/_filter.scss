@@ -1,0 +1,51 @@
+.filter__form{
+background-color: transparent;
+// margin-top: 4px;
+display: flex;
+justify-content: center;
+@media screen and (min-width: $tablet) {
+margin-top: 4px;
+  }
+}
+
+.filter__form-select {
+  background-color: rgba(23, 28, 32);
+  font-size: 14px ;
+  color: #fff;
+  border-radius: 5px;
+  border-color: transparent;
+  margin-right: 10px;
+  padding: 3px;
+  cursor: pointer;
+  text-align: center;
+  appearance: none;
+  @media screen and (min-width: $tablet) {
+   min-width: 120px;
+    border-color: #fff;
+    }
+}
+
+.filter__form-select::-webkit-scrollbar {
+  display: none;
+}
+
+.button__reset {
+  background-color: #171C20;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+ 
+
+    @media screen and (min-width: $tablet) {
+    padding: 3px;
+    margin-top: 0px;
+    border: 1px solid #fff;
+    min-width: 120px;
+      }
+}
+
+.button__reset:hover {
+  background-color:#57101A;
+}
