@@ -15,7 +15,6 @@ import { QueryHandler } from './query_handler';
 import { refs } from './refs';
 
 const queryHandler = new QueryHandler();
-
 refs.filmListRef.addEventListener('click', event => {
   onModalOpenFilm(event);
   new PerfectScrollbar('.film-info__desc');

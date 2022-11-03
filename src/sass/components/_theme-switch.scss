@@ -136,15 +136,21 @@ header {
 }
 .day-nigth-btn-box {
   position: absolute;
-  top: 90px;
-  left: 50%;
+  top: 200px;
+  // top: 85px;
+  // left: 46.5%;
+  right: 55%;
   transform: translateX(110px);
   @media screen and (min-width: 768px) {
     transform: translateX(300px);
+    right: 50%;
+    // left: 50%;
     top: 180px;
   }
   @media screen and (min-width: 1280px) {
     transform: translateX(550px);
+    right: 50%;
+    // left: 50%;
   }
   &.dark .day,
   &.dark .night {
