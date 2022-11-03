@@ -52,7 +52,7 @@ if (SpeechRecognition) {
 
   recognition.addEventListener('result', resultOfSpeechRecognition); // <=> recognition.onresult = function(event) {...} - Fires when you stop talking
   function resultOfSpeechRecognition(e) {
-    const { searchFormInput} = refs;
+    const { searchFormInput } = refs;
 
     const current = e.resultIndex;
     const transcript = e.results[current][0].transcript;
@@ -79,9 +79,8 @@ if (SpeechRecognition) {
 
 
 async function onSearch() {
- 
   const valueSearchQuery = refs.searchFormInput.value.trim().toLowerCase();
-  
+
   queryHandlerVoice.query = valueSearchQuery;
 
   try {
