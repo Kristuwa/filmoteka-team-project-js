@@ -1,8 +1,11 @@
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { refs } from "./refs";
+import { createCardMarkup } from './card_markup';
 import localStorageMethod from './locale-storage-methods';
 import { FILMS, LAST_REQUEST } from './localStorageKeys';
-import { queryHandler, spinner } from "./search_by_keywords";
+// import { queryHandler, spinner } from "./search_by_keywords";
 import { QueryHandler } from './query_handler';
+import {pagination} from './render_trending'
 const queryHandlerVoice = new QueryHandler();
 
 // The speech recognition interface lives on the browser’s window object
@@ -61,8 +64,8 @@ if (SpeechRecognition) {
       searchFormInput.value = transcript;
     } else {
       if (transcript.toLowerCase().trim() === 'search') {
-        console.log('search');
         onSearch();
+        recognition.stop();
       } else if (transcript.toLowerCase().trim() === 'reset') {
         searchFormInput.value = '';
       } else {
@@ -77,20 +80,15 @@ if (SpeechRecognition) {
 }
 
 
-
-
-
-
 async function onSearch() {
  
   const valueSearchQuery = refs.searchFormInput.value.trim().toLowerCase();
-  
 
   queryHandlerVoice.query = valueSearchQuery;
 
   try {
     const { results, total_results, page, total_pages } =
-      await queryHandler.fetchQueryResultsForMovieSearch();
+      await queryHandlerVoice.fetchQueryResultsForMovieSearch();
 
     if (!results.length) {
       queryHandlerVoice.query = localStorageMethod.load(LAST_REQUEST);
