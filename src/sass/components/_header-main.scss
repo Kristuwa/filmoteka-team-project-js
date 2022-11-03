@@ -3,7 +3,7 @@
   height: 230px;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 44px;
+  padding-top: 25px;
   padding-bottom: 92px;
 
   background-color: #000000;
@@ -118,7 +118,7 @@
   margin-right: auto;
   position: relative;
   // margin-top: 24px;
-  margin-top: 54px;
+  margin-top: 59px;
   width: 280px;
 
   @include tablet {
@@ -152,17 +152,17 @@
 
 .search-btn__box {
   position: absolute;
-  top: 0;
-  right: 8px;
+  top: -5px;
+  right: 3px;
 
   display: flex;
-  gap: 8px
+  // gap: 8px;
 }
 .search-btn {
   cursor: pointer;
   background: transparent;
   border: none;
-  padding: 0;
+  padding: 5px;
   color: var(--primary-text-color);
   //   transition: color var(--time) var(--function-animate);
 }
@@ -184,7 +184,7 @@
 }
 .search-form__input:hover,
 .search-form__input:focus {
-  border-color: var(--accent-color);;
+  border-color: var(--accent-color);
 }
 
 .search-form__input::placeholder {
