@@ -14,13 +14,13 @@
     visibility: hidden;
   }
 
-  &.is-hidden .modal {
-    transform: translate(-50%, -50%) scale(0);
-  }
+  //   &.is-hidden .modal {
+  //   }
 }
 
 .modal {
   transform: translate(-50%, -50%) scale(1);
+  transition: transform var(--time) var(--function-animate);
 }
 
 .close-btn {
