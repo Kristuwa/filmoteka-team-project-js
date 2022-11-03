@@ -1,7 +1,6 @@
 import { QueryHandler } from './query_handler';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { createCardMarkup } from './card_markup';
-import localStorageMethod from './locale-storage-methods';
 import Spinner from './spinner';
 import { pagination } from './render_trending';
 import localStorageMethod from './locale-storage-methods';
@@ -12,6 +11,8 @@ const queryHandler = new QueryHandler();
 const spinner = new Spinner({
   selector: '[data-action="load-spinner"]',
 });
+
+refs.searchForm.addEventListener('submit', handleSubmit);
 
 Notify.init({
   timeout: 1500,

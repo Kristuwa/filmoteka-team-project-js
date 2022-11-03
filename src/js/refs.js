@@ -11,4 +11,8 @@ export const refs = {
   modalCard: document.querySelector('.film-card'),
   libraryListButtons: document.querySelector('.btn__list'),
   playBtn: document.querySelector('.trailer-btn'),
+  searchForm: document.querySelector('#search-form'),
+  searchBtnBox: document.querySelector('.search-btn__box'),
+  searchFormInput: document.querySelector('.search-form__input'),
+  info: document.querySelector('.search-form__info'),
 };
