@@ -35,6 +35,7 @@ export function renderMarkupTrending() {
 }
 
 refs.pagination.addEventListener('click', onChangePageClick);
+
 export function onChangePageClick(e) {
   if (e.target.nodeName === 'UL') {
     return;
@@ -60,7 +61,7 @@ export function onChangePageClick(e) {
   pagination
     .fetch(pagination.page)
     .then(({ results }) => {
-      // console.log(pagination.fetch);
+      console.log(pagination.fetch);
       const markup = results.map(createCardMarkup).join('');
       methodsStorage.save(FILMS, results);
       refs.filmListRef.innerHTML = markup;
