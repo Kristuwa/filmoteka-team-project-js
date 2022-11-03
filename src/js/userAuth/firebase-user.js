@@ -23,7 +23,6 @@ Notify.init({
   timeout: 1500,
   position: 'center-top',
   backOverlay: false,
-  opacity: 0.8,
   borderRadius: '25px',
 });
 
