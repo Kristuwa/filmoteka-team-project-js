@@ -19,4 +19,8 @@ export const refs = {
   body: document.querySelector('body'),
   listCard: document.querySelector('.team-list'),
   card: document.querySelector('.card-team'),
+  searchForm: document.querySelector('#search-form'),
+  searchBtnBox: document.querySelector('.search-btn__box'),
+  searchFormInput: document.querySelector('.search-form__input'),
+  info: document.querySelector('.search-form__info'),
 };
