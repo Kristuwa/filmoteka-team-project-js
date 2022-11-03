@@ -24,3 +24,11 @@ export const refs = {
   searchFormInput: document.querySelector('.search-form__input'),
   info: document.querySelector('.search-form__info'),
 };
+
+// Елементи форми фільтра
+export const filterItem = {
+  filterForm: document.querySelector('#filter-form'),
+  genreForm: document.querySelector('#genreForm'),
+  yearForm: document.querySelector('#yearForm'),
+  resetButton: document.querySelector('#button__reset'),
+};
