@@ -1,7 +1,7 @@
-import { refs } from "./refs";
+import { refs } from './refs';
 import localStorageMethod from './locale-storage-methods';
 import { FILMS, LAST_REQUEST } from './localStorageKeys';
-import { queryHandler, spinner } from "./search_by_keywords";
+// import { queryHandler, spinner } from "./search_by_keywords";
 import { QueryHandler } from './query_handler';
 const queryHandlerVoice = new QueryHandler();
 
@@ -50,7 +50,7 @@ if (SpeechRecognition) {
 
   recognition.addEventListener('result', resultOfSpeechRecognition); // <=> recognition.onresult = function(event) {...} - Fires when you stop talking
   function resultOfSpeechRecognition(e) {
-    const { searchFormInput} = refs;
+    const { searchFormInput } = refs;
 
     const current = e.resultIndex;
     const transcript = e.results[current][0].transcript;
@@ -76,21 +76,14 @@ if (SpeechRecognition) {
   refs.info.textContent = 'Your Browser does not support Speech Recognition';
 }
 
-
-
-
-
-
 async function onSearch() {
- 
   const valueSearchQuery = refs.searchFormInput.value.trim().toLowerCase();
-  
 
   queryHandlerVoice.query = valueSearchQuery;
 
   try {
     const { results, total_results, page, total_pages } =
-      await queryHandler.fetchQueryResultsForMovieSearch();
+      await queryHandlerVoice.fetchQueryResultsForMovieSearch();
 
     if (!results.length) {
       queryHandlerVoice.query = localStorageMethod.load(LAST_REQUEST);
