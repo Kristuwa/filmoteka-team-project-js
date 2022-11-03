@@ -8,8 +8,10 @@ import './modal-film';
 import { onPlayVideo } from './play_trailer_btn';
 import { openModalTrailer, closeModalTrailer } from './play_trailer_btn';
 import { toggleModal, toggleCard } from './modal-team.js';
-saveGenres();
-renderMarkupTrending();
+saveGenres()
+  .then(() => renderMarkupTrending())
+  .catch(error => console.log(error));
+// renderMarkupTrending();
 import './day-night';
 const formRef = document.querySelector('#search-form');
 formRef.addEventListener('submit', handleSubmit);

@@ -5,13 +5,13 @@ import { GENRES } from './localStorageKeys';
 const getGenders = new QueryHandler();
 
 export function saveGenres() {
-  getGenders
+  return getGenders
     .fetchQueryResultsForGenres()
     .then(genresData => {
       methodsStorage.save(GENRES, genresData);
     })
     .catch(error => console.log(error));
-  return methodsStorage.load(GENRES);
+  //   return methodsStorage.load(GENRES);
 }
 
 export function createStringOfGenresForCard(genresId) {
