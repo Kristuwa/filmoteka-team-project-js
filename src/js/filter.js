@@ -1,21 +1,24 @@
 import axios from 'axios';
 import { MOVIEDB_KEY } from './query_handler';
 import storage from './locale-storage-methods';
+import {FILMS} from './localStorageKeys';
 import { createCardMarkup } from './card_markup';
 import { refs } from './refs';
 import { filterItem } from './refs';
-import { renderMarkupTrending } from './render_trending'
+import { renderMarkupTrending, pagination, onChangePageClick} from './render_trending'
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { Pagination } from './pagination';
 import './modal-film';
 
 const BASE_URL = 'https://api.themoviedb.org/3/'
 
 // Слухачі подій
+
 filterItem.genreForm.addEventListener('input', eventGenre);
 filterItem.yearForm.addEventListener('input', eventYear);
 filterItem.resetButton.addEventListener('click', onResetSearch);
 
+refs.pagination.removeEventListener('click', onChangePageClick);
+refs.pagination.addEventListener('click', onChangePageOfFilterClick);
 
 // Змінні для запиту на бекенд
 let formSearch = {
@@ -30,13 +33,18 @@ let formSearch = {
 //Пошук рендер фильму по жанру __________________________
 async function eventGenre(evt) {
   evt.preventDefault();
+  console.log(evt);
+  if (evt.target.value !== formSearch.genre || !formSearch.genre) {
+    pagination.resetPage();
+  }
 
   if (evt) {
     formSearch.genre = evt.target.value;
     // console.log('genre id:', evt.target.value);
-    formSearch.page = 1;
+    // formSearch.page = 1;
 
-    await getSearchForm(formSearch.genre, formSearch.year, formSearch.page)
+
+    await getSearchForm(formSearch.genre, formSearch.year, pagination.page)
       .then(data => {
 
 
@@ -47,15 +55,6 @@ async function eventGenre(evt) {
           refs.filmListRef.innerHTML = markup;
           // console.log('create markup');
           
-// const { page, total_pages } = data;
-//    if (total_pages > 1) {
-//         pagination.totalPages = total_pages;
-//         pagination.page = page;
-//         pagination.fetch = page => getSearchForm(page);
-//         pagination.renderMarkup();
-//       }
-
-
         } else {
          
           Notify.failure(`Nothing was found for your request`);
@@ -71,15 +70,16 @@ async function eventGenre(evt) {
 // Пошук і рендер фільмів по роках __________________________
 async function eventYear(evt) {
   evt.preventDefault();
-
+  if (evt.target.value !== formSearch.year || !formSearch.year) {
+    pagination.resetPage();
+  }
   // якщо евент не пустий, то беремо значення з форми
   if (evt) {
     formSearch.year = Number(evt.target.value);
-    formSearch.page = 1;
+    // formSearch.page = 1;
 
-    await getSearchForm(formSearch.genre, formSearch.year, formSearch.page)
+    await getSearchForm(formSearch.genre, formSearch.year, pagination.page)
       .then(data => {
-        
 
         if (data.results.length !== 0) {
           refs.filmListRef.innerHTML = '';
@@ -100,7 +100,7 @@ async function eventYear(evt) {
 export async function getSearchForm(
   genre = '',
   year = '',
-  page = '',
+  pageNumber = '',
   query = ''
 ) {
 
@@ -136,19 +136,30 @@ export async function getSearchForm(
   if (query === '' && year !== '') {
     formSearch.discover = 'discover';
   }
-  const url = `${BASE_URL}${formSearch.discover}/movie?api_key=${MOVIEDB_KEY}&sort_by=popularity.desc${formSearch.genre}${formSearch.year}&include_adult=false&page=${page}`
+  const url = `${BASE_URL}${formSearch.discover}/movie?api_key=${MOVIEDB_KEY}&sort_by=popularity.desc${formSearch.genre}${formSearch.year}&include_adult=false&page=${pageNumber}`
    // Перевірка рядка запиту
   // console.log(url);
 
   // Запит
   const fetchCard = await axios.get(url);
+  const { total_pages, page, results } = fetchCard.data;
   // Записуємо результат запиту у localstorage
   // storage.save('resultFilterItems', fetchCard.data.results)
-  storage.save('films', fetchCard.data.results)
+  storage.save('films', results)
 //  Записуємо загальну кількість результатів
-  storage.save('totalItems', fetchCard.data.total_pages);
+  storage.save('totalItems', total_pages);
 // Записуємо кількість за один запит
-  storage.save('itemsPerPage', fetchCard.data.results.length);
+  storage.save('itemsPerPage', results.length);
+
+  // Пагінація
+  if (total_pages > 1) {
+        pagination.totalPages = total_pages;
+        pagination.page = page;
+        pagination.fetch = page =>
+          getSearchForm(formSearch.genre, formSearch.year, page);
+        pagination.renderMarkup();
+  }
+  
   return fetchCard.data;
 }
 
@@ -171,7 +182,7 @@ function createSelectOptions() {
 // Скидання фільтру по кнопці reset
 function onResetSearch(evt) {
   evt.preventDefault();
-
+  pagination.resetPage();
   filterItem.genreForm.options.selectedIndex = 0;
   filterItem.yearForm.options.selectedIndex = 0;
   formSearch.genre = '';
@@ -184,5 +195,35 @@ createSelectOptions();
 
 // Пагінація _________________________________________
 
-export const pagination = new Pagination();
-console.log(pagination);
+
+export function onChangePageOfFilterClick(e) {
+  if (e.target.nodeName === 'UL') {
+    return;
+  }
+  if (e.target.className === 'btn__next') {
+    pagination.incrementPage();
+  }
+  if (e.target.className === 'btn__prev') {
+    pagination.decrementPage();
+  }
+  if (e.target.className === 'dots') {
+    return;
+  }
+  if (e.target.className === 'num') {
+    pagination.page = Number(e.target.textContent);
+  }
+  
+  
+  pagination
+    .fetch(pagination.page)
+    .then(({ results }) => {
+      console.log(results);
+      console.log(pagination.fetch);
+      const markup = results.map(createCardMarkup).join('');
+      storage.save(FILMS, results);
+      refs.filmListRef.innerHTML = markup;
+    })
+    .catch(error => console.log(error));
+
+  pagination.renderMarkup();
+}
