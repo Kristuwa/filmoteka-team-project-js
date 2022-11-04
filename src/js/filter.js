@@ -217,8 +217,8 @@ export function onChangePageOfFilterClick(e) {
   pagination
     .fetch(pagination.page)
     .then(({ results }) => {
-      console.log(results);
-      console.log(pagination.fetch);
+      // console.log(results);
+      // console.log(pagination.fetch);
       const markup = results.map(createCardMarkup).join('');
       storage.save(FILMS, results);
       refs.filmListRef.innerHTML = markup;
