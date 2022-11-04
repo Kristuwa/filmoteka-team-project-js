@@ -13,4 +13,6 @@ export const refs = {
   playBtn: document.querySelector('.trailer-btn'),
   closeModalSvg: document.querySelector('.film-card-close-svg'),
   upward: document.querySelector('.upward'),
+  slider: document.querySelector('.glide__slides'),
+  sliderBtn: document.querySelector('.trailer-btn-slider'),
 };

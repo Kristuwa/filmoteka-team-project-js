@@ -8,6 +8,9 @@ import './modal-film';
 import { onPlayVideo } from './play_trailer_btn';
 import { openModalTrailer, closeModalTrailer } from './play_trailer_btn';
 import { toggleModal, toggleCard } from './modal-team.js';
+import { getTrendForSlider } from '../js/murkup_slider';
+
+getTrendForSlider();
 
 saveGenres();
 renderMarkupTrending();

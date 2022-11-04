@@ -67,6 +67,7 @@ export class QueryHandler {
   // Get the videos that have been added to a movie:
 
   async fetchQueryResultsForVideo(id) {
+    console.log(id);
     let trailerKey = '';
     try {
       const response = await axios.get(

@@ -1,0 +1,113 @@
+.glide {
+  display: none;
+
+  @media screen and (min-width: $tablet) {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 50px;
+    cursor: grab;
+  }
+}
+
+.film-slider__item {
+  position: relative;
+}
+.film-slider__img {
+  border-radius: 10px;
+}
+
+.glider-next {
+  transform: rotate(180deg);
+}
+
+.glider-next,
+.glider-prev {
+  @media screen and (min-width: $tablet) {
+    width: 30px;
+    height: 30px;
+    fill: #fff;
+    opacity: 0.4;
+    transition: 0.3s linear;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 50px;
+    height: 50px;
+    fill: #fff;
+    opacity: 0.4;
+    transition: 0.3s linear;
+  }
+}
+
+.glider-next:hover,
+.glider-next:focus,
+.glider-prev:hover,
+.glider-prev:focus {
+  opacity: 0.8;
+}
+
+.glide__arrow {
+  border: none;
+  background-color: transparent;
+}
+
+.glide__arrow--left {
+  @media screen and (min-width: $tablet) {
+    position: absolute;
+    top: 40%;
+    left: 0;
+  }
+
+  @media screen and (min-width: $desktop) {
+    top: 40%;
+  }
+}
+
+.glide__arrow--right {
+  @media screen and (min-width: $tablet) {
+    position: absolute;
+    top: 40%;
+    right: 0;
+  }
+
+  @media screen and (min-width: $desktop) {
+    top: 40%;
+  }
+}
+
+.trailer-btn-slider {
+  @media screen and (min-width: $tablet) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    width: 79px;
+    height: 20px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgba(254, 254, 254, 0.5);
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 143px;
+    height: 30px;
+  }
+}
+
+.trailer-btn-slider > h2 {
+  @media screen and (min-width: $tablet) {
+    color: rgb(255, 0, 0);
+    font-size: 9px;
+    font-weight: 500;
+    line-height: 1.17;
+    text-transform: uppercase;
+  }
+
+  @media screen and (min-width: $desktop) {
+    color: rgb(255, 0, 0);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.17;
+    text-transform: uppercase;
+  }
+}
