@@ -37,6 +37,8 @@ function createMarkupSlider(results) {
         src="${imageUrl}"
         alt="${title}"
         data-id="${id}"
+		  width="143.25"
+		  height ="214.8"
       />
    
         <button data-id="${id}" class="trailer-btn-slider" type="button">
