@@ -13,7 +13,7 @@
   position: relative;
 }
 .film-slider__img {
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .glider-next {
@@ -80,12 +80,13 @@
     position: absolute;
     top: 0;
     left: 0;
+    color: rgba(255, 255, 255, 0);
     background-color: transparent;
     width: 79px;
     height: 20px;
-    border-radius: 20px;
+    border-radius: 5px;
     border: none;
-    background-color: rgba(254, 254, 254, 0.5);
+    // background-color: rgba(254, 254, 254, 0.5);
   }
 
   @media screen and (min-width: $desktop) {
@@ -96,7 +97,7 @@
 
 .trailer-btn-slider > h2 {
   @media screen and (min-width: $tablet) {
-    color: rgb(255, 0, 0);
+   
     font-size: 9px;
     font-weight: 500;
     line-height: 1.17;
@@ -104,10 +105,14 @@
   }
 
   @media screen and (min-width: $desktop) {
-    color: rgb(255, 0, 0);
+    // color: rgb(255, 0, 0);
     font-size: 12px;
     font-weight: 500;
     line-height: 1.17;
     text-transform: uppercase;
   }
+}
+.film-slider__item:hover .trailer-btn-slider {
+color: rgb(186, 18, 40);
+background-color: rgba(0, 0, 0, 0.9);
 }
