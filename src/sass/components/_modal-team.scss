@@ -6,19 +6,16 @@
   z-index: 51;
   top: 0;
   opacity: 1;
-  visibility: visible;
   transition: opacity 1500ms cubic-bezier(0.4, 0, 0.2, 1),
     visibility 1500ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &.is-hidden-team .modal-team {
-    visibility: hidden;
     transform: translate(-50%, -50%) scale(0.9);
-    transition: visibility 1000ms var(--function-animate);
   }
 }
 
 .backdrop-team.is-hidden-team {
-  visibility: hidden;
+  visibility: none;
   opacity: 0;
   pointer-events: none;
 }
@@ -34,7 +31,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  visibility: visible;
   text-align: center;
   width: 98%;
   height: 98%;
@@ -221,7 +217,7 @@
     justify-content: center;
     background-color: rgba(255, 255, 255, 0.1);
     color: var(--background-color);
-    transition: color var(--time) var(--function-animate),
+    transition: color var(--time), var(--function-animate),
       background-color var(--time) var(--function-animate);
   }
 
