@@ -3,17 +3,22 @@ import Spinner from './spinner';
 import { saveGenres } from './genres_storage';
 import { renderMarkupTrending } from './render_trending.js';
 import './search_by_keywords';
-import './voiceSearch'
+import './voiceSearch';
 import './add_to_list';
 import './modal-film';
 
 import { onPlayVideo } from './play_trailer_btn';
 import { openModalTrailer, closeModalTrailer } from './play_trailer_btn';
 import { toggleModal, toggleCard } from './modal-team.js';
+
 saveGenres()
   .then(() => renderMarkupTrending())
   .catch(error => console.log(error));
-// renderMarkupTrending();
+
+import { getTrendForSlider } from '../js/murkup_slider';
+
+getTrendForSlider();
+
 import './day-night';
 
 // Экземпляр класса Spinner имеет 2 метода:
@@ -24,4 +29,4 @@ const spinner = new Spinner({
 });
 spinner.enable(); // сейчас спинер выключен
 // Filter
-import './filter'
+import './filter';

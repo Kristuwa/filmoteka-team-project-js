@@ -23,6 +23,10 @@
 @import './components/user-auth';
 @import './components/footer';
 
+//Slider
+@import 'node_modules/@glidejs/glide/src/assets/sass/glide.core';
+@import './components/film-slider';
+
 // Custom scrollbar:
 @import 'perfect-scrollbar/css/perfect-scrollbar';
 @import './components/theme-switch';

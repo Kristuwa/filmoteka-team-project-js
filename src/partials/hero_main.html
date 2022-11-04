@@ -1,5 +1,23 @@
 <section class="hero">
   <div class="container-filmoteka">
+    <div class="glide">
+      <div class="glide__track" data-glide-el="track">
+        <ul class="glide__slides"></ul>
+      </div>
+      <div class="glide__arrows" data-glide-el="controls">
+        <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+          <svg class="glider-prev">
+            <use href="./images/icons.svg#icon-navigation-arrow-1"></use>
+          </svg>
+        </button>
+        <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+          <svg class="glider-next" width="40">
+            <use href="./images/icons.svg#icon-navigation-arrow-1"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+
     <h1 class="visually-hidden">Our Gallery</h1>
     <ul class="card-list list"></ul>
     <ul class="pagination__list list"></ul>

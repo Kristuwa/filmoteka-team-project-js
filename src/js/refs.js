@@ -23,6 +23,8 @@ export const refs = {
   searchBtnBox: document.querySelector('.search-btn__box'),
   searchFormInput: document.querySelector('.search-form__input'),
   info: document.querySelector('.search-form__info'),
+  slider: document.querySelector('.glide__slides'),
+  sliderBtn: document.querySelector('.trailer-btn-slider'),
 };
 
 // Елементи форми фільтра
