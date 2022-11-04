@@ -13,6 +13,7 @@
   &.is-hidden-team .modal-team {
     visibility: hidden;
     transform: translate(-50%, -50%) scale(0.9);
+    transition: visibility 1000ms var(--function-animate);
   }
 }
 
@@ -220,8 +221,8 @@
     justify-content: center;
     background-color: rgba(255, 255, 255, 0.1);
     color: var(--background-color);
-    transition: color var(--time), var(--function-animate);
-    background-color: var(--time), var(--function-animate);
+    transition: color var(--time) var(--function-animate),
+      background-color var(--time) var(--function-animate);
   }
 
   &__icon {
