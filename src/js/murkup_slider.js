@@ -42,7 +42,7 @@ function createMarkupSlider(results) {
       />
    
         <button data-id="${id}" class="trailer-btn-slider" type="button">
-        <h2 data-id="${id}">Watch trailer</h2>
+        <p data-id="${id}">Watch trailer</p>
 </button>
     </li>
 
